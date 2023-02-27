@@ -15,7 +15,7 @@ import {MaterialModule} from "../../../../libs/shared/material.module";
   declarations: [AppComponent, NxWelcomeComponent, LoginComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    RouterModule.forRoot(appRoutes, {initialNavigation: 'enabledBlocking'}),
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
