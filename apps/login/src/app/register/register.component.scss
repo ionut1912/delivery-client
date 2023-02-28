@@ -1,33 +1,27 @@
 
-.visibility{
-  width:30px;
-  height: 30px;
-}
+
+
 .container{
+
+
   background-color: #fff;
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+
+  justify-content: center;
+  align-items: center;
 }
-.container .title{
-  font-size: 25px;
-  font-weight: 500;
-  position: relative;
+.input{
+  padding-top:30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title{
   text-align: center;
-}
-.create{
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-}
-.container .title::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  border-radius: 5px;
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
 }
 .content form .user-details{
   display: flex;
@@ -58,6 +52,10 @@ form .input-box span.details{
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
   border-color: #9b59b6;
+}
+input{
+  width: 500px;
+
 }
 form .gender-details .gender-title{
   font-size: 20px;
@@ -99,6 +97,7 @@ form .category label .dot{
   text-align:center;
   color: black;
   border: none;
+  cursor: pointer;
 }
 .exit{
   border:none;
@@ -130,7 +129,7 @@ form .button input:hover{
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
 @media(max-width: 1000px){
-  .container{
+  .containerform{
     max-width: 100%;
   }
   form .user-details .input-box{
@@ -140,134 +139,17 @@ form .button input:hover{
   form .category{
     width: 100%;
   }
-
-
+  .content form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar{
+    width: 5px;
+  }
 }
-@media(max-width: 809px){
-  .container .content .category{
+@media(max-width: 800px){
+  .containerform .content .category{
     flex-direction: column;
   }
 
-}
-@media(max-width: 809px){
-
-  .admin{
-    width: 100px;
-    height: 30px;
-  }
-  .user{
-    width: 100px;
-    height: 30px;
-  }
-}
-
-.register{
-  text-decoration: none;
-  text-align:center;
-  color: black;
-  border: none;
-}
-.inputs{
-  align-items: center;
-  padding-top: 20px;
-  padding-left:20px;
-}
-.forgot{
-  text-decoration: none;
-  text-align: center;
-  color: red;
-  cursor: pointer;
-}
-
-.user{
-  cursor: pointer;
-  border: 1px solid #3498db;
-  background-color: transparent;
-  height: 50px;
-  width: 200px;
-  color: #3498db;
-  font-size: 1em;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
-}
-.admin{
-  cursor: pointer;
-  border: 1px solid green;
-  background-color: transparent;
-  height: 50px;
-  width: 200px;
-  color: #3498db;
-  font-size: 1em;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
-}
-
-
-
-
-.input{
-display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
-
-}
-.containerform{
-  max-width: 700px;
-  width: 100%;
-  background-color: #fff;
-  padding: 25px 30px;
-  border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-}
-
- .title{
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
-  position: relative;
-  text-align: center;
-}
-
-.containerform .title::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  border-radius: 5px;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width: 1000px){
-  .container{
-    max-width: 100%;
-  }
-  form .user-details .input-box{
-    margin-bottom: 15px;
-    width: 100%;
-  }
-
-
-
-
-}
-
-
-@media(max-width: 450px){
-  .content{
-    width: 100%;
-  }
-}
-
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-background {
-  background-color: transparent !important;
 }

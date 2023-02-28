@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'delivery-app-client-login',
@@ -22,11 +23,18 @@ export class LoginComponent {
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(32)
+    ]),
+    email:new FormControl(null,[
+      Validators.required,
+      Validators.email
     ])
   });
 
 
 
+public constructor(private router:Router) {
+
+}
 
 
   public checkError = (controlName: string, errorName: string) => {
@@ -34,16 +42,12 @@ export class LoginComponent {
     return this.users.controls[controlName].hasError(errorName);
   }
   onSubmit(): void {
-    this.submitted = true;
-
-
-
-
-
-
-
+    this.submitted = true
 
   }
 
 
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
 }

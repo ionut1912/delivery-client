@@ -19,6 +19,24 @@
       </mat-error>
     </mat-form-field>
   </div>
+      <div class="input">
+        <mat-form-field  >
+          <mat-label>Email</mat-label>
+          <input matInput required formControlName="email"  minlength="3" maxlength="20" >
+          <mat-error *ngIf="checkError('email','required')">
+            Introduceti email-ul
+          </mat-error>
+          <mat-error *ngIf="checkError('email','minlength')">
+            Email-ul trebuie sa aiba minim 3 caractere
+          </mat-error>
+          <mat-error *ngIf="checkError('email','maxlength')">
+            Email-ul trebuie sa aiba maxim 20 caractere
+          </mat-error>
+          <mat-error *ngIf="checkError('email','email')">
+            Email-ul trebuie sa contina @
+          </mat-error>
+        </mat-form-field>
+      </div>
   <div class="input" >
     <mat-form-field   >
       <mat-label>Parola</mat-label>
@@ -32,28 +50,13 @@
       <mat-error *ngIf="checkError('password','maxlength')">
         Parola trebuie sa aiba maxim 32 caractere
       </mat-error>
-
-
-
-
-
     </mat-form-field>
-
-
-
 </div>
-
-
       <div class="button">
         <input type="submit" value="LogIn">
       </div>
-      <p>Nu aveti cont? <a class="create" >Creati unul</a></p>
-
-
-
-
-
-
+      <p>Nu aveti cont? <a class="create" (click)="goToRegister()">Creati unul</a></p>
     </form>
   </div>
 </div>
+
