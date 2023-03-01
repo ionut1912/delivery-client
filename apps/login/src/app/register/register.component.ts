@@ -11,13 +11,14 @@ export class RegisterComponent {
   submitted = false;
 
   hide = true;
-  pattern = '[a-zA-Z ]*';
+
+
   users: FormGroup = new FormGroup({
-    name:  new FormControl(null, [
+    phone:  new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(20),
-      Validators.pattern(this.pattern)
+      Validators.maxLength(10),
+
     ]),
     email:new FormControl(null, [Validators.email,Validators.required]),
     username: new FormControl(null, [
@@ -38,7 +39,9 @@ export class RegisterComponent {
 
   }
 
-
+  error=(field:string,rule:string)=>{
+    return `Field ${field}   ${rule}`;
+  };
   public checkError = (controlName: string, errorName: string) => {
 
     return this.users.controls[controlName].hasError(errorName);

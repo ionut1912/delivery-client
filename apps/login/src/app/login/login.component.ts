@@ -10,9 +10,6 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
   submitted = false;
-
-  hide = true;
-
   users: FormGroup = new FormGroup({
     username: new FormControl(null, [
       Validators.required,
@@ -29,6 +26,12 @@ export class LoginComponent {
       Validators.email
     ])
   });
+ error=(field:string,rule:string)=>{
+  return `Field ${field}   ${rule}`
+  };
+
+
+
 
 
 
