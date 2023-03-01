@@ -1,61 +1,87 @@
 ﻿<div class="container">
   <div class="title">LogIn</div>
   <div class="content">
-    <form  [formGroup]="users"  (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate autocomplete="off">
-
-  <div class="input">
-
-    <mat-form-field  >
-      <mat-label>Username</mat-label>
-      <input matInput required formControlName="username"  minlength="3" maxlength="20" >
-      <mat-error *ngIf="checkError('username','required')">
-        {{error("username","is required")}}
-      </mat-error>
-      <mat-error *ngIf="checkError('username','minlength')">
-        {{error("username","has min length of 3 characters")}}
-      </mat-error>
-      <mat-error *ngIf="checkError('username','maxlength')">
-        {{error("username","has max length of 20 characters")}}
-      </mat-error>
-    </mat-form-field>
-  </div>
+    <form
+      [formGroup]="users"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+      autocomplete="off"
+    >
       <div class="input">
-        <mat-form-field  >
-          <mat-label>Email</mat-label>
-          <input matInput required formControlName="email"  minlength="3" maxlength="20" >
-          <mat-error *ngIf="checkError('email','required')">
-            {{error("email","is required")}}
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            required
+            formControlName="username"
+            minlength="3"
+            maxlength="20"
+          />
+          <mat-error *ngIf="checkError('username', 'required')">
+            {{ error('username', 'is required') }}
           </mat-error>
-          <mat-error *ngIf="checkError('email','minlength')">
-            {{error("email","has min length of 3 characters")}}
+          <mat-error *ngIf="checkError('username', 'minlength')">
+            {{ error('username', 'has min length of 3 characters') }}
           </mat-error>
-          <mat-error *ngIf="checkError('email','maxlength')">
-            {{error("email","has max length of 20 characters")}}
-          </mat-error>
-          <mat-error *ngIf="checkError('email','email')">
-            {{error("email","must contains @")}}
+          <mat-error *ngIf="checkError('username', 'maxlength')">
+            {{ error('username', 'has max length of 20 characters') }}
           </mat-error>
         </mat-form-field>
       </div>
-  <div class="input" >
-    <mat-form-field   >
-      <mat-label>Password</mat-label>
-      <input matInput   formControlName="password" type="password"  required  minlength="8" maxlength="32" >
-      <mat-error *ngIf="checkError('password','required')">
-        {{error("password","is required")}}
-      </mat-error>
-      <mat-error *ngIf="checkError('password','minlength')">
-        {{error("password","has min length of 8 characters")}}
-      </mat-error>
-      <mat-error *ngIf="checkError('password','maxlength')">
-        {{error("password","has max length of 32 characters")}}
-      </mat-error>
-    </mat-form-field>
-</div>
-      <div class="button">
-        <input type="submit" value="LogIn">
+      <div class="input">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            required
+            formControlName="email"
+            minlength="3"
+            maxlength="20"
+          />
+          <mat-error *ngIf="checkError('email', 'required')">
+            {{ error('email', 'is required') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('email', 'minlength')">
+            {{ error('email', 'has min length of 3 characters') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('email', 'maxlength')">
+            {{ error('email', 'has max length of 20 characters') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('email', 'email')">
+            {{ error('email', 'must contains @') }}
+          </mat-error>
+        </mat-form-field>
       </div>
-      <p>Don't have an account? <a class="create" (click)="goToRegister()">Create one</a></p>
+      <div class="input">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            required
+            minlength="8"
+            maxlength="32"
+          />
+          <mat-error *ngIf="checkError('password', 'required')">
+            {{ error('password', 'is required') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('password', 'minlength')">
+            {{ error('password', 'has min length of 8 characters') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('password', 'maxlength')">
+            {{ error('password', 'has max length of 32 characters') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="button">
+        <input type="submit" value="LogIn" />
+      </div>
+      <p>
+        Don't have an account?
+        <a class="create" (click)="goToRegister()">Create one</a>
+      </p>
     </form>
   </div>
 </div>

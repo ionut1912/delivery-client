@@ -1,44 +1,39 @@
-
-
-
-.container{
-
-
+.container {
   background-color: #fff;
   padding: 25px 30px;
   border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 
   justify-content: center;
   align-items: center;
 }
-.input{
-  padding-top:30px;
+.input {
+  padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.title{
+.title {
   text-align: center;
   font-size: 20px;
   font-family: Roboto, sans-serif;
 }
-.content form .user-details{
+.content form .user-details {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
-form .user-details .input-box{
+form .user-details .input-box {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
 }
-form .input-box span.details{
+form .input-box span.details {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
 }
-.user-details .input-box input{
+.user-details .input-box input {
   height: 45px;
   width: 100%;
   outline: none;
@@ -50,29 +45,28 @@ form .input-box span.details{
   transition: all 0.3s ease;
 }
 .user-details .input-box input:focus,
-.user-details .input-box input:valid{
+.user-details .input-box input:valid {
   border-color: #9b59b6;
 }
-input{
+input {
   width: 500px;
-
 }
-form .gender-details .gender-title{
+form .gender-details .gender-title {
   font-size: 20px;
   font-weight: 500;
 }
-form .category{
+form .category {
   display: flex;
   width: 80%;
-  margin: 14px 0 ;
+  margin: 14px 0;
   justify-content: space-between;
 }
-form .category label{
+form .category label {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-form .category label .dot{
+form .category label .dot {
   height: 18px;
   width: 18px;
   border-radius: 50%;
@@ -83,35 +77,34 @@ form .category label .dot{
 }
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three{
+#dot-3:checked ~ .category label .three {
   background: #9b59b6;
   border-color: #d9d9d9;
-
 }
-.cont{
+.cont {
   text-align: center;
   justify-content: center;
 }
-.login{
+.login {
   text-decoration: none;
-  text-align:center;
+  text-align: center;
   color: black;
   border: none;
   cursor: pointer;
 }
-.exit{
-  border:none;
+.exit {
+  border: none;
   background-color: red;
   border-radius: 20px;
 }
-form input[type="radio"]{
+form input[type='radio'] {
   display: none;
 }
-form .button{
+form .button {
   height: 45px;
-  margin: 35px 0
+  margin: 35px 0;
 }
-form .button input{
+form .button input {
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -124,32 +117,31 @@ form .button input{
   transition: all 0.3s ease;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-form .button input:hover{
+form .button input:hover {
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
-@media(max-width: 1000px){
-  .containerform{
+@media (max-width: 1000px) {
+  .containerform {
     max-width: 100%;
   }
-  form .user-details .input-box{
+  form .user-details .input-box {
     margin-bottom: 15px;
     width: 100%;
   }
-  form .category{
+  form .category {
     width: 100%;
   }
-  .content form .user-details{
+  .content form .user-details {
     max-height: 300px;
     overflow-y: scroll;
   }
-  .user-details::-webkit-scrollbar{
+  .user-details::-webkit-scrollbar {
     width: 5px;
   }
 }
-@media(max-width: 800px){
-  .containerform .content .category{
+@media (max-width: 800px) {
+  .containerform .content .category {
     flex-direction: column;
   }
-
 }

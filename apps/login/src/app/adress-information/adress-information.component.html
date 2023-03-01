@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="title">
+    Please fill adress details to finish create accout process
+  </div>
+
+  <div class="content">
+    <form
+      [formGroup]="address"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="row input">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input
+              matInput
+              formControlName="street"
+              required
+              minlength="3"
+              maxlength="10"
+            />
+
+            <mat-error *ngIf="checkError('street', 'required')">
+              {{ error('street', 'is required') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Number</mat-label>
+            <input matInput formControlName="number" required />
+            <mat-error *ngIf="checkError('number', 'required')">
+              {{ error('Number', 'is required') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row input">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              required
+              formControlName="city"
+              minlength="3"
+              maxlength="20"
+            />
+            <mat-error *ngIf="checkError('city', 'required')">
+              {{ error('city', 'required') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('city', 'minlength')">
+              {{ error('city', 'has min length of 3 characters') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('city', 'maxlength')">
+              {{ error('city', 'has max length of 20 characters') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Postal Code</mat-label>
+            <input
+              matInput
+              formControlName="postalCode"
+              required
+              minlength="3"
+              maxlength="20"
+            />
+
+            <mat-error *ngIf="checkError('postalCode', 'required')">
+              {{ error('Postal Code', 'required') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('postalCode', 'minlength')">
+              {{ error('Postal Code', 'has mim length of 3 characters') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('postalCode', 'maxlength')">
+              {{ error('Postal Code', 'has max length of 20 characters') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="button">
+        <input type="submit" value="Create account" />
+      </div>
+      <p>
+        Do you have an account? <a class="login" (click)="goToLogin()">LogIn</a>
+      </p>
+    </form>
+    <div></div>
+  </div>
+</div>

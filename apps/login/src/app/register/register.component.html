@@ -1,101 +1,107 @@
-
-
 <div class="container">
   <div class="title">Create account</div>
 
   <div class="content">
-    <form  [formGroup]="users" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <form
+      [formGroup]="users"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="row input">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input
+              matInput
+              formControlName="phone"
+              required
+              minlength="3"
+              maxlength="10"
+            />
 
+            <mat-error *ngIf="checkError('phone', 'required')">
+              {{ error('phone', 'is required') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('phone', 'minlength')">
+              {{ error('phone', 'has min length of 3 characters') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('phone', 'maxlength')">
+              {{ error('phone', 'has max length of 10 characters') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
 
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required />
+            <mat-error *ngIf="checkError('email', 'required')">
+              {{ error('email', 'is required') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('email', 'email')">
+              {{ error('email', 'must contains @') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
 
-<div class="row input">
+      <div class="row input">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              required
+              formControlName="username"
+              minlength="3"
+              maxlength="20"
+            />
+            <mat-error *ngIf="checkError('username', 'required')">
+              {{ error('username', 'required') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('username', 'minlength')">
+              {{ error('username', 'has min length of 3 characters') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('username', 'maxlength')">
+              {{ error('username', 'has max length of 20 characters') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-  <div class="col-6 ">
-    <mat-form-field  >
-      <mat-label>Phone</mat-label>
-      <input matInput  formControlName="phone" required   minlength="3" maxlength="10" >
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              required
+              type="password"
+              minlength="8"
+              maxlength="32"
+            />
 
-      <mat-error *ngIf="checkError('phone','required')">
-       {{error('phone','is required')}}
-      </mat-error>
-      <mat-error *ngIf="checkError('phone','minlength')">
-        {{error('phone','has min length of 3 characters')}}
-      </mat-error>
-      <mat-error *ngIf="checkError('phone','maxlength')">
-        {{error('phone','has max length of 10 characters')}}
-      </mat-error>
-
-    </mat-form-field>
-  </div>
-
-<div class="col-6">
-
-    <mat-form-field  >
-      <mat-label>Email</mat-label>
-      <input matInput  formControlName="email" required  >
-      <mat-error *ngIf="checkError('email','required')">
-        {{error('email','is required')}}
-      </mat-error>
-      <mat-error *ngIf="checkError('email','email')">
-        {{error('email','must contains @')}}
-      </mat-error>
-    </mat-form-field>
-  </div>
-</div>
-
-<div class="row input">
-  <div class="col-6">
-
-      <mat-form-field  >
-        <mat-label>Username</mat-label>
-        <input matInput required formControlName="username"  minlength="3" maxlength="20" >
-        <mat-error *ngIf="checkError('username','required')">
-         {{error('username','required')}}
-        </mat-error>
-        <mat-error *ngIf="checkError('username','minlength')">
-         {{error('username','has min length of 3 characters')}}
-        </mat-error>
-        <mat-error *ngIf="checkError('username','maxlength')">
-          {{error('username','has max length of 20 characters')}}
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-<div class="col-6">
-  <mat-form-field  >
-    <mat-label>Password</mat-label>
-    <input matInput  formControlName="password"  required  type="password" minlength="8" maxlength="32" >
-
-
-
-
-    <mat-error *ngIf="checkError('password','required')">
-  {{error('password','required')}}
-    </mat-error>
-    <mat-error *ngIf="checkError('password','minlength')">
-      {{error('password','has max length of 8 characters')}}
-    </mat-error>
-    <mat-error *ngIf="checkError('password','maxlength')">
-      {{error('password','has max length of 32 characters')}}
-    </mat-error>
-  </mat-form-field>
-</div>
-
-
-  </div>
+            <mat-error *ngIf="checkError('password', 'required')">
+              {{ error('password', 'required') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('password', 'minlength')">
+              {{ error('password', 'has max length of 8 characters') }}
+            </mat-error>
+            <mat-error *ngIf="checkError('password', 'maxlength')">
+              {{ error('password', 'has max length of 32 characters') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
 
       <div class="button">
-        <input type="submit" value="Create account">
+        <input type="submit" value="Continue sign up process" />
       </div>
-      <p>Do you have an account? <a class="login" (click)="goToLogin()">LogIn</a></p>
-
-
+      <p>
+        Do you have an account? <a class="login" (click)="goToLogin()">LogIn</a>
+      </p>
     </form>
-
-
-      <div>
-
-      </div>
-    </div>
+    <div></div>
   </div>
-
+</div>
