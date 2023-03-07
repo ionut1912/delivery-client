@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'delivery-app-client-register',
   templateUrl: './register.component.html',
@@ -43,7 +44,7 @@ export class RegisterComponent {
     this.submitted = true;
     this.router.navigate(['/address-info'], {
       state: {
-        phone: this.users.value.phone,
+        phoneNumber: this.users.value.phone,
         email: this.users.value.email,
         username: this.users.value.username,
         password: this.users.value.password,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Register } from '../../../../../libs/shared/models/Account/Register';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'delivery-client-adress-information',
@@ -29,7 +30,7 @@ export class AdressInformationComponent {
   });
 
   userDetails!: Register
-  public constructor(private router: Router) {
+  public constructor(private router: Router,private  httpClient:HttpClient) {
     const currentNavigation = this.router.getCurrentNavigation();
     if (
       currentNavigation &&
@@ -39,8 +40,8 @@ export class AdressInformationComponent {
       this.userDetails = <Register>currentNavigation.extras.state;
     }
     // Initialize the address property if it is undefined
-    if (!this.userDetails.address) {
-      this.userDetails.address = {
+    if (!this.userDetails.addressForCreation) {
+      this.userDetails.addressForCreation = {
         city: '',
         number: '',
         postalCode: '',
@@ -57,11 +58,14 @@ export class AdressInformationComponent {
   };
   onSubmit(): void {
     this.submitted = true;
-    this.userDetails.address.street = this.address.value.street;
-    this.userDetails.address.city = this.address.value.city;
-    this.userDetails.address.number = this.address.value.number;
-    this.userDetails.address.postalCode = this.address.value.postalCode;
-
+    this.userDetails.addressForCreation.street = this.address.value.street;
+    this.userDetails.addressForCreation.city = this.address.value.city;
+    this.userDetails.addressForCreation.number = this.address.value.number;
+    this.userDetails.addressForCreation.postalCode = this.address.value.postalCode;
+    console.log(this.userDetails);
+    this.httpClient.post<any>('/Accounts/register', this.userDetails).subscribe(response => {
+      this.goToLogin();
+    })
   }
 
   goToLogin() {

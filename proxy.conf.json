@@ -1,31 +1,31 @@
 {
   "/PhotoForMenuItems/*": {
-    "target": "http://localhost:8080",
+    "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
   },
   "/Photos/*": {
-    "target": "http://localhost:8080",
+    "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
   },
   "/Restaurants/*": {
-    "target": "http://localhost:8080",
+    "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
   },
   "/UserConfigs/*": {
-    "target": "http://localhost:8080",
+    "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
   },
   "/Orders/*": {
-    "target": "http://localhost:8082",
+    "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
   },
   "/Offers/*": {
-    "target": "http://localhost:8082",
+    "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
   },
