@@ -140,6 +140,13 @@ form .button input:hover {
     width: 5px;
   }
 }
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
 @media (max-width: 800px) {
   .containerform .content .category {
     flex-direction: column;

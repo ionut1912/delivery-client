@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@delivery-app-client/navbar": ["libs/navbar/src/index.ts"],
+      "@delivery-app-client/test": ["libs/test/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

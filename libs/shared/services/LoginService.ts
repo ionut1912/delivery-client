@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-
-
-
-
   handleResponseFromState() {
     if (window.location.search.includes('state')) {
       const response = window.location.search.split('?state=')[1];

@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../../../libs/shared/material.module';
 import { RegisterComponent } from './register/register.component';
-import { AdressInformationComponent } from './adress-information/adress-information.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { AdressInformationComponent } from './adress-information/adress-informat
     NxWelcomeComponent,
     LoginComponent,
     RegisterComponent,
-    AdressInformationComponent,
   ],
   imports: [
     BrowserModule,

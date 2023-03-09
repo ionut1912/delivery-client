@@ -19,12 +19,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+
 @NgModule({
   exports: [
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
     MatCheckboxModule,
+    MatStepperModule,
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
