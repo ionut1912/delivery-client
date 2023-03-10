@@ -30,29 +30,11 @@
   color: #eee;
   position: relative;
   top: 5px;
-  font-size: 16px;
+  font-size: 13px;
   font-family: Oswald, sans-serif;
   transition: all 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
   left: -100px;
 }
 .navbar:hover .item .label {
   left: 0;
-}
-.navbar:hover .item:nth-child(1) div.fa {
-  color: #e65d61;
-}
-.navbar:hover .item:nth-child(2) div.fa {
-  color: #e86def;
-}
-.navbar:hover .item:nth-child(3) div.fa {
-  color: #79e69d;
-}
-.navbar:hover .item:nth-child(4) div.fa {
-  color: #55acee;
-}
-.navbar:hover .item:nth-child(5) div.fa {
-  color: #a67aff;
-}
-.navbar:hover .item:nth-child(6) div.fa {
-  color: #dcd946;
 }

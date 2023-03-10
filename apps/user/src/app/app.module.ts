@@ -11,6 +11,10 @@ import { MaterialModule } from '../../../../libs/shared/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../../../../libs/shared/Http/TokenInterceptor';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { CartComponent } from './cart/cart.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     NxWelcomeComponent,
     UserDashboardComponent,
     NavbarComponent,
+    UserProfileComponent,
+    RestaurantsComponent,
+    CartComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

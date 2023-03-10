@@ -1,26 +1,36 @@
 <div class="navbar">
   <div class="item">
-    <div class="fa fa-user"></div>
+    <div class="fa fa-user" (click)="goToPage('profile')"></div>
     <div class="label">Profile</div>
   </div>
+
   <div class="item">
-    <div class="fa fa-picture-o"></div>
-    <div class="label">Photos</div>
+    <div>
+      <mat-icon style="color: white" (click)="goToPage('restaurants')">
+        restaurant</mat-icon
+      >
+    </div>
+    <div class="label">Restaurants</div>
   </div>
   <div class="item">
-    <div class="fa fa-bell"></div>
-    <div class="label">Notifications</div>
+    <div>
+      <mat-icon style="color: white" (click)="goToPage('cart')"
+        >shopping_cart</mat-icon
+      >
+    </div>
+    <div class="label">Shopping cart</div>
+  </div>
+
+  <div class="item">
+    <div>
+      <mat-icon style="color: white" (click)="goToPage('orders')"
+        >receipt</mat-icon
+      >
+    </div>
+    <div class="label">My orders</div>
   </div>
   <div class="item">
-    <div class="fa fa-wrench"></div>
-    <div class="label">Setting</div>
-  </div>
-  <div class="item">
-    <div class="fa fa-search"></div>
-    <div class="label">Search</div>
-  </div>
-  <div class="item">
-    <div class="fa fa-power-off"></div>
+    <div class="fa fa-power-off" (click)="logout()"></div>
     <div class="label">Logout</div>
   </div>
 </div>
