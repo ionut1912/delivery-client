@@ -15,7 +15,7 @@ export const appRoutes: Route[] = [
     component: UserProfileComponent,
   },
   {
-    path: 'restaurants',
+    path: 'restaurants/:id',
     component: RestaurantsComponent,
   },
   {
