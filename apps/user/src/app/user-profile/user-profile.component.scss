@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: 20px;
+}
+.user-image{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+h2{
+  font-weight: normal;
+}
