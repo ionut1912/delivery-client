@@ -11,7 +11,7 @@ import { Buffer } from 'buffer';
 })
 export class LoginComponent {
   submitted = false;
-  hide=true;
+  hide = true;
   users: FormGroup = new FormGroup({
     username: new FormControl(null, [
       Validators.required,

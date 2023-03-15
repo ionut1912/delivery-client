@@ -1,25 +1,26 @@
 <delivery-client-navbar></delivery-client-navbar>
+<div class="container">Hello, {{ user.username | titlecase }}!</div>
 <div class="container">
- Hello, {{user.username|titlecase}}!
+  Welcome to our application! Here you will find a various list of items to
+  chose from.
 </div>
 <div class="container">
-  Welcome to our application! Here you will find  a various list of items to chose from.
-</div>
-<div class="container">
-Restaurants from {{user.address.city|titlecase}}
-
+  Restaurants from {{ user.address.city | titlecase }}
 </div>
 <div class="container" *ngFor="let restaurant of restaurants">
- <div class="row">
-   <div class="col-6">
-     <img src="{{restaurant.image}}" alt="No image">
-   </div>
-   <div class="col-6">
-     {{restaurant.name}}
-   </div>
-   <button mat-raised-button color="primary" (click)="goToRestaurant(restaurant.id)">View menu</button>
- </div>
-
-
+  <div class="row">
+    <div class="col-6">
+      <img src="{{ restaurant.image }}" alt="No image" />
+    </div>
+    <div class="col-6">
+      {{ restaurant.name }}
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="goToRestaurant(restaurant.id)"
+    >
+      View menu
+    </button>
+  </div>
 </div>
-

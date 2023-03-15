@@ -15,6 +15,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { OrdersComponent } from './orders/orders.component';
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
