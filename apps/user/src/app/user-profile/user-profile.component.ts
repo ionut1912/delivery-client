@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Users } from '../../../../../libs/shared/models/User/Users';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+export interface FieldsStatus{
+  fieldName:string;
+  disabled:boolean;
+}
 @Component({
   selector: 'delivery-client-user-profile',
   templateUrl: './user-profile.component.html',
@@ -10,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
   user!: Users;
-  disabledFields: any = [
+  disabledFields:FieldsStatus[] = [
     {
       fieldName: 'phone',
       disabled: true,
@@ -83,4 +87,35 @@ export class UserProfileComponent implements OnInit {
   public checkError = (controlName: string, errorName: string) => {
     return this.userDetails.controls[controlName].hasError(errorName);
   };
+
+  resetForm() {
+    this.userDetails.patchValue(
+      {
+        phone:this.user.phoneNumber,
+        street:this.user.address.street,
+        number:this.user.address.number,
+        city:this.user.address.city,
+        postalCode:this.user.address.postalCode,
+        email:this.user.email,
+        username:this.user.username
+      }
+    );
+  }
+
+  updateProfile() {
+    const userToBeEdited:Users={
+      username: this.userDetails.value.username,
+      phoneNumber:this.userDetails.value.phone,
+      email:this.userDetails.value.email,
+      address:{
+        street:this.userDetails.value.street,
+        city:this.userDetails.value.city,
+        number:this.userDetails.value.number,
+        postalCode:this.userDetails.value.postalCode
+      }
+    };
+   this.httpClient.put("Accounts/current",userToBeEdited).subscribe(()=>{
+ console.log("success")
+   });
+  }
 }

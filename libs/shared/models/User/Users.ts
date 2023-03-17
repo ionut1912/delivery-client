@@ -2,11 +2,11 @@ import { UserConfigs } from './UserConfigs';
 import { UserAddress } from './UserAddress';
 
 export interface Users {
-  token: string;
+  token?: string;
   username: string;
-  image: string;
+  image?: string;
   phoneNumber: string;
   email: string;
-  userConfig: UserConfigs;
+  userConfig?: UserConfigs;
   address: UserAddress;
 }
