@@ -16,6 +16,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     RestaurantsComponent,
     CartComponent,
     OrdersComponent,
+    ViewMenuitemComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     MaterialModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

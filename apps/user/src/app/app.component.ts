@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../../../libs/shared/services/LoginService';
+import { AccountService } from '../../../../libs/shared/services/AccountService';
 
 @Component({
   selector: 'delivery-app-client-root',
@@ -8,7 +8,7 @@ import { LoginService } from '../../../../libs/shared/services/LoginService';
 })
 export class AppComponent implements OnInit {
   title = 'user';
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: AccountService) {}
   ngOnInit() {
     this.loginService.handleResponseFromState();
   }

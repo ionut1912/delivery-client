@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Register } from '../../../../../libs/shared/models/Account/Register';
-import { HttpClient } from '@angular/common/http';
-import { Users } from '../../../../../libs/shared/models/User/Users';
+import { AccountService } from '../../../../../libs/shared/services/AccountService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'delivery-app-client-register',
@@ -51,7 +50,10 @@ export class RegisterComponent {
     ]),
   });
 
-  public constructor(private router: Router, private httpClient: HttpClient) {}
+  public constructor(
+    private accountService: AccountService,
+    private router: Router
+  ) {}
 
   error = (field: string, rule: string) => {
     return `Field ${field}   ${rule}`;
@@ -76,13 +78,9 @@ export class RegisterComponent {
         postalCode: this.address.value.postalCode,
       },
     };
-    this.httpClient
-      .post<Users>('/Accounts/register', this.userDetails)
-      .subscribe(() => {
-        this.goToLogin();
-      });
+    this.accountService.register(this.userDetails);
+    this.goToLogin();
   }
-
   goToLogin() {
     this.router.navigate(['']);
   }

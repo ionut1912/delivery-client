@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Users } from '../../../../../libs/shared/models/User/Users';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserAddress } from '../../../../../libs/shared/models/User/UserAddress';
+import { AccountService } from '../../../../../libs/shared/services/AccountService';
 
-export interface FieldsStatus{
-  fieldName:string;
-  disabled:boolean;
+export interface FieldsStatus {
+  fieldName: string;
+  disabled: boolean;
+}
+export interface UserForEdit {
+  username: string;
+  phoneNumber: string;
+  email: string;
 }
 @Component({
   selector: 'delivery-client-user-profile',
@@ -14,7 +20,7 @@ export interface FieldsStatus{
 })
 export class UserProfileComponent implements OnInit {
   user!: Users;
-  disabledFields:FieldsStatus[] = [
+  disabledFields: FieldsStatus[] = [
     {
       fieldName: 'phone',
       disabled: true,
@@ -70,9 +76,9 @@ export class UserProfileComponent implements OnInit {
     return `Field ${field}   ${rule}`;
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private accountService: AccountService) {}
   ngOnInit() {
-    this.httpClient.get<Users>('Accounts/current').subscribe((userData) => {
+    this.accountService.getCurrentUser().subscribe((userData) => {
       this.user = userData;
     });
   }
@@ -89,33 +95,30 @@ export class UserProfileComponent implements OnInit {
   };
 
   resetForm() {
-    this.userDetails.patchValue(
-      {
-        phone:this.user.phoneNumber,
-        street:this.user.address.street,
-        number:this.user.address.number,
-        city:this.user.address.city,
-        postalCode:this.user.address.postalCode,
-        email:this.user.email,
-        username:this.user.username
-      }
-    );
+    this.userDetails.patchValue({
+      phone: this.user.phoneNumber,
+      street: this.user.address.street,
+      number: this.user.address.number,
+      city: this.user.address.city,
+      postalCode: this.user.address.postalCode,
+      email: this.user.email,
+      username: this.user.username,
+    });
   }
 
   updateProfile() {
-    const userToBeEdited:Users={
+    const userToBeEdited: UserForEdit = {
       username: this.userDetails.value.username,
-      phoneNumber:this.userDetails.value.phone,
-      email:this.userDetails.value.email,
-      address:{
-        street:this.userDetails.value.street,
-        city:this.userDetails.value.city,
-        number:this.userDetails.value.number,
-        postalCode:this.userDetails.value.postalCode
-      }
+      phoneNumber: this.userDetails.value.phone,
+      email: this.userDetails.value.email,
     };
-   this.httpClient.put("Accounts/current",userToBeEdited).subscribe(()=>{
- console.log("success")
-   });
+    const addressForUser: UserAddress = {
+      street: this.userDetails.value.street,
+      city: this.userDetails.value.city,
+      number: this.userDetails.value.number,
+      postalCode: this.userDetails.value.postalCode,
+    };
+    this.accountService.modifyCurrentUser(userToBeEdited);
+    this.accountService.modifyCurrentUserAddress(addressForUser);
   }
 }

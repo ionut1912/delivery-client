@@ -32,7 +32,6 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,

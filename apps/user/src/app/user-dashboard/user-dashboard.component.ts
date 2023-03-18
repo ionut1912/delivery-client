@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Users } from '../../../../../libs/shared/models/User/Users';
-import { HttpClient } from '@angular/common/http';
 import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
 import { Router } from '@angular/router';
+import { AccountService } from '../../../../../libs/shared/services/AccountService';
+import { RestaurantService } from '../../../../../libs/shared/services/RestaurantService';
 
 @Component({
   selector: 'delivery-client-user-dashboard',
@@ -12,14 +13,18 @@ import { Router } from '@angular/router';
 export class UserDashboardComponent implements OnInit {
   user!: Users;
   restaurants!: Restaurant[];
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(
+    private accountService: AccountService,
+    private restaurantService: RestaurantService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.httpClient.get<Users>('Accounts/current').subscribe((response) => {
+    this.accountService.getCurrentUser().subscribe((response) => {
       this.user = response;
-      this.httpClient
-        .get<Restaurant[]>(`Restaurants/getByCity/${this.user.address.city}`)
-        .subscribe((restaurantResponse) => {
+      this.restaurantService
+        .getRestaurantByCity(this.user.address.city)
+        .subscribe((restaurantResponse: Restaurant[]) => {
           this.restaurants = restaurantResponse;
         });
     });
