@@ -1,18 +1,21 @@
 <div class="grid-container">
-  <div class="grid-item border-box">
-
-    {{menuItem.itemName}}
+  <div class="grid-item">
+    <div mat-dialog-title class="dialog-title">
+      <h2>{{ menuItem.itemName }}</h2>
+      <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
-<div class="container">
-  Ingrediente folosite:
-
-</div>
+<div class="container">Ingredients used:</div>
 
 <div class="container">
   <ul>
     <div *ngFor="let ingredient of ingredients">
-      <li>{{ingredient}}</li>
+      <li>{{ ingredient }}</li>
     </div>
   </ul>
 </div>
+<div class="container">Our clients opinions about this menu item</div>
+<delivery-reviews [rowData]="ingredients"></delivery-reviews>

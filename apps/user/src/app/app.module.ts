@@ -17,6 +17,7 @@ import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
+import { GenericReviewsModule } from '@delivery-app-client/generic-reviews';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    GenericReviewsModule,
   ],
   providers: [
     {

@@ -38,5 +38,15 @@
     "target": "https://localhost:7251",
     "secure": false,
     "changeOrigin": true
+  },
+  "/ReviewForMenuItems/*": {
+    "target": "https://localhost:7251",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ReviewForRestaurants/*": {
+    "target": "https://localhost:7251",
+    "secure": false,
+    "changeOrigin": true
   }
 }

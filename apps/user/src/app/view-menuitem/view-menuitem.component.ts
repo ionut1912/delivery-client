@@ -6,14 +6,13 @@ export interface ViewMenuItemData {
   id: string;
 }
 @Component({
-
   selector: 'delivery-client-view-menuitem',
   templateUrl: './view-menuitem.component.html',
   styleUrls: ['./view-menuitem.component.scss'],
 })
 export class ViewMenuitemComponent implements OnInit {
   menuItem!: MenuItem;
-  ingredients!:string[];
+  ingredients!: string[];
   constructor(
     public dialogRef2: MatDialogRef<ViewMenuitemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ViewMenuItemData,
@@ -22,8 +21,7 @@ export class ViewMenuitemComponent implements OnInit {
   ngOnInit() {
     this.menuItemService.getMenuItemById(this.data.id).subscribe((response) => {
       this.menuItem = response;
-      this.ingredients=this.menuItem.ingredients.split(",")
-      console.log(this.ingredients);
+      this.ingredients = this.menuItem.ingredients.split(',');
     });
   }
 }
