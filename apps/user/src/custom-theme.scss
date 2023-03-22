@@ -1,3 +1,4 @@
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -19,29 +20,19 @@ $user-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$user-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $user-primary,
-      accent: $user-accent,
-      warn: $user-warn,
-    ),
+$user-theme: mat.define-light-theme((
+  color: (
+    primary: $user-primary,
+    accent: $user-accent,
+    warn: $user-warn,
   )
-);
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($user-theme);
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
 
 html,
 body {
@@ -50,4 +41,11 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  height: 100%;
 }
+
+html,
+ {
+  height: 100%;
+}
+

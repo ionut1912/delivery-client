@@ -1,1 +1,18 @@
-<p>view-menuitem works!</p>
+<div class="grid-container">
+  <div class="grid-item border-box">
+
+    {{menuItem.itemName}}
+  </div>
+</div>
+<div class="container">
+  Ingrediente folosite:
+
+</div>
+
+<div class="container">
+  <ul>
+    <div *ngFor="let ingredient of ingredients">
+      <li>{{ingredient}}</li>
+    </div>
+  </ul>
+</div>
