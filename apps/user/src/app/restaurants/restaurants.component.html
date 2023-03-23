@@ -35,3 +35,4 @@
 <div class="container" *ngIf="restaurant.menuItems.length === 0">
   This restaurant does not have menu items
 </div>
+<delivery-reviews [restaurantId]="restaurant.id" [rowData]="restaurant.reviews" ></delivery-reviews>
