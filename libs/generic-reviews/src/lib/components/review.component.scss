@@ -1,8 +1,6 @@
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding-top: 20px;
   font-size: 20px;
 }
 .grid-container {
@@ -11,7 +9,87 @@
   padding: 10px;
 }
 .grid-item {
-  padding: 20px;
   font-size: 30px;
+  text-align: center;
+}
+.user-image {
+  padding-top: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.reviewTitle {
+  padding-top: -70px;
+}
+.visibility {
+  width: 30px;
+  height: 30px;
+}
+
+.container .title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  text-align: center;
+}
+.create {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+.container .title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+}
+.content form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.register {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  border: none;
+}
+.inputs {
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.forgot {
+  text-decoration: none;
+  text-align: center;
+  color: red;
+  cursor: pointer;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.title {
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+  position: relative;
   text-align: center;
 }

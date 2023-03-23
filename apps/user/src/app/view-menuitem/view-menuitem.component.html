@@ -1,11 +1,7 @@
+<delivery-client-navbar></delivery-client-navbar>
 <div class="grid-container">
   <div class="grid-item">
-    <div mat-dialog-title class="dialog-title">
-      <h2>{{ menuItem.itemName }}</h2>
-      <button mat-icon-button aria-label="close dialog" mat-dialog-close>
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
+    <h2>{{ menuItem.itemName }}</h2>
   </div>
 </div>
 <div class="container">Ingredients used:</div>
@@ -17,5 +13,11 @@
     </div>
   </ul>
 </div>
-<div class="container">Our clients opinions about this menu item</div>
-<delivery-reviews [rowData]="ingredients"></delivery-reviews>
+<div class="container" *ngIf="reviewsForMenuItem.length > 0">
+  Our clients opinions about this menu item
+</div>
+
+<delivery-reviews
+  [menuItemId]="id"
+  [rowData]="reviewsForMenuItem"
+></delivery-reviews>

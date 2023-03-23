@@ -1,1 +1,76 @@
-<div *ngIf="rowData.length > 0" class="container">test</div>
+<div class="grid-container" *ngFor="let review of rowData; let i = index">
+  <div class="grid-item">
+    <img class="user-image" src="{{ review.user.image }}" alt="No Image" />
+  </div>
+  <h2 class="grid-item">
+    {{ review.reviewTitle }}
+  </h2>
+  <p class="grid-item">{{ review.reviewDescription }}</p>
+  <div
+    class="grid-item"
+    *ngFor="let i of [].constructor(review.numberOfStars); let index = index"
+  >
+    <mat-icon>star</mat-icon>
+  </div>
+</div>
+
+<div>
+  <div class="title">Add your opinion about this item</div>
+  <div class="content">
+    <form [formGroup]="reviews" #f="ngForm" novalidate autocomplete="off">
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>Review Title</mat-label>
+          <input
+            matInput
+            required
+            formControlName="reviewTitle"
+            minlength="3"
+          />
+          <mat-error *ngIf="checkError('reviewTitle', 'required')">
+            {{ error('reviewTitle', 'is required') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('reviewTitle', 'minlength')">
+            {{ error('reviewDescription', 'has min length of 3 characters') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>Review Description</mat-label>
+          <textarea
+            matInput
+            required
+            formControlName="reviewDescription"
+            minlength="3"
+            maxlength="20"
+          ></textarea>
+          <mat-error *ngIf="checkError('reviewDescription', 'required')">
+            {{ error('reviewDescription', 'is required') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('reviewDescription', 'minlength')">
+            {{ error('reviewDescription', 'has min length of 3 characters') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="container">
+        <button
+          mat-icon-button
+          *ngFor="let ratingId of ratingArr; index as i"
+          [id]="'star_' + i"
+          (click)="onClick(i + 1)"
+          [matTooltip]="ratingId + 1"
+          matTooltipPosition="above"
+        >
+          <mat-icon>
+            {{ showIcon(i) }}
+          </mat-icon>
+        </button>
+        <br />
+        <button mat-raised-button color="primary" (click)="addReview()">
+          Add review
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../../../../../libs/shared/services/RestaurantService';
 import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
-import { MatDialog } from '@angular/material/dialog';
-import { ViewMenuitemComponent } from '../view-menuitem/view-menuitem.component';
 
 @Component({
   selector: 'delivery-client-restaurants',
@@ -14,7 +12,7 @@ export class RestaurantsComponent implements OnInit {
   restaurant!: Restaurant;
   constructor(
     private router: ActivatedRoute,
-    public dialog: MatDialog,
+    private redirect: Router,
     private restaurantService: RestaurantService
   ) {}
   ngOnInit() {
@@ -29,10 +27,6 @@ export class RestaurantsComponent implements OnInit {
     });
   }
   viewItemDetails(id: string) {
-    this.dialog.open(ViewMenuitemComponent, {
-      data: {
-        id: id,
-      },
-    });
+    this.redirect.navigate(['/menuItems', id]);
   }
 }

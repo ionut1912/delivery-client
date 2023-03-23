@@ -9,9 +9,14 @@ import { ReviewForMenuItem } from '../models/ReviewForMenuItem/ReviewForMenuItem
 export class ReviewForMenuItemsService {
   constructor(private httpClient: HttpClient) {}
   addReview(review: ReviewForMenuItemDto) {
-    this.httpClient.post('/ReviewForMenuItems', review);
+    console.log(review);
+    this.httpClient
+      .post('/ReviewForMenuItems', review)
+      .subscribe((response) => console.log(response));
   }
-  getReviewsForMenuItem() {
-    return this.httpClient.get<ReviewForMenuItem>('ReviewForMenuItems');
+  getReviewsForMenuItem(itemId: string) {
+    return this.httpClient.get<ReviewForMenuItem[]>(
+      `/ReviewForMenuItems/${itemId}`
+    );
   }
 }

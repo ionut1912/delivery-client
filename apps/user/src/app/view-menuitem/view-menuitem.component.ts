@@ -1,7 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+
 import { MenuItemService } from '../../../../../libs/shared/services/MenuItemService';
 import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
+import { ReviewForMenuItemsService } from '../../../../../libs/shared/services/ReviewForMenuItemsService';
+import { ReviewForMenuItem } from '../../../../../libs/shared/models/ReviewForMenuItem/ReviewForMenuItem';
+import { ActivatedRoute } from '@angular/router';
 export interface ViewMenuItemData {
   id: string;
 }
@@ -13,15 +16,25 @@ export interface ViewMenuItemData {
 export class ViewMenuitemComponent implements OnInit {
   menuItem!: MenuItem;
   ingredients!: string[];
+  id!: string;
+  reviewsForMenuItem!: ReviewForMenuItem[];
   constructor(
-    public dialogRef2: MatDialogRef<ViewMenuitemComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ViewMenuItemData,
-    private menuItemService: MenuItemService
+    private router: ActivatedRoute,
+    private menuItemService: MenuItemService,
+    private reviewsForMenuItemService: ReviewForMenuItemsService
   ) {}
   ngOnInit() {
-    this.menuItemService.getMenuItemById(this.data.id).subscribe((response) => {
-      this.menuItem = response;
-      this.ingredients = this.menuItem.ingredients.split(',');
+    this.router.params.subscribe((params) => {
+      this.id = params['id'];
+      this.menuItemService.getMenuItemById(this.id).subscribe((response) => {
+        this.menuItem = response;
+        this.ingredients = this.menuItem.ingredients.split(',');
+      });
+      this.reviewsForMenuItemService
+        .getReviewsForMenuItem(this.id)
+        .subscribe((reviewData) => {
+          this.reviewsForMenuItem = reviewData;
+        });
     });
   }
 }

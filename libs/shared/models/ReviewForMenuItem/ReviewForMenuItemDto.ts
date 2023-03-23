@@ -1,6 +1,6 @@
 export interface ReviewForMenuItemDto {
   reviewTitle: string;
   reviewDescription: string;
-  numberOfStars: string;
-  menuItemId: string;
+  numberOfStars: number;
+  menuItemId?: string;
 }
