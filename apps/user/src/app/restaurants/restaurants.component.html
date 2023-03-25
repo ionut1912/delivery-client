@@ -1,10 +1,18 @@
 <delivery-client-navbar></delivery-client-navbar>
-
-<div class="border-box container">Restaurant {{ restaurant.name }}</div>
-<div class="container">
+<div class="container-nav"></div>
+<div class="border-box container-nav">{{ restaurant.name }}</div>
+<div *ngIf="restaurant.images.length === 1" class="container-nav">
+  <img src="{{ restaurant.images[0] }}" alt="No image" />
+</div>
+<div *ngIf="restaurant.images.length > 1" class="container-nav">
+  <delivery-client-carousel
+    [images]="restaurant.images"
+  ></delivery-client-carousel>
+</div>
+<div class="container-nav">
   <div *ngIf="restaurant.menuItems.length > 0">
     <div class="grid-container">
-      <div class="container" *ngFor="let item of restaurant.menuItems">
+      <div class="container-nav" *ngFor="let item of restaurant.menuItems">
         <div class="grid-item">
           <mat-card class="example-card">
             <mat-card-header>
@@ -32,7 +40,10 @@
     </div>
   </div>
 </div>
-<div class="container" *ngIf="restaurant.menuItems.length === 0">
+<div class="container-nav" *ngIf="restaurant.menuItems.length === 0">
   This restaurant does not have menu items
 </div>
-<delivery-reviews [restaurantId]="restaurant.id" [rowData]="restaurant.reviews" ></delivery-reviews>
+<delivery-reviews
+  [restaurantId]="restaurant.id"
+  [rowData]="restaurant.reviews"
+></delivery-reviews>

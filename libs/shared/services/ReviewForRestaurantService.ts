@@ -9,8 +9,9 @@ import { ReviewForRestaurant } from '../models/ReviewForRestaurant/ReviewForRest
 export class ReviewForRestaurantService {
   constructor(private httpClient: HttpClient) {}
   addReview(review: ReviewForRestaurantDto) {
-    this.httpClient.post('/ReviewForRestaurants', review).subscribe((result)=>
-    console.log(result));
+    this.httpClient
+      .post('/ReviewForRestaurants', review)
+      .subscribe((result) => console.log(result));
   }
   getReviewsForMenuItem() {
     return this.httpClient.get<ReviewForRestaurant>('ReviewForRestaurants');

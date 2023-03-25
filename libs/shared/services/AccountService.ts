@@ -6,6 +6,7 @@ import { Register } from '../models/Account/Register';
 import { Router } from '@angular/router';
 import { UserForEdit } from '../../../apps/user/src/app/user-profile/user-profile.component';
 import { UserAddress } from '../models/User/UserAddress';
+import { EditCurrentUserResponse } from '../models/Account/EditCurrentUserResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -70,9 +71,12 @@ export class AccountService {
     return this.httpClient.get<Users>('Accounts/current');
   }
   modifyCurrentUser(userToBeEdited: UserForEdit) {
-    this.httpClient.put('Accounts/current', userToBeEdited).subscribe(() => {
-      console.log('success');
-    });
+    this.httpClient
+      .put<EditCurrentUserResponse>('Accounts/current', userToBeEdited)
+      .subscribe((response) => {
+        sessionStorage.setItem('jwt', response.token);
+        sessionStorage.setItem('email', response.email);
+      });
   }
   modifyCurrentUserAddress(userAddress: UserAddress) {
     this.httpClient

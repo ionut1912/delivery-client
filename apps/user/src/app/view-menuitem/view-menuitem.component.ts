@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuItemService } from '../../../../../libs/shared/services/MenuItemService';
-import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
 import { ReviewForMenuItemsService } from '../../../../../libs/shared/services/ReviewForMenuItemsService';
 import { ReviewForMenuItem } from '../../../../../libs/shared/models/ReviewForMenuItem/ReviewForMenuItem';
 import { ActivatedRoute } from '@angular/router';
+import { MenuItemWithImages } from '../../../../../libs/shared/models/MenuItem/MenuItemWithImages';
 export interface ViewMenuItemData {
   id: string;
 }
@@ -14,7 +14,7 @@ export interface ViewMenuItemData {
   styleUrls: ['./view-menuitem.component.scss'],
 })
 export class ViewMenuitemComponent implements OnInit {
-  menuItem!: MenuItem;
+  menuItem!: MenuItemWithImages;
   ingredients!: string[];
   id!: string;
   reviewsForMenuItem!: ReviewForMenuItem[];

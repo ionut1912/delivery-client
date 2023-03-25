@@ -1,12 +1,12 @@
 import { RestaurantAddress } from './RestaurantAddress';
-import { MenuItem } from '../MenuItem/MenuItem';
+import { MenuItemWithImage } from '../MenuItem/MenuItemWithImage';
 import { ReviewForRestaurant } from '../ReviewForRestaurant/ReviewForRestaurant';
 
-export interface Restaurant {
+export interface RestaurantWithImages {
   id: string;
   name: string;
-  image: string;
+  images: string[];
   address: RestaurantAddress;
-  menuItems: MenuItem[];
+  menuItems: MenuItemWithImage[];
   reviews: ReviewForRestaurant[];
 }

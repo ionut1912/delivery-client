@@ -17,7 +17,10 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/user/src/favicon.ico", "apps/user/src/assets"],
         "scripts": [],
-        "styles": ["apps/user/src/custom-theme.scss"]
+        "styles": [
+          "@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/user/src/custom-theme.scss"
+        ]
       },
       "configurations": {
         "production": {

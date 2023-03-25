@@ -1,19 +1,27 @@
 <delivery-client-navbar></delivery-client-navbar>
-<div class="grid-container">
+<div class="grid-container-nav">
   <div class="grid-item">
     <h2>{{ menuItem.itemName }}</h2>
   </div>
 </div>
-<div class="container">Ingredients used:</div>
+<div class="container-nav" *ngIf="menuItem.images.length === 1">
+  <img src="{{ menuItem.images[0] }}" alt="No image" />
+</div>
+<div class="container-nav" *ngIf="menuItem.images.length > 1">
+  <delivery-client-carousel
+    [images]="menuItem.images"
+  ></delivery-client-carousel>
+</div>
+<div class="container-nav">Ingredients used:</div>
 
-<div class="container">
+<div class="container-nav">
   <ul>
     <div *ngFor="let ingredient of ingredients">
       <li>{{ ingredient }}</li>
     </div>
   </ul>
 </div>
-<div class="container" *ngIf="reviewsForMenuItem.length > 0">
+<div class="container-nav" *ngIf="reviewsForMenuItem.length > 0">
   Our clients opinions about this menu item
 </div>
 

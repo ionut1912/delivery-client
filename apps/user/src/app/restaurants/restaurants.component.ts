@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../../../../../libs/shared/services/RestaurantService';
-import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
+import { RestaurantWithImages } from '../../../../../libs/shared/models/Restaurant/RestaurantWithImages';
 
 @Component({
   selector: 'delivery-client-restaurants',
@@ -9,7 +9,7 @@ import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaur
   styleUrls: ['./restaurants.component.scss'],
 })
 export class RestaurantsComponent implements OnInit {
-  restaurant!: Restaurant;
+  restaurant!: RestaurantWithImages;
   constructor(
     private router: ActivatedRoute,
     private redirect: Router,

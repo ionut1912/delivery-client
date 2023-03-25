@@ -1,17 +1,17 @@
 <delivery-client-navbar></delivery-client-navbar>
-<div class="container">
+<div class="container-nav">
   <h2>User profile</h2>
 </div>
-<div class="container">
+<div class="container-nav">
   <h2>Edit your personal details</h2>
 </div>
-<div class="container">
+<div class="container-nav">
   <img class="user-image" src="{{ user.image }}" alt="No image" />
   <mat-icon color="primary">edit</mat-icon>
 </div>
-<div class="container">
+<div class="container-nav">
   <form [formGroup]="userDetails" novalidate autocomplete="off">
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
         <input
@@ -30,7 +30,7 @@
 
       <mat-icon color="primary" (click)="makeInputEditable(0)">edit</mat-icon>
     </div>
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>Street</mat-label>
         <input
@@ -43,7 +43,7 @@
 
       <mat-icon color="primary" (click)="makeInputEditable(1)">edit</mat-icon>
     </div>
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>Number</mat-label>
         <input
@@ -55,7 +55,7 @@
       </mat-form-field>
       <mat-icon color="primary" (click)="makeInputEditable(2)">edit</mat-icon>
     </div>
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>City</mat-label>
         <input
@@ -73,7 +73,7 @@
       </mat-form-field>
       <mat-icon color="primary" (click)="makeInputEditable(3)">edit</mat-icon>
     </div>
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>Postal Code</mat-label>
         <input
@@ -92,7 +92,7 @@
 
       <mat-icon color="primary" (click)="makeInputEditable(4)">edit</mat-icon>
     </div>
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input
@@ -107,7 +107,7 @@
       </mat-form-field>
       <mat-icon color="primary" (click)="makeInputEditable(5)">edit</mat-icon>
     </div>
-    <div class="container">
+    <div class="container-nav">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
         <input
@@ -125,13 +125,9 @@
       </mat-form-field>
       <mat-icon color="primary" (click)="makeInputEditable(6)"> edit</mat-icon>
     </div>
-    <div class="container buttons">
+    <div class="container-nav buttons">
       <button mat-raised-button color="primary" (click)="updateProfile()">
         Update profile
-      </button>
-
-      <button mat-raised-button color="primary" (click)="resetForm()">
-        Reset form
       </button>
     </div>
   </form>

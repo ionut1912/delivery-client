@@ -1,4 +1,4 @@
-export interface MenuItem {
+export interface MenuItemWithImages {
   id: string;
   itemName: string;
   category: string;
@@ -6,5 +6,5 @@ export interface MenuItem {
   price: number;
   quantity: number;
   active: number;
-  image: string;
+  images: string[];
 }

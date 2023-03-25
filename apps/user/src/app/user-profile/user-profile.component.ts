@@ -94,18 +94,6 @@ export class UserProfileComponent implements OnInit {
     return this.userDetails.controls[controlName].hasError(errorName);
   };
 
-  resetForm() {
-    this.userDetails.patchValue({
-      phone: this.user.phoneNumber,
-      street: this.user.address.street,
-      number: this.user.address.number,
-      city: this.user.address.city,
-      postalCode: this.user.address.postalCode,
-      email: this.user.email,
-      username: this.user.username,
-    });
-  }
-
   updateProfile() {
     const userToBeEdited: UserForEdit = {
       username: this.userDetails.value.username,

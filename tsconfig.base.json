@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@delivery-app-client/carousel": ["libs/carousel/src/index.ts"],
       "@delivery-app-client/generic-revies/lib/reviews": [
         "libs/generic-revies/lib/reviews/src/index.ts"
       ],

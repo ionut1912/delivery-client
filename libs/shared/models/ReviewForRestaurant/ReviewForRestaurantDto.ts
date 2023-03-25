@@ -1,6 +1,6 @@
 export interface ReviewForRestaurantDto {
   reviewTitle: string;
   reviewDescription: string;
-  numberOfStars:number;
+  numberOfStars: number;
   restaurantId?: string;
 }

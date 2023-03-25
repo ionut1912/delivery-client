@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private router: Router) {}
+  itemInCart = 12;
   logout() {
     sessionStorage.clear();
     window.location.href = ' http://localhost:4202/ ';

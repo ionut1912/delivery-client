@@ -18,6 +18,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
 import { GenericReviewsModule } from '@delivery-app-client/generic-reviews';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { GenericReviewsModule } from '@delivery-app-client/generic-reviews';
     CartComponent,
     OrdersComponent,
     ViewMenuitemComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { GenericReviewsModule } from '@delivery-app-client/generic-reviews';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     GenericReviewsModule,
+    CarouselModule,
   ],
   providers: [
     {
