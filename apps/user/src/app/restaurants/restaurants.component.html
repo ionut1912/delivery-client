@@ -1,12 +1,12 @@
 <delivery-client-navbar></delivery-client-navbar>
 <div class="container-nav"></div>
 <div class="border-box container-nav">{{ restaurant.name }}</div>
-<div *ngIf="restaurant.images.length === 1" class="container-nav">
-  <img src="{{ restaurant.images[0] }}" alt="No image" />
+<div *ngIf="restaurant.restaurantPhotos.length === 1" class="container-nav">
+  <img src="{{ restaurant.restaurantPhotos[0] }}" alt="No image" />
 </div>
-<div *ngIf="restaurant.images.length > 1" class="container-nav">
+<div *ngIf="restaurant.restaurantPhotos.length > 1" class="container-nav">
   <delivery-client-carousel
-    [images]="restaurant.images"
+    [images]="getImagesUrls(restaurant)"
   ></delivery-client-carousel>
 </div>
 <div class="container-nav">
@@ -22,15 +22,31 @@
             </mat-card-header>
             <mat-card-content>
               <div>
-                <img mat-card-xl-image src="{{ item.image }}" alt="No image" />
+                <img
+                  mat-card-xl-image
+                  src="{{ getMainPhoto(item) }}"
+                  alt="No image"
+                />
               </div>
-              <div>
+              <div class="material-button">
                 <button
+                  class="card-button"
                   mat-raised-button
                   color="primary"
                   (click)="viewItemDetails(item.id)"
                 >
                   View MenuItem Details
+                </button>
+              </div>
+
+              <div class="material-button">
+                <button
+                  class="card-button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="addToCart(item)"
+                >
+                  Add to cart
                 </button>
               </div>
             </mat-card-content>

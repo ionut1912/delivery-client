@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'delivery-client-carousel',
   templateUrl: './carousel.component.html',

@@ -10,7 +10,7 @@
 <div class="container-nav" *ngFor="let restaurant of restaurants">
   <div>
     <div>
-      <img src="{{ restaurant.image }}" alt="No image" />
+      <img src="{{ getMainPhoto(restaurant) }}" alt="No image" />
     </div>
     <div>
       {{ restaurant.name }}

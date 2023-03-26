@@ -20,6 +20,10 @@ import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
 import { GenericReviewsModule } from '@delivery-app-client/generic-reviews';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CarouselComponent } from './carousel/carousel.component';
+import { StoreModule } from '@ngrx/store';
+import { foodShopActionReducerMap } from '../../state/app-state.module';
+import { getStorageMetaReducers } from '../../../../libs/util/meta-reducer.util';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,14 @@ import { CarouselComponent } from './carousel/carousel.component';
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     MaterialModule,
     HttpClientModule,
+    StoreModule.forRoot(foodShopActionReducerMap, {
+      //un fel aspect ca in java(se ruleaza inainte si dupa exectuarea actiunilor)
+      metaReducers: [getStorageMetaReducers('food_shop', ['cartState'])],
+    }),
+
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
     ReactiveFormsModule,
     BrowserAnimationsModule,
     GenericReviewsModule,

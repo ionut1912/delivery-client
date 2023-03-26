@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Users } from '../../../../../libs/shared/models/User/Users';
-import { RestaurantWithImage } from '../../../../../libs/shared/models/Restaurant/RestaurantWithImage';
+import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
 import { RestaurantService } from '../../../../../libs/shared/services/RestaurantService';
@@ -12,7 +12,7 @@ import { RestaurantService } from '../../../../../libs/shared/services/Restauran
 })
 export class UserDashboardComponent implements OnInit {
   user!: Users;
-  restaurants!: RestaurantWithImage[];
+  restaurants!: Restaurant[];
   constructor(
     private accountService: AccountService,
     private restaurantService: RestaurantService,
@@ -24,7 +24,7 @@ export class UserDashboardComponent implements OnInit {
       this.user = response;
       this.restaurantService
         .getRestaurantByCity(this.user.address.city)
-        .subscribe((restaurantResponse: RestaurantWithImage[]) => {
+        .subscribe((restaurantResponse: Restaurant[]) => {
           this.restaurants = restaurantResponse;
         });
     });
@@ -32,5 +32,8 @@ export class UserDashboardComponent implements OnInit {
 
   goToRestaurant(id: string) {
     this.router.navigate(['/restaurants', id]);
+  }
+  getMainPhoto(restaurant: Restaurant) {
+    return restaurant.restaurantPhotos.find((photo) => photo.isMain)?.url;
   }
 }

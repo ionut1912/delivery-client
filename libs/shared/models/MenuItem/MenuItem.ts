@@ -1,4 +1,6 @@
-export interface MenuItemWithImages {
+import { PhotoForMenuItem } from '../Photos/PhotoForMenuItem';
+
+export interface MenuItem {
   id: string;
   itemName: string;
   category: string;
@@ -6,5 +8,5 @@ export interface MenuItemWithImages {
   price: number;
   quantity: number;
   active: number;
-  images: string[];
+  photos: PhotoForMenuItem[];
 }
