@@ -1,1 +1,39 @@
-<p>cart works!</p>
+<delivery-client-navbar></delivery-client-navbar>
+<div *ngIf="cartItems.length === 0" class="container-fluid">
+  <h2>There are no items in your cart</h2>
+</div>
+<div class="container-fluid border-box" *ngIf="cartItems.length > 0">
+  <div *ngFor="let item of cartItems" class="row">
+    <div class="col-3">
+      <img class="item-image" src="{{ getMainPhoto(item) }}" alt="No image" />
+    </div>
+    <div class="col-3">
+      {{ item.itemName }}
+    </div>
+    <div class="col-3">
+      <form [formGroup]="ItemForm" novalidate autocomplete="off">
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input
+            matInput
+            type="number"
+            [ngModel]="item.quantity"
+            formControlName="quantity"
+            min="0"
+          />
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="col-3">
+      <mat-icon matTooltip="Delete from cart" class="delete-icon"
+        >delete_outline</mat-icon
+      >
+    </div>
+  </div>
+  <div class="price-info">
+    Final price of your order is {{ calculateFinalPrice() }} lei
+  </div>
+  <div class="order-button">
+    <button mat-raised-button color="primary">Make order</button>
+  </div>
+</div>

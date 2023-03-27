@@ -27,6 +27,7 @@ export class RestaurantsComponent implements OnInit {
         .getRestaurantById(id)
         .subscribe((restaurantsResponse) => {
           this.restaurant = restaurantsResponse;
+          console.log(this.restaurant);
         });
     });
   }
