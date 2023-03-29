@@ -1,14 +1,14 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { MenuItem } from '../../../../../../libs/shared/models/MenuItem/MenuItem';
+import { OrderMenuItem } from '../../../../../../libs/shared/models/State/OrderMenuItem';
 
 export const CartActions = createActionGroup({
   source: 'Cart',
   events: {
-    'Add menuItem': props<{ menuItemInOrder: MenuItem }>(),
+    'Add menuItem': props<{ menuItemInOrder: OrderMenuItem }>(),
 
-    'Add menuItems': props<{ menuItemsInOrder: Array<MenuItem> }>(),
-    'Remove menuItem': props<{ menuItemInOrder: MenuItem }>(),
+    'Add menuItems': props<{ menuItemsInOrder: Array<OrderMenuItem> }>(),
+    'Remove menuItem': props<{ menuItemInOrder: OrderMenuItem }>(),
     'Remove all menuItems': emptyProps(),
-    'Update quantity': props<{ menuItemInOrder: MenuItem }>(),
+    'Update quantity': props<{ menuItemInOrder: OrderMenuItem }>(),
   },
 });

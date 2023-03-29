@@ -9,6 +9,8 @@ const cartInitialState: CartState = {
 export const cartReducer = createReducer<CartState>(
   cartInitialState,
   on(CartActions.addMenuitem, (state, { menuItemInOrder }) => {
+    console.log(menuItemInOrder);
+    console.log(state);
     return {
       ...state,
       menuItems: updateMenuItemWithImageInOrderQuantity(
@@ -31,15 +33,15 @@ export const cartReducer = createReducer<CartState>(
   on(CartActions.updateQuantity, (state, { menuItemInOrder }) => ({
     ...state,
     menuItems: state.menuItems.map((mo) =>
-      mo.id === menuItemInOrder.id
-        ? { ...mo, quantity: menuItemInOrder.quantity }
+      mo.menuItem.id === menuItemInOrder.menuItem.id
+        ? { ...mo, quantity: menuItemInOrder.menuItem.quantity }
         : { ...mo }
     ),
   })),
   on(CartActions.removeMenuitem, (state, { menuItemInOrder }) => ({
     ...state,
     menuItems: state.menuItems.filter(
-      (menuItem) => menuItem.id != menuItemInOrder.id
+      (menuItem) => menuItem.menuItem.id != menuItemInOrder.menuItem.id
     ),
   })),
   on(CartActions.removeAllMenuitems, (state) => {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app-state.module';
 import { getAllProductsInCart } from '../cart/store/getAllMenuItemsInCart';
-import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
+import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenuItem';
 
 @Component({
   selector: 'delivery-client-navbar',
@@ -13,7 +13,7 @@ import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
 })
 export class NavbarComponent implements OnInit {
   constructor(private router: Router, private store: Store<AppState>) {}
-  cart$!: Observable<MenuItem[]>;
+  cart$!: Observable<OrderMenuItem[]>;
   ngOnInit() {
     this.cart$ = this.store.select(getAllProductsInCart);
   }

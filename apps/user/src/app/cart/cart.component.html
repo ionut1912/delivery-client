@@ -5,10 +5,14 @@
 <div class="container-fluid border-box" *ngIf="cartItems.length > 0">
   <div *ngFor="let item of cartItems" class="row">
     <div class="col-3">
-      <img class="item-image" src="{{ getMainPhoto(item) }}" alt="No image" />
+      <img
+        class="item-image"
+        src="{{ getMainPhoto(item.menuItem) }}"
+        alt="No image"
+      />
     </div>
     <div class="col-3">
-      {{ item.itemName }}
+      {{ item.menuItem.itemName }}
     </div>
     <div class="col-3">
       <form [formGroup]="ItemForm" novalidate autocomplete="off">
@@ -17,7 +21,7 @@
           <input
             matInput
             type="number"
-            [ngModel]="item.quantity"
+            [ngModel]="1"
             formControlName="quantity"
             min="0"
           />
@@ -34,6 +38,8 @@
     Final price of your order is {{ calculateFinalPrice() }} lei
   </div>
   <div class="order-button">
-    <button mat-raised-button color="primary">Make order</button>
+    <button mat-raised-button color="primary" (click)="makeOrder()">
+      Make order
+    </button>
   </div>
 </div>

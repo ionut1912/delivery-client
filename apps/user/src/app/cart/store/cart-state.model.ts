@@ -1,5 +1,5 @@
-import { MenuItem } from '../../../../../../libs/shared/models/MenuItem/MenuItem';
+import { OrderMenuItem } from '../../../../../../libs/shared/models/State/OrderMenuItem';
 
 export interface CartState {
-  menuItems: Array<MenuItem>;
+  menuItems: Array<OrderMenuItem>;
 }

@@ -9,6 +9,6 @@ export interface MenuItem {
   price: number;
   offerMenuItems: OfferMenuItems[];
   quantity: number;
-  active: number;
+  active: boolean;
   photos: PhotoForMenuItem[];
 }

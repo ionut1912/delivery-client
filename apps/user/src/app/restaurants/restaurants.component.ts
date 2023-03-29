@@ -4,8 +4,10 @@ import { RestaurantService } from '../../../../../libs/shared/services/Restauran
 import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
 import { AppState } from '../../../state/app-state.module';
 import { Store } from '@ngrx/store';
-import { CartActions } from '../cart/store/cart.actions';
+
 import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
+import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenuItem';
+import { CartActions } from '../cart/store/cart.actions';
 @Component({
   selector: 'delivery-client-restaurants',
   templateUrl: './restaurants.component.html',
@@ -27,7 +29,6 @@ export class RestaurantsComponent implements OnInit {
         .getRestaurantById(id)
         .subscribe((restaurantsResponse) => {
           this.restaurant = restaurantsResponse;
-          console.log(this.restaurant);
         });
     });
   }
@@ -41,9 +42,37 @@ export class RestaurantsComponent implements OnInit {
     return restaurant.restaurantPhotos.map((item) => item.url);
   }
   addToCart(item: MenuItem) {
+    const menuItemInOrder: OrderMenuItem = {
+      restaurantName: '',
+      menuItem: {
+        id: '',
+        itemName: '',
+        category: '',
+        ingredients: '',
+        price: 0,
+        offerMenuItems: [
+          {
+            offerId: '',
+            menuItemId: '',
+          },
+        ],
+        quantity: 0,
+        active: false,
+        photos: [
+          {
+            id: '',
+            url: '',
+            isMain: false,
+            menuItemId: '',
+          },
+        ],
+      },
+    };
+    menuItemInOrder.restaurantName = this.restaurant.name;
+    menuItemInOrder.menuItem = item;
     this.store.dispatch(
       CartActions.addMenuitem({
-        menuItemInOrder: item,
+        menuItemInOrder: menuItemInOrder,
       })
     );
   }

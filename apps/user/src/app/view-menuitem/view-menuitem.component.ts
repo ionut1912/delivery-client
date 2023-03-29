@@ -8,7 +8,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app-state.module';
 import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
 
-
 export interface ViewMenuItemData {
   id: string;
 }
