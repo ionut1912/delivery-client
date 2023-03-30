@@ -1,1 +1,14 @@
-<p>orders works!</p>
+<delivery-client-navbar></delivery-client-navbar>
+<div class="container-nav">
+  <h1>Your orders</h1>
+</div>
+<div class="container-nav">
+  <generic-table
+    [columns]="columns"
+    [data]="orders"
+    [pagination]="[5, 25, 100]"
+    [pageSize]="5"
+    [tableMinWidth]="400"
+  >
+  </generic-table>
+</div>

@@ -22,6 +22,7 @@
       "@delivery-app-client/generic-reviews": [
         "libs/generic-reviews/src/index.ts"
       ],
+      "@delivery-app-client/generic-table": ["libs/generic-table/src/index.ts"],
       "@delivery-app-client/navbar": ["libs/navbar/src/index.ts"],
       "@delivery-app-client/reviews": ["libs/reviews/src/index.ts"],
       "@delivery-app-client/test": ["libs/test/src/index.ts"]

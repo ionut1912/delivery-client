@@ -24,6 +24,8 @@ import { StoreModule } from '@ngrx/store';
 import { foodShopActionReducerMap } from '../../state/app-state.module';
 import { getStorageMetaReducers } from '../../../../libs/util/meta-reducer.util';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { GenericTableModule } from '@delivery-app-client/generic-table';
+import { UserConfigComponent } from './user-config/user-config.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     OrdersComponent,
     ViewMenuitemComponent,
     CarouselComponent,
+    UserConfigComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     GenericReviewsModule,
     CarouselModule,
+    GenericTableModule,
   ],
   providers: [
     {
