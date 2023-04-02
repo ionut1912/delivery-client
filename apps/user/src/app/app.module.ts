@@ -26,6 +26,7 @@ import { getStorageMetaReducers } from '../../../../libs/util/meta-reducer.util'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { GenericTableModule } from '@delivery-app-client/generic-table';
 import { UserConfigComponent } from './user-config/user-config.component';
+import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-modal';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { UserConfigComponent } from './user-config/user-config.component';
     GenericReviewsModule,
     CarouselModule,
     GenericTableModule,
+    GenericDeleteModalModule,
   ],
   providers: [
     {

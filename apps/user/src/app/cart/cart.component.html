@@ -29,7 +29,10 @@
       </form>
     </div>
     <div class="col-3">
-      <mat-icon matTooltip="Delete from cart" class="delete-icon"
+      <mat-icon
+        matTooltip="Delete from cart"
+        class="delete-icon"
+        (click)="deleteFromCart(item.menuItem)"
         >delete_outline</mat-icon
       >
     </div>

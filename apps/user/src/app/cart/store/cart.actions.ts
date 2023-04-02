@@ -7,7 +7,7 @@ export const CartActions = createActionGroup({
     'Add menuItem': props<{ menuItemInOrder: OrderMenuItem }>(),
 
     'Add menuItems': props<{ menuItemsInOrder: Array<OrderMenuItem> }>(),
-    'Remove menuItem': props<{ menuItemInOrder: OrderMenuItem }>(),
+    'Remove menuItem': props<{ menuItemInOrder: OrderMenuItem | undefined }>(),
     'Remove all menuItems': emptyProps(),
     'Update quantity': props<{ menuItemInOrder: OrderMenuItem }>(),
   },

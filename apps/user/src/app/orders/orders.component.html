@@ -5,10 +5,13 @@
 <div class="container-nav">
   <generic-table
     [columns]="columns"
+    [buttons]="buttons"
     [data]="orders"
     [pagination]="[5, 25, 100]"
     [pageSize]="5"
-    [tableMinWidth]="400"
+    [tableMinWidth]="600"
+    (buttonClick)="buttonClick($event)"
   >
+    >
   </generic-table>
 </div>

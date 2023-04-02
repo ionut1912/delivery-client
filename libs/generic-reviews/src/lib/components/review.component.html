@@ -43,7 +43,6 @@
             required
             formControlName="reviewDescription"
             minlength="3"
-            maxlength="20"
           ></textarea>
           <mat-error *ngIf="checkError('reviewDescription', 'required')">
             {{ error('reviewDescription', 'is required') }}

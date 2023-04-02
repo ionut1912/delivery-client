@@ -3,6 +3,7 @@ export interface UserConfigs {
   userId: number;
   username: number;
   weight: number;
+  height: number;
   age: number;
   sex: string;
 }

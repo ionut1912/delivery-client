@@ -41,7 +41,7 @@ export const cartReducer = createReducer<CartState>(
   on(CartActions.removeMenuitem, (state, { menuItemInOrder }) => ({
     ...state,
     menuItems: state.menuItems.filter(
-      (menuItem) => menuItem.menuItem.id != menuItemInOrder.menuItem.id
+      (menuItem) => menuItem.menuItem.id != menuItemInOrder?.menuItem.id
     ),
   })),
   on(CartActions.removeAllMenuitems, (state) => {

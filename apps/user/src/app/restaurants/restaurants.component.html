@@ -2,7 +2,7 @@
 <div class="container-nav"></div>
 <div class="border-box container-nav">{{ restaurant.name }}</div>
 <div *ngIf="restaurant.restaurantPhotos.length === 1" class="container-nav">
-  <img src="{{ restaurant.restaurantPhotos[0] }}" alt="No image" />
+  <img src="{{ restaurant.restaurantPhotos[0].url }}" alt="No image" />
 </div>
 <div *ngIf="restaurant.restaurantPhotos.length > 1" class="container-nav">
   <delivery-client-carousel

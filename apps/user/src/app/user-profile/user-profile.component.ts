@@ -3,6 +3,10 @@ import { Users } from '../../../../../libs/shared/models/User/Users';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserAddress } from '../../../../../libs/shared/models/User/UserAddress';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
+import { PhotoService } from '../../../../../libs/shared/services/PhotoService';
+import { UserConfigDto } from '../../../../../libs/shared/models/UserConfig/UserConfigDto';
+import { UserConfigService } from '../../../../../libs/shared/services/UserConfigService';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface FieldsStatus {
   fieldName: string;
@@ -13,12 +17,17 @@ export interface UserForEdit {
   phoneNumber: string;
   email: string;
 }
+export interface UserToBeEdited {
+  photo: File;
+  userToBeEdited: UserForEdit;
+}
 @Component({
   selector: 'delivery-client-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
+  sportActivity: number[] = [1, 2, 3, 4, 5, 6, 7];
   user!: Users;
   disabledFields: FieldsStatus[] = [
     {
@@ -49,8 +58,25 @@ export class UserProfileComponent implements OnInit {
       fieldName: 'username',
       disabled: true,
     },
+    {
+      fieldName: 'weight',
+      disabled: true,
+    },
+    {
+      fieldName: 'height',
+      disabled: true,
+    },
+    {
+      fieldName: 'age',
+      disabled: true,
+    },
+    {
+      fieldName: 'sportActivity',
+      disabled: true,
+    },
   ];
 
+  userImage!: File;
   userDetails: FormGroup = new FormGroup({
     street: new FormControl(null),
     number: new FormControl(null),
@@ -71,20 +97,25 @@ export class UserProfileComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
+    weight: new FormControl(null, Validators.required),
+    height: new FormControl(null, Validators.required),
+    age: new FormControl(null, Validators.required),
+    sportActivity: new FormControl(null, Validators.required),
   });
   error = (field: string, rule: string) => {
     return `Field ${field}   ${rule}`;
   };
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private matSnackBar: MatSnackBar,
+    private accountService: AccountService,
+    private photoService: PhotoService,
+    private userConfigService: UserConfigService
+  ) {}
   ngOnInit() {
     this.accountService.getCurrentUser().subscribe((userData) => {
       this.user = userData;
     });
-  }
-
-  onSubmit() {
-    return false;
   }
 
   makeInputEditable(index: number) {
@@ -100,13 +131,49 @@ export class UserProfileComponent implements OnInit {
       phoneNumber: this.userDetails.value.phone,
       email: this.userDetails.value.email,
     };
+
     const addressForUser: UserAddress = {
       street: this.userDetails.value.street,
       city: this.userDetails.value.city,
       number: this.userDetails.value.number,
       postalCode: this.userDetails.value.postalCode,
     };
+    const userConfigToBeModified: UserConfigDto = {
+      weight: this.userDetails.value.weight,
+      height: this.userDetails.value.height,
+      age: this.userDetails.value.age,
+      sex: this.user.userConfig.sex,
+      sportActivity: this.userDetails.value.sportActivity,
+    };
+
     this.accountService.modifyCurrentUser(userToBeEdited);
     this.accountService.modifyCurrentUserAddress(addressForUser);
+    this.userConfigService.editUserConfig(
+      this.user.userConfig.id,
+      userConfigToBeModified
+    );
+    this.matSnackBar.open('Profile modified successfully', 'Close', {
+      duration: 5000,
+    });
+  }
+
+  openFile() {
+    console.log('hell');
+
+    const inputElemt = document.querySelector('input');
+    if (inputElemt) {
+      inputElemt.click();
+    }
+  }
+
+  handle($event: any) {
+    const eventTarget = $event.target;
+    if (eventTarget != null) {
+      const file: File = eventTarget.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      this.photoService.modifyMainPhoto(formData);
+    }
   }
 }

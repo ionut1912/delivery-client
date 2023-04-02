@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="container-nav" *ngIf="menuItem.photos.length === 1">
-  <img src="{{ menuItem.photos[0] }}" alt="No image" />
+  <img src="{{ menuItem.photos[0].url }}" alt="No image" />
 </div>
 <div class="container-nav" *ngIf="menuItem.photos.length > 1">
   <delivery-client-carousel

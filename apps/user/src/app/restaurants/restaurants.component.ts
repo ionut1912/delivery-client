@@ -25,10 +25,12 @@ export class RestaurantsComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe((params) => {
       const id = params['id'];
+      console.log(id);
       this.restaurantService
         .getRestaurantById(id)
         .subscribe((restaurantsResponse) => {
           this.restaurant = restaurantsResponse;
+          console.log(this.restaurant);
         });
     });
   }

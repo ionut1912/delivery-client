@@ -7,128 +7,237 @@
 </div>
 <div class="container-nav">
   <img class="user-image" src="{{ user.image }}" alt="No image" />
-  <mat-icon color="primary">edit</mat-icon>
+  <mat-icon color="primary" (click)="openFile()"
+    >edit
+    <input type="file" style="display: none" (change)="handle($event)" />
+  </mat-icon>
 </div>
 <div class="container-nav">
-  <form [formGroup]="userDetails" novalidate autocomplete="off">
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>Phone</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.phoneNumber"
-          formControlName="phone"
-          [readonly]="disabledFields[0].disabled"
-        />
-        <mat-error *ngIf="checkError('phone', 'minlength')">
-          {{ error('phone', 'has min length of 3 characters') }}
-        </mat-error>
-        <mat-error *ngIf="checkError('phone', 'maxlength')">
-          {{ error('phone', 'has max length of 10 characters') }}
-        </mat-error>
-      </mat-form-field>
+  <mat-stepper #stepper>
+    <mat-step [stepControl]="userDetails">
+      <form [formGroup]="userDetails">
+        <ng-template matStepLabel>Modify your personal details</ng-template>
+        <div class="container-nav">
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="user.phoneNumber"
+                  formControlName="phone"
+                  [readonly]="disabledFields[0].disabled"
+                />
+                <mat-error *ngIf="checkError('phone', 'minlength')">
+                  {{ error('phone', 'has min length of 3 characters') }}
+                </mat-error>
+                <mat-error *ngIf="checkError('phone', 'maxlength')">
+                  {{ error('phone', 'has max length of 10 characters') }}
+                </mat-error>
+              </mat-form-field>
 
-      <mat-icon color="primary" (click)="makeInputEditable(0)">edit</mat-icon>
-    </div>
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>Street</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.address.street"
-          formControlName="street"
-          [readonly]="disabledFields[1].disabled"
-        />
-      </mat-form-field>
+              <mat-icon color="primary" (click)="makeInputEditable(0)"
+                >edit</mat-icon
+              >
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="user.email"
+                  formControlName="email"
+                  [readonly]="disabledFields[5].disabled"
+                />
+                <mat-error *ngIf="checkError('email', 'email')">
+                  {{ error('email', 'must contains @') }}
+                </mat-error>
+              </mat-form-field>
+              <mat-icon color="primary" (click)="makeInputEditable(5)"
+                >edit</mat-icon
+              >
+            </div>
+          </div>
 
-      <mat-icon color="primary" (click)="makeInputEditable(1)">edit</mat-icon>
-    </div>
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>Number</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.address.number"
-          formControlName="number"
-          [readonly]="disabledFields[2].disabled"
-        />
-      </mat-form-field>
-      <mat-icon color="primary" (click)="makeInputEditable(2)">edit</mat-icon>
-    </div>
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.address.city"
-          formControlName="city"
-          [readonly]="disabledFields[3].disabled"
-        />
-        <mat-error *ngIf="checkError('city', 'minlength')">
-          {{ error('city', 'has min length of 3 characters') }}
-        </mat-error>
-        <mat-error *ngIf="checkError('city', 'maxlength')">
-          {{ error('city', 'has max length of 20 characters') }}
-        </mat-error>
-      </mat-form-field>
-      <mat-icon color="primary" (click)="makeInputEditable(3)">edit</mat-icon>
-    </div>
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>Postal Code</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.address.postalCode"
-          formControlName="postalCode"
-          [readonly]="disabledFields[4].disabled"
-        />
-        <mat-error *ngIf="checkError('postalCode', 'minlength')">
-          {{ error('Postal code', 'has min length of 3 characters') }}
-        </mat-error>
-        <mat-error *ngIf="checkError('postalCode', 'maxlength')">
-          {{ error('postal code', 'has max length of 20 characters') }}
-        </mat-error>
-      </mat-form-field>
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="user.username"
+                  formControlName="username"
+                  [readonly]="disabledFields[6].disabled"
+                />
+                <mat-error *ngIf="checkError('username', 'minlength')">
+                  {{ error('username', 'has min length of 3 characters') }}
+                </mat-error>
+                <mat-error *ngIf="checkError('username', 'maxlength')">
+                  {{ error('username', 'has max length of 20 characters') }}
+                </mat-error>
+              </mat-form-field>
+              <mat-icon color="primary" (click)="makeInputEditable(6)">
+                edit</mat-icon
+              >
+            </div>
+          </div>
+        </div>
 
-      <mat-icon color="primary" (click)="makeInputEditable(4)">edit</mat-icon>
-    </div>
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.email"
-          formControlName="email"
-          [readonly]="disabledFields[5].disabled"
-        />
-        <mat-error *ngIf="checkError('email', 'email')">
-          {{ error('email', 'must contains @') }}
-        </mat-error>
-      </mat-form-field>
-      <mat-icon color="primary" (click)="makeInputEditable(5)">edit</mat-icon>
-    </div>
-    <div class="container-nav">
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user.username"
-          formControlName="username"
-          [readonly]="disabledFields[6].disabled"
-        />
-        <mat-error *ngIf="checkError('username', 'minlength')">
-          {{ error('username', 'has min length of 3 characters') }}
-        </mat-error>
-        <mat-error *ngIf="checkError('username', 'maxlength')">
-          {{ error('username', 'has max length of 20 characters') }}
-        </mat-error>
-      </mat-form-field>
-      <mat-icon color="primary" (click)="makeInputEditable(6)"> edit</mat-icon>
-    </div>
-    <div class="container-nav buttons">
-      <button mat-raised-button color="primary" (click)="updateProfile()">
-        Update profile
-      </button>
-    </div>
-  </form>
+        <button mat-button matStepperNext>Next</button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="userDetails" label="Modify your address">
+      <form [formGroup]="userDetails">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Street</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.address.street"
+                formControlName="street"
+                [readonly]="disabledFields[1].disabled"
+              />
+            </mat-form-field>
+
+            <mat-icon color="primary" (click)="makeInputEditable(1)"
+              >edit</mat-icon
+            >
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Number</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.address.number"
+                formControlName="number"
+                [readonly]="disabledFields[2].disabled"
+              />
+            </mat-form-field>
+            <mat-icon color="primary" (click)="makeInputEditable(2)"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.address.city"
+                formControlName="city"
+                [readonly]="disabledFields[3].disabled"
+              />
+              <mat-error *ngIf="checkError('city', 'minlength')">
+                {{ error('city', 'has min length of 3 characters') }}
+              </mat-error>
+              <mat-error *ngIf="checkError('city', 'maxlength')">
+                {{ error('city', 'has max length of 20 characters') }}
+              </mat-error>
+            </mat-form-field>
+            <mat-icon color="primary" (click)="makeInputEditable(3)"
+              >edit</mat-icon
+            >
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Postal Code</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.address.postalCode"
+                formControlName="postalCode"
+                [readonly]="disabledFields[4].disabled"
+              />
+              <mat-error *ngIf="checkError('postalCode', 'minlength')">
+                {{ error('Postal code', 'has min length of 3 characters') }}
+              </mat-error>
+              <mat-error *ngIf="checkError('postalCode', 'maxlength')">
+                {{ error('postal code', 'has max length of 20 characters') }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-icon color="primary" (click)="makeInputEditable(4)"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+
+        <button mat-button matStepperPrevious>Previous</button>
+
+        <button mat-button matStepperNext>Next</button>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="userDetails" label="Modify your configs">
+      <form [formGroup]="userDetails">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Weight</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.userConfig.weight"
+                formControlName="weight"
+                [readonly]="disabledFields[7].disabled"
+              />
+            </mat-form-field>
+
+            <mat-icon color="primary" (click)="makeInputEditable(7)"
+              >edit</mat-icon
+            >
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Height</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.userConfig.height"
+                formControlName="height"
+                [readonly]="disabledFields[8].disabled"
+              />
+            </mat-form-field>
+            <mat-icon color="primary" (click)="makeInputEditable(8)"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Age</mat-label>
+              <input
+                matInput
+                [(ngModel)]="user.userConfig.age"
+                formControlName="age"
+                [readonly]="disabledFields[9].disabled"
+              />
+            </mat-form-field>
+            <mat-icon color="primary" (click)="makeInputEditable(9)"
+              >edit</mat-icon
+            >
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <mat-label>SportActivity</mat-label>
+              <mat-select formControlName="sportActivity">
+                <mat-option
+                  *ngFor="let sportActivityValue of sportActivity"
+                  [value]="sportActivityValue"
+                >
+                  {{ sportActivityValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <button mat-button matStepperPrevious>Previous</button>
+
+        <button mat-button (click)="updateProfile()">Next</button>
+      </form>
+    </mat-step>
+  </mat-stepper>
 </div>

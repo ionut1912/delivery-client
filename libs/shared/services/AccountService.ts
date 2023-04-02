@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../models/User/Users';
-import { Buffer } from 'buffer';
+
 import { Register } from '../models/Account/Register';
-import { Router } from '@angular/router';
-import { UserForEdit } from '../../../apps/user/src/app/user-profile/user-profile.component';
+import {
+  UserForEdit,
+} from '../../../apps/user/src/app/user-profile/user-profile.component';
 import { UserAddress } from '../models/User/UserAddress';
 import { EditCurrentUserResponse } from '../models/Account/EditCurrentUserResponse';
 
@@ -70,9 +71,9 @@ export class AccountService {
   getCurrentUser() {
     return this.httpClient.get<Users>('Accounts/current');
   }
-  modifyCurrentUser(userToBeEdited: UserForEdit) {
+  modifyCurrentUser(userForEdit: UserForEdit) {
     this.httpClient
-      .put<EditCurrentUserResponse>('Accounts/current', userToBeEdited)
+      .put<EditCurrentUserResponse>('Accounts/current', userForEdit)
       .subscribe((response) => {
         sessionStorage.setItem('jwt', response.token);
         sessionStorage.setItem('email', response.email);

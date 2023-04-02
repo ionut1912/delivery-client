@@ -11,6 +11,8 @@ import { OrderService } from '../../../../../libs/shared/services/OrderService';
 import { OrderForCreation } from '../../../../../libs/shared/models/Order/OrderForCreation';
 import { CartActions } from './store/cart.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { GenericDeleteModalComponent } from '../../../../../libs/generic-delete-modal/src/lib/components/generic-delete-modal.component';
 
 export interface OfferDetails extends Offer {
   menuItemId: string;
@@ -31,7 +33,8 @@ export class CartComponent implements OnInit {
     private store: Store<AppState>,
     private orderService: OrderService,
     private offerMenuItemService: OfferForMenuItemsService,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
   ngOnInit() {
     this.store.select(getAllProductsInCart).subscribe((item) => {
@@ -95,5 +98,20 @@ export class CartComponent implements OnInit {
     this.matSnackBar.open('Order created successfully', 'Close', {
       duration: 5000,
     });
+  }
+
+  deleteFromCart(menuItem: MenuItem) {
+    const menuItemToBeDeleted = this.cartItems.find(
+      (x) => x.menuItem == menuItem
+    );
+    if (menuItemToBeDeleted) {
+      this.dialog.open(GenericDeleteModalComponent, {
+        data: {
+          menuItem: menuItemToBeDeleted,
+
+          item: 'Menu Item From Cart',
+        },
+      });
+    }
   }
 }

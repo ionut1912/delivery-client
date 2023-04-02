@@ -7,6 +7,6 @@ export interface Users {
   image?: string;
   phoneNumber: string;
   email: string;
-  userConfig?: UserConfigs;
+  userConfig: UserConfigs;
   address: UserAddress;
 }
