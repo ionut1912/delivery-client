@@ -70,5 +70,6 @@ import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-mo
     },
   ],
   bootstrap: [AppComponent],
+  exports: [NavbarComponent],
 })
 export class AppModule {}

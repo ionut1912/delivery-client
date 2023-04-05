@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../models/User/Users';
-
 import { Register } from '../models/Account/Register';
-import {
-  UserForEdit,
-} from '../../../apps/user/src/app/user-profile/user-profile.component';
+import { UserForEdit } from '../../../apps/user/src/app/user-profile/user-profile.component';
 import { UserAddress } from '../models/User/UserAddress';
 import { EditCurrentUserResponse } from '../models/Account/EditCurrentUserResponse';
-
+import { Buffer } from 'buffer';
 @Injectable({
   providedIn: 'root',
 })
@@ -35,12 +32,12 @@ export class AccountService {
       .post<Users>('/Accounts/login', { email, password, username })
       .subscribe((response) => {
         if (response.token) {
-          console.log(response);
           const loginResponseToEncode = {
             email: response?.email,
             jwt: response?.token,
           };
 
+          console.log(loginResponseToEncode);
           const claims = JSON.parse(
             Buffer.from(response.token.split('.')[1], 'base64').toString()
           );
@@ -55,7 +52,7 @@ export class AccountService {
               ? `http://localhost:4200/dashboard?state=${window.btoa(
                   JSON.stringify(loginResponseToEncode)
                 )}`
-              : `http://localhost:4201?state=${window.btoa(
+              : `http://localhost:4201/dashboard?state=${window.btoa(
                   JSON.stringify(loginResponseToEncode)
                 )}`;
         }

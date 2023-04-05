@@ -158,11 +158,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   openFile() {
-    console.log('hell');
-
-    const inputElemt = document.querySelector('input');
-    if (inputElemt) {
-      inputElemt.click();
+    const inputElement = document.querySelector('input');
+    if (inputElement) {
+      inputElement.click();
     }
   }
 

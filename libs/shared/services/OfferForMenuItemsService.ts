@@ -10,4 +10,7 @@ export class OfferForMenuItemsService {
   getOfferById(id: string) {
     return this.httpClient.get<Offer>(`Offers/${id}`);
   }
+  getOffers() {
+    return this.httpClient.get<Offer[]>('Offers');
+  }
 }

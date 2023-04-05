@@ -1,0 +1,55 @@
+<ng-container>
+  <div class="navbar">
+    <div class="item">
+      <div (click)="goToPage('offer-management')">
+        <mat-icon style="color: white"> local_offer</mat-icon>
+      </div>
+      <div class="label">Offer management</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <mat-icon style="color: white" (click)="goToPage('order-management')"
+          >receipt</mat-icon
+        >
+      </div>
+      <div class="label">Order management</div>
+    </div>
+    <div class="item">
+      <div>
+        <mat-icon style="color: white" (click)="goToPage('dashboard')"
+          >dashboard</mat-icon
+        >
+      </div>
+      <div class="label">Dashboard</div>
+    </div>
+    <div class="item">
+      <div>
+        <mat-icon
+          style="color: white"
+          (click)="goToPage('restaurant-management')"
+        >
+          restaurant</mat-icon
+        >
+        >
+      </div>
+      <div class="label">Restaurant management</div>
+    </div>
+    <div class="item">
+      <div class="fa fa-user" (click)="goToPage('user-management')"></div>
+      <div class="label">User</div>
+    </div>
+    <div class="item">
+      <div>
+        <mat-icon style="color: white" (click)="goToPage('item-management')"
+          >menu</mat-icon
+        >
+      </div>
+      <div class="label">Item Management</div>
+    </div>
+    <div class="item">
+      <div class="fa fa-power-off" (click)="logout()"></div>
+      <div class="label">Logout</div>
+    </div>
+  </div>
+</ng-container>
