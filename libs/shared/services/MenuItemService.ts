@@ -7,6 +7,9 @@ import { MenuItem } from '../models/MenuItem/MenuItem';
 })
 export class MenuItemService {
   constructor(private httpClient: HttpClient) {}
+  getMenuItems() {
+    return this.httpClient.get<MenuItem[]>(`MenuItems`);
+  }
   getMenuItemById(id: string) {
     return this.httpClient.get<MenuItem>(`MenuItems/${id}`);
   }

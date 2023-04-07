@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'delivery-client-navbar',
   templateUrl: './navbar.component.html',

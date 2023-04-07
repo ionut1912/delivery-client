@@ -15,6 +15,7 @@ import { OrderManagementComponent } from './order-management/order-management.co
 import { RestaurantManagementComponent } from './restaurant-management/restaurant-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ItemManagementComponent } from './item-management/item-management.component';
+import { EditOfferModalComponent } from './edit-offer-modal/edit-offer-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ItemManagementComponent } from './item-management/item-management.compo
     RestaurantManagementComponent,
     UserManagementComponent,
     ItemManagementComponent,
+    EditOfferModalComponent,
   ],
   imports: [
     BrowserModule,

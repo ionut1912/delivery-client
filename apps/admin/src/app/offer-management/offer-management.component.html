@@ -15,7 +15,12 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.dateActiveTo }} </mat-cell>
     </ng-container>
-
+    <ng-container matColumnDef="itemName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Menu Item
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.menuItemName }} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="discount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Discount
@@ -31,16 +36,9 @@
           color="primary"
           matTooltip="Modify offer"
           matTooltipPosition="left"
+          (click)="editOffer(element.id)"
         >
           <mat-icon>edit</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          color="primary"
-          matTooltip="Delete Offer"
-          matTooltipPosition="left"
-        >
-          <mat-icon>delete_outline</mat-icon>
         </button>
       </mat-cell>
       <ng-container matColumnDef="create_offer">
