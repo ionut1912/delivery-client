@@ -24,7 +24,14 @@ export interface OfferDetails extends Offer {
 })
 export class CartComponent implements OnInit {
   cartItems!: OrderMenuItem[];
-  offerForMenuItem!: OfferDetails;
+  offerForMenuItem!: {
+    dateActiveTo: string;
+    discount: number;
+    active: boolean;
+    id: string;
+    menuItemId: string;
+    dateActiveFrom: string;
+  };
   ItemForm: FormGroup = new FormGroup({
     quantity: new FormControl(null),
   });

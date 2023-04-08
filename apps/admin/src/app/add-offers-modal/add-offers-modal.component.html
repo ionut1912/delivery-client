@@ -1,0 +1,99 @@
+<div class="container-fluid">Edit your offer details</div>
+
+<form [formGroup]="offers" #f="ngForm" novalidate autocomplete="off">
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Choose Date Active From</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="dateActiveFrom"
+        />
+
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="checkError('dateActiveFrom', 'required')">
+          {{ error('dateActiveFrom', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Choose Time for Date Active From</mat-label>
+        <input matInput formControlName="dateActiveFromTime" />
+
+        <mat-error *ngIf="checkError('dateActiveFromTime', 'required')">
+          {{ error('dateActiveFromTime', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Choose Date Active To</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          formControlName="dateActiveTo"
+        />
+
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="checkError('dateActiveTo', 'required')">
+          {{ error('dateActiveTo', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Choose Time for Date Active To</mat-label>
+        <input matInput formControlName="dateActiveToTime" />
+
+        <mat-error *ngIf="checkError('dateActiveToTime', 'required')">
+          {{ error('dateActiveToTime', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Discount</mat-label>
+        <input matInput required type="number" formControlName="discount" />
+        <mat-error *ngIf="checkError('discount', 'required')">
+          {{ error('discount', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Menu Item Name</mat-label>
+        <input matInput formControlName="menuItemName" />
+        <mat-error *ngIf="checkError('menuItemName', 'required')">
+          {{ error('menuItemName', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div></div>
+  <div class="row-modal">
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="addOffer()">
+        Add Offer
+      </button>
+    </div>
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

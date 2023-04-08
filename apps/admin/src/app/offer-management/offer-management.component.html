@@ -1,12 +1,12 @@
 <delivery-client-navbar></delivery-client-navbar>
 
 <div class="example-container mat-elevation-z8 table-offer">
-  <mat-table  [dataSource]="dataSource" matSort>
+  <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="dateActiveFrom">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Date Active From
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.dateActiveFrom }}% </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.dateActiveFrom }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="dateActiveTo">
@@ -15,12 +15,7 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.dateActiveTo }} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="itemName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Menu Item
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.menuItemName }} </mat-cell>
-    </ng-container>
+
     <ng-container matColumnDef="discount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Discount
@@ -36,7 +31,7 @@
           color="primary"
           matTooltip="Modify offer"
           matTooltipPosition="left"
-          (click)="editOffer(element.id)"
+          (click)="editOffer(element)"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -44,6 +39,7 @@
       <ng-container matColumnDef="create_offer">
         <mat-header-cell *matHeaderCellDef>
           <mat-icon
+            (click)="addOffer()"
             aria-hidden="false"
             style="cursor: pointer"
             matTooltip="Add offer"

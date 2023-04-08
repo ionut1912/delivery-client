@@ -16,6 +16,9 @@ import { RestaurantManagementComponent } from './restaurant-management/restauran
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ItemManagementComponent } from './item-management/item-management.component';
 import { EditOfferModalComponent } from './edit-offer-modal/edit-offer-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddOffersModalComponent } from './add-offers-modal/add-offers-modal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { EditOfferModalComponent } from './edit-offer-modal/edit-offer-modal.com
     UserManagementComponent,
     ItemManagementComponent,
     EditOfferModalComponent,
+    AddOffersModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,9 @@ import { EditOfferModalComponent } from './edit-offer-modal/edit-offer-modal.com
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
