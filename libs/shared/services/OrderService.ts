@@ -14,7 +14,12 @@ export class OrderService {
   getCurrentUserOrders() {
     return this.httpClient.get<Order[]>(`Orders/current`);
   }
-
+  getAllOrders() {
+    return this.httpClient.get<Order[]>('Orders');
+  }
+  getOrderById(id: string) {
+    return this.httpClient.get<Order>(`Orders/${id}`);
+  }
   modifyOrderStatus(id: string | undefined, orderForUpdate: OrderForUpdate) {
     this.httpClient
       .put(`Orders/${id}`, orderForUpdate)

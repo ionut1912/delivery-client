@@ -5,7 +5,7 @@ import { MenuItem } from '../MenuItem/MenuItem';
 export interface Order {
   id: string;
   receivedTime: string;
-  finalPrice: string;
+  finalPrice: number;
   status: string;
   user: Users;
   restaurants: Restaurant[];

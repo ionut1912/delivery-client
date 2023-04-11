@@ -14,4 +14,7 @@ export class RestaurantService {
   getRestaurantById(id: string) {
     return this.httpClient.get<Restaurant>(`Restaurants/${id}`);
   }
+  getRestaurants() {
+    return this.httpClient.get<Restaurant[]>('Restaurants');
+  }
 }

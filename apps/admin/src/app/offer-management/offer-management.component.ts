@@ -1,15 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
 
-import { MatTableDataSource } from '@angular/material/table';
-import { Offer } from '../../../../../libs/shared/models/Offer/Offer';
-import { OfferForMenuItemsService } from '../../../../../libs/shared/services/OfferForMenuItemsService';
-import { MatDialog } from '@angular/material/dialog';
-import { MenuItemService } from '../../../../../libs/shared/services/MenuItemService';
-import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
-import { EditOfferModalComponent } from '../edit-offer-modal/edit-offer-modal.component';
-import { AddOffersModalComponent } from '../add-offers-modal/add-offers-modal.component';
+import {MatTableDataSource} from '@angular/material/table';
+import {Offer} from '../../../../../libs/shared/models/Offer/Offer';
+import {OfferForMenuItemsService} from '../../../../../libs/shared/services/OfferForMenuItemsService';
+import {MatDialog} from '@angular/material/dialog';
+import {MenuItemService} from '../../../../../libs/shared/services/MenuItemService';
+import {MenuItem} from '../../../../../libs/shared/models/MenuItem/MenuItem';
+import {EditOfferModalComponent} from '../edit-offer-modal/edit-offer-modal.component';
+import {AddOffersModalComponent} from '../add-offers-modal/add-offers-modal.component';
+
+export interface OfferTableDataSource {
+  id: string;
+  dateActiveFrom: string;
+  dateActiveTo: string;
+  discount: number;
+  active: boolean;
+  menuItemName: string;
+}
 
 @Component({
   selector: 'delivery-client-offer-management',
@@ -18,50 +27,82 @@ import { AddOffersModalComponent } from '../add-offers-modal/add-offers-modal.co
 })
 export class OfferManagementComponent implements OnInit {
   displayedColumns = [
+    'id',
     'dateActiveFrom',
     'dateActiveTo',
+    'menuItemName',
     'discount',
+    'active',
     'Actions',
     'create_offer',
   ];
-  dataSource: MatTableDataSource<Offer> = new MatTableDataSource<Offer>();
+  dataSource: MatTableDataSource<OfferTableDataSource> =
+    new MatTableDataSource<OfferTableDataSource>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   menuItem!: MenuItem[];
+
+
   constructor(
     private offerService: OfferForMenuItemsService,
     private menuItemService: MenuItemService,
     private dialog: MatDialog
   ) {}
+
   ngOnInit() {
-    this.offerService.getOffers().subscribe((offer) => {
-      this.dataSource = new MatTableDataSource(offer);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    this.extractOfferDataSource();
   }
-  refreshTable() {
-    this.offerService.getOffers().subscribe((offer) => {
-      this.dataSource = new MatTableDataSource(offer);
-    });
-  }
+
+
+
   editOffer(element: Offer) {
     console.log(element);
-    this.dialog.open(EditOfferModalComponent, {
+    const dialogRef = this.dialog.open(EditOfferModalComponent, {
       data: {
         element,
       },
     });
-    this.dialog.afterAllClosed.subscribe(() => {
-      this.refreshTable();
+    dialogRef.afterClosed().subscribe(() => {
+      this.extractOfferDataSource();
+
+    });
+  }
+
+  extractOfferDataSource() {
+    this.offerService.getOffers().subscribe((offer) => {
+      const menuItems = offer
+        .flatMap((offer) => {
+          return offer.offerMenuItems.map(
+            (offerMenuItem) => offerMenuItem.menuItem
+          );
+        })
+        .filter((menuItem) => menuItem !== undefined)
+        .map((x) => x.itemName);
+
+      const offerDataSource: OfferTableDataSource[] = [];
+      for (let i = 0; i < offer.length; i++) {
+        const offerDataSourceItem: OfferTableDataSource = {
+          id: offer[i].id,
+          dateActiveFrom: offer[i].dateActiveFrom,
+          dateActiveTo: offer[i].dateActiveTo,
+          discount: offer[i].discount,
+          active: offer[i].active,
+          menuItemName: menuItems[i],
+        };
+        offerDataSource.push(offerDataSourceItem);
+      }
+
+      this.dataSource.data = offerDataSource;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
   addOffer() {
-    this.dialog.open(AddOffersModalComponent);
-    this.dialog.afterAllClosed.subscribe(() => {
-      this.refreshTable();
+    const dialogRef = this.dialog.open(AddOffersModalComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.extractOfferDataSource();
     });
   }
 }
