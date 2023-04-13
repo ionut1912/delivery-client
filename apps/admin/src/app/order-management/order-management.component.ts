@@ -3,7 +3,8 @@ import { OrderService } from '../../../../../libs/shared/services/OrderService';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Order } from '../../../../../libs/shared/models/Order/Order';
+import { MatDialog } from '@angular/material/dialog';
+import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
 
 export interface OrderTableDataSource {
   id: string;
@@ -20,7 +21,7 @@ export interface OrderTableDataSource {
   styleUrls: ['./order-management.component.scss'],
 })
 export class OrderManagementComponent implements OnInit {
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private dialog: MatDialog) {}
   displayedColumns = [
     'id',
     'receivedTime',
@@ -30,7 +31,6 @@ export class OrderManagementComponent implements OnInit {
     'restaurants',
     'menuItems',
     'Actions',
-    'create_order',
   ];
   dataSource: MatTableDataSource<OrderTableDataSource> =
     new MatTableDataSource<OrderTableDataSource>();
@@ -38,17 +38,31 @@ export class OrderManagementComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
+    this.initializeOrdersTable();
+  }
+
+  editOrder(element: OrderTableDataSource) {
+    const dialogRef = this.dialog.open(EditOrderModalComponent, {
+      data: {
+        element,
+      },
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.initializeOrdersTable();
+    });
+  }
+  initializeOrdersTable() {
     this.orderService.getAllOrders().subscribe((order) => {
       const orderTableDataSource: OrderTableDataSource[] = [];
-      for (let i = 0; i < order.length; i++) {
+      for (const element of order) {
         const orderTableValue: OrderTableDataSource = {
-          id: order[i].id,
-          receivedTime: order[i].receivedTime,
-          finalPrice: order[i].finalPrice,
-          status: order[i].status,
-          username: order[i].user.username,
-          restaurantNames: order[i].restaurants.map((x) => x.name),
-          menuItems: order[i].menuItems.map((x) => x.itemName),
+          id: element.id,
+          receivedTime: element.receivedTime,
+          finalPrice: element.finalPrice,
+          status: element.status,
+          username: element.user.username,
+          restaurantNames: element.restaurants.map((x) => x.name),
+          menuItems: element.menuItems.map((x) => x.itemName),
         };
         orderTableDataSource.push(orderTableValue);
       }
@@ -59,13 +73,5 @@ export class OrderManagementComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-  }
-
-  editOrder(element: Order) {
-    console.log(element);
-  }
-
-  addOrder() {
-    console.log('Order added');
   }
 }

@@ -1,0 +1,25 @@
+<div class="container-fluid">Edit your order details</div>
+
+<form [formGroup]="orders" #f="ngForm" novalidate autocomplete="off">
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Status </mat-label>
+        <input matInput formControlName="status" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row-modal">
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="editOrder()">
+        Edit Order
+      </button>
+    </div>
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

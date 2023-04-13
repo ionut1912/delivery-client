@@ -1,15 +1,15 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
-import {MatTableDataSource} from '@angular/material/table';
-import {Offer} from '../../../../../libs/shared/models/Offer/Offer';
-import {OfferForMenuItemsService} from '../../../../../libs/shared/services/OfferForMenuItemsService';
-import {MatDialog} from '@angular/material/dialog';
-import {MenuItemService} from '../../../../../libs/shared/services/MenuItemService';
-import {MenuItem} from '../../../../../libs/shared/models/MenuItem/MenuItem';
-import {EditOfferModalComponent} from '../edit-offer-modal/edit-offer-modal.component';
-import {AddOffersModalComponent} from '../add-offers-modal/add-offers-modal.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { Offer } from '../../../../../libs/shared/models/Offer/Offer';
+import { OfferForMenuItemsService } from '../../../../../libs/shared/services/OfferForMenuItemsService';
+import { MatDialog } from '@angular/material/dialog';
+import { MenuItemService } from '../../../../../libs/shared/services/MenuItemService';
+import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
+import { EditOfferModalComponent } from '../edit-offer-modal/edit-offer-modal.component';
+import { AddOffersModalComponent } from '../add-offers-modal/add-offers-modal.component';
 
 export interface OfferTableDataSource {
   id: string;
@@ -43,7 +43,6 @@ export class OfferManagementComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   menuItem!: MenuItem[];
 
-
   constructor(
     private offerService: OfferForMenuItemsService,
     private menuItemService: MenuItemService,
@@ -54,8 +53,6 @@ export class OfferManagementComponent implements OnInit {
     this.extractOfferDataSource();
   }
 
-
-
   editOffer(element: Offer) {
     console.log(element);
     const dialogRef = this.dialog.open(EditOfferModalComponent, {
@@ -65,7 +62,6 @@ export class OfferManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.extractOfferDataSource();
-
     });
   }
 

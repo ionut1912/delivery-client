@@ -44,32 +44,27 @@ export class RestaurantsComponent implements OnInit {
     return restaurant.restaurantPhotos.map((item) => item.url);
   }
   addToCart(item: MenuItem) {
-    const menuItemInOrder: OrderMenuItem = {
-      restaurantName: '',
-      menuItem: {
-        id: '',
-        itemName: '',
-        category: '',
-        ingredients: '',
-        price: 0,
-        offerMenuItems: [
-          {
-            offerId: '',
-            menuItemId: '',
-          },
-        ],
-        quantity: 0,
-        active: false,
-        photos: [
-          {
-            id: '',
-            url: '',
-            isMain: false,
-            menuItemId: '',
-          },
-        ],
-      },
-    };
+  const menuItemInOrder: OrderMenuItem={restaurantName:'',menuItem:{
+    id:'',
+      itemName:'',
+      category:'',
+      ingredients:'',
+      price:0,
+      offerMenuItems:[{
+      offerId:'',
+        menuItemId:'',
+      }],
+      quantity:0,
+      active:false,
+      photos:[{
+      id:'',
+        url:'',
+        isMain:false,
+        menuItemId:''
+
+      }]
+
+    }};
     menuItemInOrder.restaurantName = this.restaurant.name;
     menuItemInOrder.menuItem = item;
     this.store.dispatch(

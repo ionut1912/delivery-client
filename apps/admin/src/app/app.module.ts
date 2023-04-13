@@ -19,6 +19,7 @@ import { EditOfferModalComponent } from './edit-offer-modal/edit-offer-modal.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddOffersModalComponent } from './add-offers-modal/add-offers-modal.component';
 import { DatePipe } from '@angular/common';
+import { EditOrderModalComponent } from './edit-order-modal/edit-order-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DatePipe } from '@angular/common';
     ItemManagementComponent,
     EditOfferModalComponent,
     AddOffersModalComponent,
+    EditOrderModalComponent,
   ],
   imports: [
     BrowserModule,

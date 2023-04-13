@@ -102,9 +102,6 @@ export class CartComponent implements OnInit {
     };
     this.orderService.addOrder(addOrder);
     this.store.dispatch(CartActions.removeAllMenuitems());
-    this.matSnackBar.open('Order created successfully', 'Close', {
-      duration: 5000,
-    });
   }
 
   deleteFromCart(menuItem: MenuItem) {

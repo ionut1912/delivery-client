@@ -60,19 +60,6 @@
           <mat-icon>edit</mat-icon>
         </button>
       </mat-cell>
-      <ng-container matColumnDef="create_order">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-icon
-            (click)="addOrder()"
-            aria-hidden="false"
-            style="cursor: pointer"
-            matTooltip="Add order"
-          >
-            add_circle_outline
-          </mat-icon>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element"> </mat-cell>
-      </ng-container>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
