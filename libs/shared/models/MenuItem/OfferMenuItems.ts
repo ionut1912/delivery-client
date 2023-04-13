@@ -4,5 +4,5 @@ export interface OfferMenuItems {
   offerId: string;
 
   menuItemId: string;
-  menuItem: MenuItem;
+  menuItem?: MenuItem;
 }
