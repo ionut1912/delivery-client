@@ -5,6 +5,8 @@ import { OfferManagementComponent } from './offer-management/offer-management.co
 import { RestaurantManagementComponent } from './restaurant-management/restaurant-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ItemManagementComponent } from './item-management/item-management.component';
+import { MenuitemsPhotosComponent } from './menuitems-photos/menuitems-photos.component';
+import { RestaurantPhotosComponent } from './restaurant-photos/restaurant-photos.component';
 
 export const appRoutes: Route[] = [
   {
@@ -30,5 +32,13 @@ export const appRoutes: Route[] = [
   {
     path: 'item-management',
     component: ItemManagementComponent,
+  },
+  {
+    path: 'menuitem-photo/:id',
+    component: MenuitemsPhotosComponent,
+  },
+  {
+    path: 'restaurant-photo/:id',
+    component: RestaurantPhotosComponent,
   },
 ];

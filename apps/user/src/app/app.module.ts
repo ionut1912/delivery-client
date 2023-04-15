@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -19,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
 import { GenericReviewsModule } from '@delivery-app-client/generic-reviews';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { CarouselComponent } from './carousel/carousel.component';
 import { StoreModule } from '@ngrx/store';
 import { foodShopActionReducerMap } from '../../state/app-state.module';
 import { getStorageMetaReducers } from '../../../../libs/util/meta-reducer.util';
@@ -27,6 +25,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { GenericTableModule } from '@delivery-app-client/generic-table';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-modal';
+import { NgModule } from '@angular/core';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +44,11 @@ import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-mo
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     MaterialModule,
     HttpClientModule,
     StoreModule.forRoot(foodShopActionReducerMap, {
-      //un fel aspect ca in java(se ruleaza inainte si dupa exectuarea actiunilor)
       metaReducers: [getStorageMetaReducers('food_shop', ['cartState'])],
     }),
 
@@ -56,7 +56,6 @@ import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-mo
       maxAge: 25,
     }),
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     GenericReviewsModule,
     CarouselModule,
     GenericTableModule,
@@ -69,6 +68,7 @@ import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-mo
       multi: true,
     },
   ],
+
   bootstrap: [AppComponent],
   exports: [NavbarComponent],
 })

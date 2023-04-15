@@ -16,6 +16,7 @@ import { CartActions } from '../cart/store/cart.actions';
 export class RestaurantsComponent implements OnInit {
   restaurant!: Restaurant;
   mainImage!: string;
+
   constructor(
     private router: ActivatedRoute,
     private redirect: Router,
@@ -25,16 +26,14 @@ export class RestaurantsComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe((params) => {
       const id = params['id'];
-      console.log(id);
       this.restaurantService
         .getRestaurantById(id)
         .subscribe((restaurantsResponse) => {
           this.restaurant = restaurantsResponse;
-          console.log(this.restaurant);
         });
     });
   }
-  viewItemDetails(id: string) {
+  viewItemDetails(id: string | undefined) {
     this.redirect.navigate(['/menuItems', id]);
   }
   getMainPhoto(item: MenuItem) {
@@ -66,6 +65,39 @@ export class RestaurantsComponent implements OnInit {
             url: '',
             isMain: false,
             menuItemId: '',
+          },
+        ],
+        menuItemsRestaurants: [
+          {
+            menuItemsId: '',
+            restaurantsId: '',
+            menuItems: {
+              id: '',
+              itemName: '',
+              category: '',
+              ingredients: '',
+              price: 0,
+              offerMenuItems: [],
+              quantity: 0,
+              active: false,
+              photos: [],
+              menuItemsRestaurants: [],
+            },
+            restaurants: {
+              id: '',
+              name: '',
+              restaurantPhotos: [],
+              address: {
+                addressId: '',
+                restaurantId: '',
+                street: '',
+                city: '',
+                number: '',
+                postalCode: '',
+              },
+              reviews: [],
+              menuItemsRestaurants: [],
+            },
           },
         ],
       },

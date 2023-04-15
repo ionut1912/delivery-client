@@ -54,7 +54,6 @@ export class OfferManagementComponent implements OnInit {
   }
 
   editOffer(element: Offer) {
-    console.log(element);
     const dialogRef = this.dialog.open(EditOfferModalComponent, {
       data: {
         element,
@@ -74,7 +73,7 @@ export class OfferManagementComponent implements OnInit {
           );
         })
         .filter((menuItem) => menuItem !== undefined)
-        .map((x) => x.itemName);
+        .map((x) => x?.itemName);
 
       const offerDataSource: OfferTableDataSource[] = [];
       for (let i = 0; i < offer.length; i++) {
@@ -84,7 +83,7 @@ export class OfferManagementComponent implements OnInit {
           dateActiveTo: offer[i].dateActiveTo,
           discount: offer[i].discount,
           active: offer[i].active,
-          menuItemName: menuItems[i],
+          menuItemName: menuItems[i] || '',
         };
         offerDataSource.push(offerDataSourceItem);
       }

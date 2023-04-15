@@ -66,7 +66,7 @@ export class OrderManagementComponent implements OnInit {
         };
         orderTableDataSource.push(orderTableValue);
       }
-      console.log(orderTableDataSource);
+
       this.dataSource = new MatTableDataSource<OrderTableDataSource>(
         orderTableDataSource
       );

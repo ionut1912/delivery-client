@@ -78,28 +78,28 @@ export class UserProfileComponent implements OnInit {
 
   userImage!: File;
   userDetails: FormGroup = new FormGroup({
-    street: new FormControl(null),
-    number: new FormControl(null),
+    street: new FormControl(this.user.address.street),
+    number: new FormControl(this.user.address.number),
     city: new FormControl(null, [
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    postalCode: new FormControl(null, [
+    postalCode: new FormControl(this.user.address.postalCode, [
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    phone: new FormControl(null, [
+    phone: new FormControl(this.user.phoneNumber, [
       Validators.minLength(3),
       Validators.maxLength(10),
     ]),
-    email: new FormControl(null, [Validators.email]),
+    email: new FormControl(this.user.email, [Validators.email]),
     username: new FormControl(null, [
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    weight: new FormControl(null, Validators.required),
-    height: new FormControl(null, Validators.required),
-    age: new FormControl(null, Validators.required),
+    weight: new FormControl(this.user.userConfig.weight, Validators.required),
+    height: new FormControl(this.user.userConfig.height, Validators.required),
+    age: new FormControl(this.user.userConfig.age, Validators.required),
     sportActivity: new FormControl(null, Validators.required),
   });
   error = (field: string, rule: string) => {

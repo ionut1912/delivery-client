@@ -4,6 +4,11 @@
     "secure": false,
     "changeOrigin": true
   },
+  "/PhotoForRestaurants/*": {
+    "target": "https://localhost:7251",
+    "secure": false,
+    "changeOrigin": true
+  },
   "/Photos/*": {
     "target": "https://localhost:7251",
     "secure": false,

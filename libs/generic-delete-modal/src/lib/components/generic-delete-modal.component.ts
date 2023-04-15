@@ -7,9 +7,10 @@ import { OrderMenuItem } from '../../../../shared/models/State/OrderMenuItem';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../apps/user/state/app-state.module';
 import { CartActions } from '../../../../../apps/user/src/app/cart/store/cart.actions';
+import { RestaurantService } from '../../../../shared/services/RestaurantService';
 
 export interface GenericDeleteModalData {
-  id?: string;
+  id: string;
   menuItem?: OrderMenuItem;
   item: string;
 }
@@ -22,6 +23,7 @@ export class GenericDeleteModalComponent {
   constructor(
     private snackBar: MatSnackBar,
     private store: Store<AppState>,
+    private restaurantService: RestaurantService,
     private orderService: OrderService,
     public dialogRef: MatDialogRef<GenericDeleteModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: GenericDeleteModalData
@@ -42,6 +44,10 @@ export class GenericDeleteModalComponent {
       this.snackBar.open('Order deleted successfully', 'Close', {
         duration: 5000,
       });
+    }
+    if (this.itemName === 'restaurant') {
+      this.restaurantService.deleteRestaurant(this.data.id);
+      this.dialogRef.close();
     }
     if (this.itemName === 'Menu Item From Cart') {
       this.store.dispatch(

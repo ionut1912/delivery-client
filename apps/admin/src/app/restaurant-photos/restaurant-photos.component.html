@@ -1,0 +1,25 @@
+<delivery-client-navbar></delivery-client-navbar>
+<div *ngIf="restaurantImages.length === 0" class="container-nav">
+  There are no photos for this restaurant
+  <div>Add one</div>
+</div>
+
+<div *ngIf="restaurantImages.length > 0" class="container-nav">
+  <div>
+    <carousel>
+      <slide *ngFor="let image of restaurantImages">
+        <img
+          src="{{ image }}"
+          alt="No image"
+          style="display: block; width: 100%"
+        />
+      </slide>
+    </carousel>
+  </div>
+</div>
+<div class="container-nav button-photo">
+  <button mat-raised-button color="primary" (click)="openFile()">
+    {{ buttonText }}
+    <input type="file" style="display: none" (change)="handle($event)" />
+  </button>
+</div>

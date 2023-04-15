@@ -1,5 +1,6 @@
 import { PhotoForMenuItem } from '../Photos/PhotoForMenuItem';
 import { OfferMenuItems } from './OfferMenuItems';
+import { MenuItemsRestaurants } from '../MenuItemsRestaurants/MenuItemsRestaurants';
 
 export interface MenuItem {
   id: string;
@@ -11,4 +12,5 @@ export interface MenuItem {
   quantity: number;
   active: boolean;
   photos: PhotoForMenuItem[];
+  menuItemsRestaurants: MenuItemsRestaurants[];
 }

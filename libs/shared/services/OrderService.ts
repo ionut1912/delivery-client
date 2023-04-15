@@ -26,13 +26,9 @@ export class OrderService {
   getOrderById(id: string) {
     return this.httpClient.get<Order>(`Orders/${id}`);
   }
-  modifyOrderStatus(id: string | undefined, orderForUpdate: OrderForUpdate) {
+  modifyOrderStatus(id: string, orderForUpdate: OrderForUpdate) {
     this.httpClient
       .put<JsonResponse>(`Orders/${id}`, orderForUpdate)
-      .subscribe((response) =>
-        this.snackBar.open(response.message, 'Close', {
-          duration: 5000,
-        })
-      );
+      .subscribe(() => console.log('success'));
   }
 }

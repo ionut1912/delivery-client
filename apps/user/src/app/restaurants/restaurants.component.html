@@ -10,21 +10,24 @@
   ></delivery-client-carousel>
 </div>
 <div class="container-nav">
-  <div *ngIf="restaurant.menuItems.length > 0">
+  <div *ngIf="restaurant.menuItemsRestaurants.length > 0">
     <div class="grid-container">
-      <div class="container-nav" *ngFor="let item of restaurant.menuItems">
+      <div
+        class="container-nav"
+        *ngFor="let item of restaurant.menuItemsRestaurants"
+      >
         <div class="grid-item">
           <mat-card class="example-card">
             <mat-card-header>
               <mat-card-title-group>
-                <mat-card-title>{{ item.itemName }}</mat-card-title>
+                <mat-card-title>{{ item.menuItems.itemName }}</mat-card-title>
               </mat-card-title-group>
             </mat-card-header>
             <mat-card-content>
               <div>
                 <img
                   mat-card-xl-image
-                  src="{{ getMainPhoto(item) }}"
+                  src="{{ getMainPhoto(item.menuItems) }}"
                   alt="No image"
                 />
               </div>
@@ -33,7 +36,7 @@
                   class="card-button"
                   mat-raised-button
                   color="primary"
-                  (click)="viewItemDetails(item.id)"
+                  (click)="viewItemDetails(item.menuItems.id)"
                 >
                   View MenuItem Details
                 </button>
@@ -44,7 +47,7 @@
                   class="card-button"
                   mat-raised-button
                   color="primary"
-                  (click)="addToCart(item)"
+                  (click)="addToCart(item.menuItems)"
                 >
                   Add to cart
                 </button>
@@ -56,7 +59,7 @@
     </div>
   </div>
 </div>
-<div class="container-nav" *ngIf="restaurant.menuItems.length === 0">
+<div class="container-nav" *ngIf="restaurant.menuItemsRestaurants.length === 0">
   This restaurant does not have menu items
 </div>
 <delivery-reviews
