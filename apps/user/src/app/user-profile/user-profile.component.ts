@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from '../../../../../libs/shared/models/User/Users';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserAddress } from '../../../../../libs/shared/models/User/UserAddress';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
@@ -7,6 +6,7 @@ import { PhotoService } from '../../../../../libs/shared/services/PhotoService';
 import { UserConfigDto } from '../../../../../libs/shared/models/UserConfig/UserConfigDto';
 import { UserConfigService } from '../../../../../libs/shared/services/UserConfigService';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '../../../../../libs/shared/models/User/User';
 
 export interface FieldsStatus {
   fieldName: string;
@@ -28,7 +28,7 @@ export interface UserToBeEdited {
 })
 export class UserProfileComponent implements OnInit {
   sportActivity: number[] = [1, 2, 3, 4, 5, 6, 7];
-  user!: Users;
+  user!: User;
   disabledFields: FieldsStatus[] = [
     {
       fieldName: 'phone',

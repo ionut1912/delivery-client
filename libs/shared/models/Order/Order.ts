@@ -1,4 +1,4 @@
-import { Users } from '../User/Users';
+import { UserDto } from '../User/UserDto';
 import { Restaurant } from '../Restaurant/Restaurant';
 import { MenuItem } from '../MenuItem/MenuItem';
 
@@ -7,7 +7,7 @@ export interface Order {
   receivedTime: string;
   finalPrice: number;
   status: string;
-  user: Users;
+  user: UserDto;
   restaurants: Restaurant[];
   menuItems: MenuItem[];
 }

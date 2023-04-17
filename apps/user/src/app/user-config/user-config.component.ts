@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserConfigDto } from '../../../../../libs/shared/models/UserConfig/UserConfigDto';
 import { UserConfigService } from '../../../../../libs/shared/services/UserConfigService';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
-import { Users } from '../../../../../libs/shared/models/User/Users';
+import { User } from '../../../../../libs/shared/models/User/User';
 
 @Component({
   selector: 'delivery-client-user-config',
@@ -11,7 +11,7 @@ import { Users } from '../../../../../libs/shared/models/User/Users';
   styleUrls: ['./user-config.component.scss'],
 })
 export class UserConfigComponent implements OnInit {
-  user!: Users;
+  user!: User;
   sex: string[] = ['Male', 'Female'];
   sportActivity: number[] = [1, 2, 3, 4, 5, 6, 7];
   userConfigs: FormGroup = new FormGroup({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from '../../../../../libs/shared/models/User/Users';
 import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
 import { RestaurantService } from '../../../../../libs/shared/services/RestaurantService';
+import { User } from '../../../../../libs/shared/models/User/User';
 
 @Component({
   selector: 'delivery-client-user-dashboard',
@@ -11,7 +11,7 @@ import { RestaurantService } from '../../../../../libs/shared/services/Restauran
   styleUrls: ['./user-dashboard.component.scss'],
 })
 export class UserDashboardComponent implements OnInit {
-  user!: Users;
+  user!: User;
   restaurants!: Restaurant[];
   constructor(
     private accountService: AccountService,

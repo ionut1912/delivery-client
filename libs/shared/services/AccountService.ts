@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Users } from '../models/User/Users';
+import { UserDto } from '../models/User/UserDto';
 import { Register } from '../models/Account/Register';
 import { UserForEdit } from '../../../apps/user/src/app/user-profile/user-profile.component';
 import { UserAddress } from '../models/User/UserAddress';
 import { EditCurrentUserResponse } from '../models/Account/EditCurrentUserResponse';
 import { Buffer } from 'buffer';
+import { User } from '../models/User/User';
 @Injectable({
   providedIn: 'root',
 })
@@ -29,7 +30,7 @@ export class AccountService {
   }
   login(email: string, password: string, username: string) {
     this.httpClient
-      .post<Users>('/Accounts/login', { email, password, username })
+      .post<UserDto>('/Accounts/login', { email, password, username })
       .subscribe((response) => {
         if (response.token) {
           const loginResponseToEncode = {
@@ -60,13 +61,13 @@ export class AccountService {
   }
   register(userDetails: Register) {
     this.httpClient
-      .post<Users>('/Accounts/register', userDetails)
+      .post<UserDto>('/Accounts/register', userDetails)
       .subscribe(() => {
         console.log('register successfully!');
       });
   }
   getCurrentUser() {
-    return this.httpClient.get<Users>('Accounts/current');
+    return this.httpClient.get<User>('Accounts/current');
   }
   modifyCurrentUser(userForEdit: UserForEdit) {
     this.httpClient
@@ -82,5 +83,8 @@ export class AccountService {
       .subscribe(() => {
         console.log('test');
       });
+  }
+  getAllUsers() {
+    return this.httpClient.get<User[]>('Accounts');
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Users } from '../../../../shared/models/User/Users';
+import { UserDto } from '../../../../shared/models/User/UserDto';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReviewForMenuItemsService } from '../../../../shared/services/ReviewForMenuItemsService';
 import { ReviewForRestaurantService } from '../../../../shared/services/ReviewForRestaurantService';
@@ -8,7 +8,7 @@ export interface InputType {
   reviewTitle: string;
   reviewDescription: string;
   numberOfStars: number;
-  user: Users;
+  user: UserDto;
   menuItemsId?: string;
   restaurantsId?: string;
 }

@@ -1,6 +1,16 @@
 <delivery-client-navbar></delivery-client-navbar>
-
-<div class="example-container mat-elevation-z8 table-offer">
+<div class="nodata" *ngIf="dataSource.data.length === 0">
+  <h1>There are no offers</h1>
+</div>
+<div class="nodata" *ngIf="dataSource.data.length === 0">
+  <button mat-raised-button color="primary" (click)="addOffer()">
+    Add offer
+  </button>
+</div>
+<div
+  class="example-container mat-elevation-z8 table-offer"
+  *ngIf="dataSource.data.length > 0"
+>
   <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
