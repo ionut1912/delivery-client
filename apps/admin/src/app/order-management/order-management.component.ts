@@ -21,7 +21,9 @@ export interface OrderTableDataSource {
   styleUrls: ['./order-management.component.scss'],
 })
 export class OrderManagementComponent implements OnInit {
-  constructor(private orderService: OrderService, private dialog: MatDialog) {}
+  constructor(private orderService: OrderService, private dialog: MatDialog) {
+    this.initializeOrdersTable();
+  }
   displayedColumns = [
     'id',
     'receivedTime',

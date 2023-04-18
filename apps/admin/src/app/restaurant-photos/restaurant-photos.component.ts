@@ -10,7 +10,7 @@ import { PhotosForRestaurantsService } from '../../../../../libs/shared/services
 })
 export class RestaurantPhotosComponent implements OnInit {
   restaurantImages: string[] = [];
-  buttonText: string = '';
+  buttonText = '';
   constructor(
     private router: ActivatedRoute,
     private restaurantService: RestaurantService,

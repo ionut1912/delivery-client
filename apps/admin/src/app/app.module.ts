@@ -31,6 +31,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RestaurantPhotosComponent } from './restaurant-photos/restaurant-photos.component';
 import { MenuitemsPhotosComponent } from './menuitems-photos/menuitems-photos.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { UserPhotosComponent } from './user-photos/user-photos.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     AddRestaurantsModalComponent,
     RestaurantPhotosComponent,
     MenuitemsPhotosComponent,
+    UserPhotosComponent,
   ],
   imports: [
     BrowserModule,

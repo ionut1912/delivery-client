@@ -1,0 +1,18 @@
+<div class="container-nav">
+    <h1>User Images</h1>
+</div>
+<div class="container-nav">
+
+    <div>
+      <carousel>
+        <slide *ngFor="let image of data.images">
+          <img
+            src="{{ image }}"
+            alt="No image"
+            style="display: block; width: 100%"
+          />
+        </slide>
+      </carousel>
+    </div>
+    </div>
+    <button mat-raised-button color="primary" (click)="close()">Close</button>

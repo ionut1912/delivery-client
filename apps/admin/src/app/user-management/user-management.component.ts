@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../../../../libs/shared/models/User/User';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { PhotoService } from 'libs/shared/services/PhotoService';
+import { UserPhotosComponent } from '../user-photos/user-photos.component';
 
 export interface UserTableDataSource {
   id: number;
@@ -26,7 +28,8 @@ export interface UserTableDataSource {
 export class UserManagementComponent implements OnInit {
   constructor(
     private accountService: AccountService,
-    private dialog: MatDialog
+    private photoService:PhotoService,
+    private dialog:MatDialog
   ) {}
   dataSource: MatTableDataSource<UserTableDataSource> =
     new MatTableDataSource<UserTableDataSource>();
@@ -49,7 +52,6 @@ export class UserManagementComponent implements OnInit {
     this.initializeUserDatasource();
     this.accountService.getCurrentUser().subscribe((user) => {
       this.curentUser = user;
-      console.log(this.curentUser);
     });
   }
   initializeUserDatasource() {
@@ -74,7 +76,32 @@ export class UserManagementComponent implements OnInit {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.dataSource);
     });
   }
+  openFile() {
+    const inputElement = document.querySelector('input');
+    if (inputElement) {
+      inputElement.click();
+    }
+  }
+
+  handle($event: any) {
+    const eventTarget = $event.target;
+    if (eventTarget != null) {
+      const file: File = eventTarget.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      this.photoService.addPhoto(formData);
+ 
+    }
+
+  }
+viewPhoto(){
+this.dialog.open(UserPhotosComponent,{
+  data:{
+    images:this.curentUser.photos
+  }
+})
+
+}
 }

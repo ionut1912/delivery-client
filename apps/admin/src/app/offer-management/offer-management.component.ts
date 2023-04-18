@@ -45,9 +45,10 @@ export class OfferManagementComponent implements OnInit {
 
   constructor(
     private offerService: OfferForMenuItemsService,
-    private menuItemService: MenuItemService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.extractOfferDataSource();
+  }
 
   ngOnInit() {
     this.extractOfferDataSource();

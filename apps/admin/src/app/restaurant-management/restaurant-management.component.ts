@@ -28,7 +28,13 @@ export class RestaurantManagementComponent implements OnInit {
     private restaurantService: RestaurantService,
     private dialog: MatDialog,
     private router: Router
-  ) {}
+  ) {
+    this.initializeRestaurantData();
+  }
+  dataSource: MatTableDataSource<RestaurantTableDataSource> =
+  new MatTableDataSource<RestaurantTableDataSource>();
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatSort) sort!: MatSort;
   displayedColumns = [
     'id',
     'name',
@@ -41,10 +47,7 @@ export class RestaurantManagementComponent implements OnInit {
     'create_restaurant',
   ];
   restaurantPhotos!: PhotoForRestaurant[];
-  dataSource: MatTableDataSource<RestaurantTableDataSource> =
-    new MatTableDataSource<RestaurantTableDataSource>();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit() {
     this.initializeRestaurantData();
   }
@@ -73,6 +76,7 @@ export class RestaurantManagementComponent implements OnInit {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
     });
   }
 

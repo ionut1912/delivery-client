@@ -6,7 +6,7 @@
   <h2>Edit your personal details</h2>
 </div>
 <div class="container-nav">
-  <img class="user-image" src="{{ user.image }}" alt="No image" />
+  <img class="user-image" src="{{ user.photos[0] }}" alt="No image" />
   <mat-icon color="primary" (click)="openFile()"
     >edit
     <input type="file" style="display: none" (change)="handle($event)" />
