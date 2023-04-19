@@ -1,0 +1,58 @@
+<div class="container-fluid">Edit your offer details</div>
+
+<form [formGroup]="menuItems" #f="ngForm" novalidate autocomplete="off">
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Item Name</mat-label>
+        <input matInput formControlName="itemName" />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input matInput formControlName="category" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Ingredients</mat-label>
+        <input matInput formControlName="ingredients" />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Number of calories</mat-label>
+        <input matInput formControlName="numberOfCalories" />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input matInput formControlName="quantity" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="editMenuItem()">
+        Edit MenuItem
+      </button>
+    </div>
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

@@ -9,6 +9,7 @@ export interface MenuItem {
   ingredients: string;
   price: number;
   offerMenuItems: OfferMenuItems[];
+  numberOfCalories?: number;
   quantity: number;
   active: boolean;
   photos: PhotoForMenuItem[];

@@ -32,9 +32,9 @@ export class RestaurantManagementComponent implements OnInit {
     this.initializeRestaurantData();
   }
   dataSource: MatTableDataSource<RestaurantTableDataSource> =
-  new MatTableDataSource<RestaurantTableDataSource>();
-@ViewChild(MatPaginator) paginator!: MatPaginator;
-@ViewChild(MatSort) sort!: MatSort;
+    new MatTableDataSource<RestaurantTableDataSource>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   displayedColumns = [
     'id',
     'name',
@@ -76,7 +76,6 @@ export class RestaurantManagementComponent implements OnInit {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
   }
 

@@ -28,8 +28,8 @@ export interface UserTableDataSource {
 export class UserManagementComponent implements OnInit {
   constructor(
     private accountService: AccountService,
-    private photoService:PhotoService,
-    private dialog:MatDialog
+    private photoService: PhotoService,
+    private dialog: MatDialog
   ) {}
   dataSource: MatTableDataSource<UserTableDataSource> =
     new MatTableDataSource<UserTableDataSource>();
@@ -92,16 +92,13 @@ export class UserManagementComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', file);
       this.photoService.addPhoto(formData);
- 
     }
-
   }
-viewPhoto(){
-this.dialog.open(UserPhotosComponent,{
-  data:{
-    images:this.curentUser.photos
+  viewPhoto() {
+    this.dialog.open(UserPhotosComponent, {
+      data: {
+        images: this.curentUser.photos,
+      },
+    });
   }
-})
-
-}
 }

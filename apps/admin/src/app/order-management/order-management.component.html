@@ -1,8 +1,11 @@
 <delivery-client-navbar></delivery-client-navbar>
-<div  *ngIf="dataSource.data.length===0" class="nodata">
-    <h1> There are no orders </h1>
+<div *ngIf="dataSource.data.length === 0" class="nodata">
+  <h1>There are no orders</h1>
 </div>
-<div class="example-container mat-elevation-z8 table-offer" *ngIf="dataSource.data.length>0">
+<div
+  class="example-container mat-elevation-z8 table-offer"
+  *ngIf="dataSource.data.length > 0"
+>
   <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>

@@ -15,7 +15,7 @@ export class PhotoService {
       })
     );
   }
-  addPhoto(file:FormData){
+  addPhoto(file: FormData) {
     this.httpClient.post<JsonResponse>('Photos', file).subscribe((response) =>
       this.snackBar.open(response.message, 'Close', {
         duration: 5000,

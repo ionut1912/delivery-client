@@ -29,9 +29,11 @@ import { foodShopActionReducerMap } from '../../../user/state/app-state.module';
 import { getStorageMetaReducers } from '../../../../libs/util/meta-reducer.util';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RestaurantPhotosComponent } from './restaurant-photos/restaurant-photos.component';
-import { MenuitemsPhotosComponent } from './menuitems-photos/menuitems-photos.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { UserPhotosComponent } from './user-photos/user-photos.component';
+import { EditMenuitemComponent } from './edit-menuitem/edit-menuitem.component';
+import { ViewItemPhotosComponent } from './view-item-photos/view-item-photos.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -50,15 +52,15 @@ import { UserPhotosComponent } from './user-photos/user-photos.component';
     EditRestaurantsModalComponent,
     AddRestaurantsModalComponent,
     RestaurantPhotosComponent,
-    MenuitemsPhotosComponent,
     UserPhotosComponent,
+    EditMenuitemComponent,
+    ViewItemPhotosComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     MaterialModule,
     StoreModule.forRoot(foodShopActionReducerMap, {
-      //un fel aspect ca in java(se ruleaza inainte si dupa exectuarea actiunilor)
       metaReducers: [getStorageMetaReducers('food_shop', ['cartState'])],
     }),
 
@@ -69,6 +71,9 @@ import { UserPhotosComponent } from './user-photos/user-photos.component';
     HttpClientModule,
     ReactiveFormsModule,
     GenericDeleteModalModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
     CarouselModule,
   ],
   providers: [
