@@ -6,7 +6,7 @@ import { AccountService } from '../../../../../libs/shared/services/AccountServi
 import { User } from '../../../../../libs/shared/models/User/User';
 
 @Component({
-  selector: 'delivery-client-user-config',
+  selector: 'delivery-app-client-user-config',
   templateUrl: './user-config.component.html',
   styleUrls: ['./user-config.component.scss'],
 })

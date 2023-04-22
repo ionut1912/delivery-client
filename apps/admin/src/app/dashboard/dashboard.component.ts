@@ -2,30 +2,44 @@ import { StatisticsService } from './../../../../../libs/shared/services/Statist
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 @Component({
-  selector: 'delivery-client-dashboard',
+  selector: 'delivery-app-client-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   constructor(private statisticsService: StatisticsService) {}
-
-  options: EChartsOption = {
+  optionsMenuItemCountChart: EChartsOption = {
     legend: {},
     tooltip: {},
     xAxis: { type: 'category' },
     yAxis: {},
     series: [{ type: 'bar' }],
   };
-
+  optionsMenuItemOrderCountChart: EChartsOption = {
+    legend: {},
+    tooltip: {},
+    xAxis: { type: 'category' },
+    yAxis: {},
+    series: [{ type: 'bar' }],
+  };
   ngOnInit(): void {
     this.statisticsService.getMenuItemCount().subscribe((data) => {
       const sourceData = data.map((item) => [
         item.menuItemName,
         item.menuItemCount,
       ]);
-      this.options.dataset = {
+      this.optionsMenuItemCountChart.dataset = {
         source: sourceData,
       };
+    
     });
+    this.statisticsService.getOrderMenuItemsCount().subscribe((data) => {
+    const sourceData = data.map((item) => [item.menuItemName, item.orderMenuItemCount]);
+    this.optionsMenuItemOrderCountChart.dataset={
+      source:sourceData
+    };
+    });
+
   }
+
 }

@@ -9,7 +9,7 @@ export interface EditOfferModalData {
   element: Offer;
 }
 @Component({
-  selector: 'delivery-client-edit-offer-modal',
+  selector: 'delivery-app-client-edit-offer-modal',
   templateUrl: './edit-offer-modal.component.html',
   styleUrls: ['./edit-offer-modal.component.scss'],
 })

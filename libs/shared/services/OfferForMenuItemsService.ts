@@ -28,7 +28,11 @@ export class OfferForMenuItemsService {
   }
   editOffer(id: string, offerDtoForEdit: OfferDtoForEdit) {
     this.httpClient
-      .put(`Offers/${id}`, offerDtoForEdit)
-      .subscribe(() => console.log('success'));
+      .put<JsonResponse>(`Offers/${id}`, offerDtoForEdit)
+      .subscribe((response) => {
+        this.snackBar.open(response.message, 'Close', {
+          duration: 5000,
+        });
+      });
   }
 }

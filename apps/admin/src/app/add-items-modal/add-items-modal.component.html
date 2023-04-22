@@ -1,0 +1,78 @@
+<div class="container-fluid">Add menu item details</div>
+
+<form [formGroup]="menuItems" #f="ngForm" novalidate autocomplete="off">
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="checkError('name', 'required')">
+          {{ error('name', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input matInput formControlName="category" required />
+        <mat-error *ngIf="checkError('category', 'required')">
+          {{ error('category', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Ingredients</mat-label>
+        <input matInput formControlName="ingredients" required />
+        <mat-error *ngIf="checkError('ingredients', 'required')">
+          {{ error('ingredients', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" required />
+        <mat-error *ngIf="checkError('price', 'required')">
+          {{ error('price', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-modal">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Number of calories</mat-label>
+        <input matInput formControlName="numberOfCalories" required type="number" />
+        <mat-error *ngIf="checkError('numberOfCalories', 'required')">
+          {{ error('numberOfCalories', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input matInput formControlName="quantity" required type="number" />
+        <mat-error *ngIf="checkError('quantity', 'required')">
+          {{ error('quantity', 'is required') }}
+        </mat-error>
+      </mat-form-field>
+       
+    </div>
+  </div>
+
+  <div class="row-modal">
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="addMenuItem()">
+        Add Menu Item
+      </button>
+    </div>
+    <div class="column">
+      <button mat-raised-button color="primary" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,4 +1,5 @@
 <delivery-client-navbar></delivery-client-navbar>
+
 <div class="nodata" *ngIf="dataSource.data.length === 0">
   <h1>There are no Menu Items</h1>
 </div>
@@ -105,6 +106,7 @@
       <ng-container matColumnDef="create_item">
         <mat-header-cell *matHeaderCellDef>
           <mat-icon
+          (click)="addMenuItem()"
             aria-hidden="false"
             style="cursor: pointer"
             matTooltip="Add menu item"

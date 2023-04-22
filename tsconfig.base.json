@@ -31,6 +31,7 @@
       ],
       "@delivery-app-client/navbar": ["libs/navbar/src/index.ts"],
       "@delivery-app-client/reviews": ["libs/reviews/src/index.ts"],
+      "@delivery-app-client/spinner": ["libs/spinner/src/index.ts"],
       "@delivery-app-client/test": ["libs/test/src/index.ts"]
     }
   },

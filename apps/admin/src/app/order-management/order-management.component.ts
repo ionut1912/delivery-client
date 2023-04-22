@@ -16,7 +16,7 @@ export interface OrderTableDataSource {
   menuItems: string[];
 }
 @Component({
-  selector: 'delivery-client-order-management',
+  selector: 'delivery-app-client-order-management',
   templateUrl: './order-management.component.html',
   styleUrls: ['./order-management.component.scss'],
 })
@@ -50,6 +50,7 @@ export class OrderManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
+  
       this.initializeOrdersTable();
     });
   }

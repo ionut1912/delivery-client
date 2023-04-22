@@ -1,4 +1,4 @@
-<delivery-client-navbar></delivery-client-navbar>
+<delivery-app-client-navbar></delivery-app-client-navbar>
 <div class="grid-container">
   <div class="grid-item">
     <h2>{{ menuItem.itemName }}</h2>
@@ -8,9 +8,9 @@
   <img src="{{ menuItem.photos[0].url }}" alt="No image" />
 </div>
 <div class="container-nav" *ngIf="menuItem.photos.length > 1">
-  <delivery-client-carousel
+  <delivery-app-client-carousel
     [images]="getImagesUrls(menuItem)"
-  ></delivery-client-carousel>
+  ></delivery-app-client-carousel>
 </div>
 
 <div class="container-nav">Ingredients used:</div>

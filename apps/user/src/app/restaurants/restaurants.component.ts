@@ -9,7 +9,7 @@ import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaur
 import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenuItem';
 import { CartActions } from '../cart/store/cart.actions';
 @Component({
-  selector: 'delivery-client-restaurants',
+  selector: 'delivery-app-client-restaurants',
   templateUrl: './restaurants.component.html',
   styleUrls: ['./restaurants.component.scss'],
 })

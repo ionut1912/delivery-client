@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestaurantService } from '../../../../../libs/shared/services/RestaurantService';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +20,7 @@ export interface RestaurantTableDataSource {
   menuItemNames: string[];
 }
 @Component({
-  selector: 'delivery-client-restaurant-management',
+  selector: 'delivery-app-client-restaurant-management',
   templateUrl: './restaurant-management.component.html',
   styleUrls: ['./restaurant-management.component.scss'],
 })
@@ -76,6 +77,7 @@ export class RestaurantManagementComponent implements OnInit {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
     });
   }
 
@@ -86,6 +88,7 @@ export class RestaurantManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
+
       this.initializeRestaurantData();
     });
   }
@@ -93,6 +96,7 @@ export class RestaurantManagementComponent implements OnInit {
   addRestaurant() {
     const dialogRef = this.dialog.open(AddRestaurantsModalComponent);
     dialogRef.afterClosed().subscribe(() => {
+
       this.initializeRestaurantData();
     });
   }
@@ -105,15 +109,12 @@ export class RestaurantManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
+      
       this.initializeRestaurantData();
     });
   }
 
-  viewPhotos(id: string) {
-    const restaurantImages = this.restaurantPhotos
-      .filter((x) => x.id == id)
-      .map((x) => x.url);
-  }
+ 
 
   addPhotos(id: string) {
     this.router.navigate(['/restaurant-photo', id]);

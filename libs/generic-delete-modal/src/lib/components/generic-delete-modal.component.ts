@@ -1,3 +1,4 @@
+import { AppState } from './../../../../../apps/user/state/app-state.module';
 import { Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -5,9 +6,9 @@ import { OrderService } from '../../../../shared/services/OrderService';
 import { OrderForUpdate } from '../../../../shared/models/Order/OrderForUpdate';
 import { OrderMenuItem } from '../../../../shared/models/State/OrderMenuItem';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../../apps/user/state/app-state.module';
-import { CartActions } from '../../../../../apps/user/src/app/cart/store/cart.actions';
+
 import { RestaurantService } from '../../../../shared/services/RestaurantService';
+import { CartActions } from 'apps/user/src/app/cart/store/cart.actions';
 
 export interface GenericDeleteModalData {
   id: string;
@@ -15,7 +16,7 @@ export interface GenericDeleteModalData {
   item: string;
 }
 @Component({
-  selector: 'delivery-modal',
+  selector: 'delivery-app-client-modal',
   templateUrl: './generic-delete-modal.component.html',
 })
 export class GenericDeleteModalComponent {

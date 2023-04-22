@@ -1,4 +1,9 @@
-import { NgModule } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -34,6 +39,7 @@ import { UserPhotosComponent } from './user-photos/user-photos.component';
 import { EditMenuitemComponent } from './edit-menuitem/edit-menuitem.component';
 import { ViewItemPhotosComponent } from './view-item-photos/view-item-photos.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { AddItemsModalComponent } from './add-items-modal/add-items-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +61,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     UserPhotosComponent,
     EditMenuitemComponent,
     ViewItemPhotosComponent,
+    AddItemsModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +81,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
-    CarouselModule,
+    CarouselModule
   ],
   providers: [
     DatePipe,
@@ -85,5 +92,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

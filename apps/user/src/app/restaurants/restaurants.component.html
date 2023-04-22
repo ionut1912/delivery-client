@@ -1,13 +1,13 @@
-<delivery-client-navbar></delivery-client-navbar>
+<delivery-app-client-navbar></delivery-app-client-navbar>
 <div class="container-nav"></div>
 <div class="border-box container-nav">{{ restaurant.name }}</div>
 <div *ngIf="restaurant.restaurantPhotos.length === 1" class="container-nav">
   <img src="{{ restaurant.restaurantPhotos[0].url }}" alt="No image" />
 </div>
 <div *ngIf="restaurant.restaurantPhotos.length > 1" class="container-nav">
-  <delivery-client-carousel
+  <delivery-app-client-carousel
     [images]="getImagesUrls(restaurant)"
-  ></delivery-client-carousel>
+  ></delivery-app-client-carousel>
 </div>
 <div class="container-nav">
   <div *ngIf="restaurant.menuItemsRestaurants.length > 0">

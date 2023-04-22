@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,16 +22,17 @@ export interface UserTableDataSource {
   role: string;
 }
 @Component({
-  selector: 'delivery-client-user-management',
+  selector: 'delivery-app-client-user-management',
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent implements OnInit {
+
   constructor(
     private accountService: AccountService,
     private photoService: PhotoService,
     private dialog: MatDialog
-  ) {}
+  ) {this.initializeUserDatasource();}
   dataSource: MatTableDataSource<UserTableDataSource> =
     new MatTableDataSource<UserTableDataSource>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -91,6 +93,7 @@ export class UserManagementComponent implements OnInit {
       const file: File = eventTarget.files[0];
       const formData = new FormData();
       formData.append('file', file);
+
       this.photoService.addPhoto(formData);
     }
   }

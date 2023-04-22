@@ -22,7 +22,7 @@ export interface UserToBeEdited {
   userToBeEdited: UserForEdit;
 }
 @Component({
-  selector: 'delivery-client-user-profile',
+  selector: 'delivery-app-client-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
 })

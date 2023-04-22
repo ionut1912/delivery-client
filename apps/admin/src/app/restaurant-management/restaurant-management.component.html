@@ -1,15 +1,16 @@
 <delivery-client-navbar></delivery-client-navbar>
+
 <div class="nodata" *ngIf="dataSource.data.length === 0">
   <h1>There are no restaurants</h1>
 </div>
-<div class="nodata" *ngIf="dataSource.data.length === 0">
+<div class="nodata" *ngIf="dataSource.data.length === 0" >
   <button mat-raised-button color="primary" (click)="addRestaurant()">
     Add Restaurant
   </button>
 </div>
 <div
   class="example-container mat-elevation-z8 table-offer"
-  *ngIf="dataSource.data.length > 0"
+  *ngIf="dataSource.data.length > 0 ">
 >
   <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="id">

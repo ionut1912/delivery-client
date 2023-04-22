@@ -8,7 +8,7 @@ import { EditRestaurantData } from '../edit-restaurants-modal/edit-restaurants-m
 import { RestaurantDto } from '../../../../../libs/shared/models/Restaurant/RestaurantDto';
 
 @Component({
-  selector: 'delivery-client-add-restaurants-modal',
+  selector: 'delivery-app-client-add-restaurants-modal',
   templateUrl: './add-restaurants-modal.component.html',
   styleUrls: ['./add-restaurants-modal.component.scss'],
 })

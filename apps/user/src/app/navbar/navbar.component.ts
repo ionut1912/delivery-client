@@ -7,7 +7,7 @@ import { getAllProductsInCart } from '../cart/store/getAllMenuItemsInCart';
 import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenuItem';
 
 @Component({
-  selector: 'delivery-client-navbar',
+  selector: 'delivery-app-client-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })

@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { PhotoForMenuItemService } from './../../../../../libs/shared/services/PhotoForMenuItemService';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,9 +9,10 @@ import { MenuItem } from 'libs/shared/models/MenuItem/MenuItem';
 import { MenuItemService } from 'libs/shared/services/MenuItemService';
 import { EditMenuitemComponent } from '../edit-menuitem/edit-menuitem.component';
 import { ViewItemPhotosComponent } from '../view-item-photos/view-item-photos.component';
+import { AddItemsModalComponent } from '../add-items-modal/add-items-modal.component';
 
 @Component({
-  selector: 'delivery-client-item-management',
+  selector: 'delivery-app-client-item-management',
   templateUrl: './item-management.component.html',
   styleUrls: ['./item-management.component.scss'],
 })
@@ -55,6 +57,14 @@ export class ItemManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
+
+      this.initializeMenuItemTable();
+    });
+  }
+  addMenuItem(){
+    const dialogRef=this.dialog.open(AddItemsModalComponent);
+    dialogRef.afterClosed().subscribe(() => {
+    
       this.initializeMenuItemTable();
     });
   }

@@ -25,4 +25,14 @@ export class MenuItemService {
         });
       });
   }
+  
+  addMenuItem(item: MenuItemDto) {
+    this.httpClient
+      .post<JsonResponse>(`MenuItems`, item)
+      .subscribe((response) => {
+        this.snackBar.open(response.message, 'Close', {
+          duration: 5000,
+        });
+      });
+  }
 }

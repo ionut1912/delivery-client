@@ -6,7 +6,7 @@ import { OfferDtoForCreation } from '../../../../../libs/shared/models/Offer/Off
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'delivery-client-add-offers-modal',
+  selector: 'delivery-app-client-add-offers-modal',
   templateUrl: './add-offers-modal.component.html',
   styleUrls: ['./add-offers-modal.component.scss'],
 })
