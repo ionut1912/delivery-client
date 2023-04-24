@@ -1,0 +1,18 @@
+<div class="container-nav">
+  <div>
+    <p class="title">User Information</p>
+  </div>
+  <div>
+    <p class="title">Phone Number :{{ data.userDetails.phoneNumber }}</p>
+  </div>
+  <div>
+    <p class="title">Username: {{ data.userDetails.username }}</p>
+  </div>
+  <div>
+    <p class="title">City: {{ data.userDetails.city }}</p>
+  </div>
+
+  <p class="title">Role: {{ data.userDetails.role }}</p>
+  <p class="title">Orders count: {{ data.userDetails.ordersCount }}</p>
+</div>
+<button mat-raised-button color="primary" (click)="close()">Close</button>

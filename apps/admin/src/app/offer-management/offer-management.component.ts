@@ -26,7 +26,6 @@ export interface OfferTableDataSource {
   styleUrls: ['./offer-management.component.scss'],
 })
 export class OfferManagementComponent implements OnInit {
-
   displayedColumns = [
     'id',
     'dateActiveFrom',
@@ -53,7 +52,6 @@ export class OfferManagementComponent implements OnInit {
 
   ngOnInit() {
     this.extractOfferDataSource();
-
   }
 
   editOffer(element: Offer) {
@@ -63,9 +61,7 @@ export class OfferManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
-
       this.extractOfferDataSource();
-
     });
   }
 
@@ -79,7 +75,7 @@ export class OfferManagementComponent implements OnInit {
         })
         .filter((menuItem) => menuItem !== undefined)
         .map((x) => x?.itemName);
-  
+
       const offerDataSource: OfferTableDataSource[] = [];
       for (let i = 0; i < offer.length; i++) {
         const offerDataSourceItem: OfferTableDataSource = {
@@ -92,22 +88,17 @@ export class OfferManagementComponent implements OnInit {
         };
         offerDataSource.push(offerDataSourceItem);
       }
-  
+
       this.dataSource = new MatTableDataSource(offerDataSource);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
-
     });
   }
 
   addOffer() {
     const dialogRef = this.dialog.open(AddOffersModalComponent);
     dialogRef.afterClosed().subscribe(() => {
-  
       this.extractOfferDataSource();
-   
-
     });
   }
 }

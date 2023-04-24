@@ -1,3 +1,4 @@
+import { OrderDetailStatistic } from './../models/Order/OrderDetailStatistic';
 import { MenuItemInOrdersCount } from './../models/MenuItem/MenuItemInOrdersCount';
 import { MenuItemCount } from './../models/MenuItem/MenuItemCount';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +12,14 @@ export class StatisticsService {
   getMenuItemCount() {
     return this.httpClient.get<MenuItemCount[]>('Statistics/items-count');
   }
-  getOrderMenuItemsCount(){
-    return  this.httpClient.get<MenuItemInOrdersCount[]>('Statistics/orders-count');
+  getOrderMenuItemsCount() {
+    return this.httpClient.get<MenuItemInOrdersCount[]>(
+      'Statistics/orders-count'
+    );
+  }
+  getOrderStatistics(numberOfDays: number) {
+    return this.httpClient.get<OrderDetailStatistic>(
+      `Statistics/orders-count/${numberOfDays}`
+    );
   }
 }

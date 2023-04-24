@@ -31,15 +31,15 @@ export class DashboardComponent implements OnInit {
       this.optionsMenuItemCountChart.dataset = {
         source: sourceData,
       };
-    
     });
     this.statisticsService.getOrderMenuItemsCount().subscribe((data) => {
-    const sourceData = data.map((item) => [item.menuItemName, item.orderMenuItemCount]);
-    this.optionsMenuItemOrderCountChart.dataset={
-      source:sourceData
-    };
+      const sourceData = data.map((item) => [
+        item.menuItemName,
+        item.orderMenuItemCount,
+      ]);
+      this.optionsMenuItemOrderCountChart.dataset = {
+        source: sourceData,
+      };
     });
-
   }
-
 }

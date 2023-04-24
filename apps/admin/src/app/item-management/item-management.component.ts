@@ -57,14 +57,12 @@ export class ItemManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
-
       this.initializeMenuItemTable();
     });
   }
-  addMenuItem(){
-    const dialogRef=this.dialog.open(AddItemsModalComponent);
+  addMenuItem() {
+    const dialogRef = this.dialog.open(AddItemsModalComponent);
     dialogRef.afterClosed().subscribe(() => {
-    
       this.initializeMenuItemTable();
     });
   }

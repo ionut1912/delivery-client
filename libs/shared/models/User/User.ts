@@ -10,4 +10,5 @@ export interface User {
   phoneNumber: string;
   photos: string[];
   role: string;
+  ordersCount: number;
 }

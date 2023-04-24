@@ -12,8 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-items-modal.component.scss'],
 })
 export class AddItemsModalComponent {
-
- menuItems: FormGroup = new FormGroup({
+  menuItems: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     category: new FormControl(null, [Validators.required]),
     ingredients: new FormControl(null, [Validators.required]),
@@ -35,22 +34,20 @@ export class AddItemsModalComponent {
     if (this.menuItems.invalid) {
       return;
     }
-    const addMenuItemBody: MenuItemDto= {
+    const addMenuItemBody: MenuItemDto = {
       itemName: this.menuItems.value.name,
-     category:this.menuItems.value.category,
-     ingredients: this.menuItems.value.ingredients,
-     price: this.menuItems.value.price,
-     numberOfCalories: this.menuItems.value.numberOfCalories,
-     quantity: this.menuItems.value.quantity,
+      category: this.menuItems.value.category,
+      ingredients: this.menuItems.value.ingredients,
+      price: this.menuItems.value.price,
+      numberOfCalories: this.menuItems.value.numberOfCalories,
+      quantity: this.menuItems.value.quantity,
     };
 
- this.menuItemService.addMenuItem(addMenuItemBody);
- this.dialogRef.close();
+    this.menuItemService.addMenuItem(addMenuItemBody);
+    this.dialogRef.close();
   }
-
 
   cancel() {
     this.dialogRef.close();
   }
-
 }

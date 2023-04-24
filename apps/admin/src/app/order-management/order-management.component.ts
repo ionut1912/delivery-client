@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
+import { StatisticsService } from 'libs/shared/services/StatisticsService';
+import { OrderDetailStatistic } from 'libs/shared/models/Order/OrderDetailStatistic';
 
 export interface OrderTableDataSource {
   id: string;
@@ -21,7 +23,11 @@ export interface OrderTableDataSource {
   styleUrls: ['./order-management.component.scss'],
 })
 export class OrderManagementComponent implements OnInit {
-  constructor(private orderService: OrderService, private dialog: MatDialog) {
+  constructor(
+    private orderService: OrderService,
+    private statisticsService: StatisticsService,
+    private dialog: MatDialog
+  ) {
     this.initializeOrdersTable();
   }
   displayedColumns = [
@@ -34,6 +40,8 @@ export class OrderManagementComponent implements OnInit {
     'menuItems',
     'Actions',
   ];
+  orderDetailsForSevenDays!: OrderDetailStatistic;
+  orderDetailsForThirtyDays!: OrderDetailStatistic;
   dataSource: MatTableDataSource<OrderTableDataSource> =
     new MatTableDataSource<OrderTableDataSource>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,6 +49,12 @@ export class OrderManagementComponent implements OnInit {
 
   ngOnInit() {
     this.initializeOrdersTable();
+    this.statisticsService.getOrderStatistics(-7).subscribe((orderDetails) => {
+      this.orderDetailsForSevenDays = orderDetails;
+    });
+    this.statisticsService.getOrderStatistics(-30).subscribe((orderDetails) => {
+      this.orderDetailsForThirtyDays = orderDetails;
+    });
   }
 
   editOrder(element: OrderTableDataSource) {
@@ -50,7 +64,6 @@ export class OrderManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
-  
       this.initializeOrdersTable();
     });
   }

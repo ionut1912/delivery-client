@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PhotoService } from 'libs/shared/services/PhotoService';
 import { UserPhotosComponent } from '../user-photos/user-photos.component';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 
 export interface UserTableDataSource {
   id: number;
@@ -20,6 +21,7 @@ export interface UserTableDataSource {
 
   phoneNumber: string;
   role: string;
+  ordersCount: number;
 }
 @Component({
   selector: 'delivery-app-client-user-management',
@@ -27,12 +29,13 @@ export interface UserTableDataSource {
   styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent implements OnInit {
-
   constructor(
     private accountService: AccountService,
     private photoService: PhotoService,
     private dialog: MatDialog
-  ) {this.initializeUserDatasource();}
+  ) {
+    this.initializeUserDatasource();
+  }
   dataSource: MatTableDataSource<UserTableDataSource> =
     new MatTableDataSource<UserTableDataSource>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,6 +53,7 @@ export class UserManagementComponent implements OnInit {
     'Actions',
   ];
   curentUser!: User;
+  usersDetails!: User[];
   ngOnInit() {
     this.initializeUserDatasource();
     this.accountService.getCurrentUser().subscribe((user) => {
@@ -58,6 +62,7 @@ export class UserManagementComponent implements OnInit {
   }
   initializeUserDatasource() {
     this.accountService.getAllUsers().subscribe((users) => {
+      this.usersDetails = users;
       const usersDatasource: UserTableDataSource[] = [];
       for (const user of users) {
         const userDatasource: UserTableDataSource = {
@@ -70,6 +75,7 @@ export class UserManagementComponent implements OnInit {
           postalCode: user.address.postalCode,
           phoneNumber: user.phoneNumber,
           role: user.role,
+          ordersCount: user.ordersCount,
         };
         usersDatasource.push(userDatasource);
       }
@@ -101,6 +107,13 @@ export class UserManagementComponent implements OnInit {
     this.dialog.open(UserPhotosComponent, {
       data: {
         images: this.curentUser.photos,
+      },
+    });
+  }
+  viewUserDetails(element: User) {
+    this.dialog.open(UserDetailsComponent, {
+      data: {
+        userDetails: element,
       },
     });
   }

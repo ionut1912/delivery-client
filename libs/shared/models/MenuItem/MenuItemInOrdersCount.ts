@@ -1,4 +1,4 @@
-export interface MenuItemInOrdersCount{
-    menuItemName:string;
-    orderMenuItemCount:number;
+export interface MenuItemInOrdersCount {
+  menuItemName: string;
+  orderMenuItemCount: number;
 }

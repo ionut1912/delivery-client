@@ -77,7 +77,6 @@ export class RestaurantManagementComponent implements OnInit {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
   }
 
@@ -88,7 +87,6 @@ export class RestaurantManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
-
       this.initializeRestaurantData();
     });
   }
@@ -96,7 +94,6 @@ export class RestaurantManagementComponent implements OnInit {
   addRestaurant() {
     const dialogRef = this.dialog.open(AddRestaurantsModalComponent);
     dialogRef.afterClosed().subscribe(() => {
-
       this.initializeRestaurantData();
     });
   }
@@ -109,12 +106,9 @@ export class RestaurantManagementComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
-      
       this.initializeRestaurantData();
     });
   }
-
- 
 
   addPhotos(id: string) {
     this.router.navigate(['/restaurant-photo', id]);

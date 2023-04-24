@@ -1,6 +1,6 @@
 <delivery-client-navbar></delivery-client-navbar>
 
-<div class="example-container mat-elevation-z8 table-offer" >
+<div class="example-container mat-elevation-z8 table-offer">
   <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -81,6 +81,16 @@
           matTooltip="View my photos"
           matTooltipPosition="left"
           (click)="viewPhoto()"
+        >
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button
+          *ngIf="curentUser.username !== element.username"
+          mat-icon-button
+          color="primary"
+          matTooltip="View User Details"
+          matTooltipPosition="left"
+          (click)="viewUserDetails(element)"
         >
           <mat-icon>remove_red_eye</mat-icon>
         </button>

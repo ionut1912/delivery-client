@@ -25,7 +25,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { GenericTableModule } from '@delivery-app-client/generic-table';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { GenericDeleteModalModule } from '@delivery-app-client/generic-delete-modal';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
@@ -57,7 +61,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     }),
     ReactiveFormsModule,
     GenericReviewsModule,
-   CarouselModule,
+    CarouselModule,
     GenericTableModule,
     GenericDeleteModalModule,
   ],
@@ -70,7 +74,7 @@ import { CarouselComponent } from './carousel/carousel.component';
   ],
 
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [NavbarComponent],
 })
 export class AppModule {}

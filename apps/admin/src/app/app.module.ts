@@ -40,6 +40,7 @@ import { EditMenuitemComponent } from './edit-menuitem/edit-menuitem.component';
 import { ViewItemPhotosComponent } from './view-item-photos/view-item-photos.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AddItemsModalComponent } from './add-items-modal/add-items-modal.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AddItemsModalComponent } from './add-items-modal/add-items-modal.compon
     EditMenuitemComponent,
     ViewItemPhotosComponent,
     AddItemsModalComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,7 @@ import { AddItemsModalComponent } from './add-items-modal/add-items-modal.compon
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
-    CarouselModule
+    CarouselModule,
   ],
   providers: [
     DatePipe,

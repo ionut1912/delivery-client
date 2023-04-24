@@ -45,7 +45,12 @@
     <div class="column">
       <mat-form-field appearance="outline">
         <mat-label>Number of calories</mat-label>
-        <input matInput formControlName="numberOfCalories" required type="number" />
+        <input
+          matInput
+          formControlName="numberOfCalories"
+          required
+          type="number"
+        />
         <mat-error *ngIf="checkError('numberOfCalories', 'required')">
           {{ error('numberOfCalories', 'is required') }}
         </mat-error>
@@ -59,7 +64,6 @@
           {{ error('quantity', 'is required') }}
         </mat-error>
       </mat-form-field>
-       
     </div>
   </div>
 

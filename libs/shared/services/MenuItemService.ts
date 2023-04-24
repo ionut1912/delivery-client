@@ -25,7 +25,7 @@ export class MenuItemService {
         });
       });
   }
-  
+
   addMenuItem(item: MenuItemDto) {
     this.httpClient
       .post<JsonResponse>(`MenuItems`, item)
