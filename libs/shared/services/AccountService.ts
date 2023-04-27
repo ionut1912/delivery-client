@@ -66,14 +66,7 @@ export class AccountService {
   getCurrentUser() {
     return this.httpClient.get<User>('Accounts/current');
   }
-  modifyCurrentUser(userForEdit: UserForEdit) {
-    this.httpClient
-      .put<EditCurrentUserResponse>('Accounts/current', userForEdit)
-      .subscribe((response) => {
-        sessionStorage.setItem('jwt', response.token);
-        sessionStorage.setItem('email', response.email);
-      });
-  }
+
   modifyCurrentUserAddress(userAddress: UserAddress) {
     this.httpClient
       .put('Accounts/current/address', userAddress)

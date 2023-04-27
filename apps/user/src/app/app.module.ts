@@ -1,7 +1,6 @@
-import { FlagsModule } from './../../../../libs/flags/src/lib/flags.module';
 /* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FlagsModule } from './../../../../libs/flags/src/lib/flags.module';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';

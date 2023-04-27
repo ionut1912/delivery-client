@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { Restaurant } from '../../../../../libs/shared/models/Restaurant/Restaurant';
 import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenuItem';
 import { CartActions } from '../cart/store/cart.actions';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
 @Component({
   selector: 'delivery-app-client-restaurants',
   templateUrl: './restaurants.component.html',
@@ -16,14 +17,16 @@ import { CartActions } from '../cart/store/cart.actions';
 export class RestaurantsComponent implements OnInit {
   restaurant!: Restaurant;
   mainImage!: string;
-
+  data!: InternationalizationConfig;
   constructor(
     private router: ActivatedRoute,
     private redirect: Router,
     private restaurantService: RestaurantService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
+    this.data = this.route.snapshot.data[0];
     this.router.params.subscribe((params) => {
       const id = params['id'];
       this.restaurantService

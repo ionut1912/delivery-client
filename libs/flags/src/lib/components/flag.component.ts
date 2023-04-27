@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class FlagComponent implements OnInit {
   roTraslation = false;
   ngOnInit(): void {
-    console.log(this.roTraslation);
     if (sessionStorage.getItem('LANGUAGE') === null) {
       sessionStorage.setItem('LANGUAGE', 'EN');
     } else {

@@ -14,9 +14,7 @@ export class UserDetailsComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: UserDetails,
     public dialogRef: MatDialogRef<UserDetailsComponent>
-  ) {
-    console.log(data.userDetails);
-  }
+  ) {}
   close() {
     this.dialogRef.close();
   }

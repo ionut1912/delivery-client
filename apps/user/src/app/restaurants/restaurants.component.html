@@ -1,5 +1,7 @@
 <div class="container-nav"></div>
-<div class="border-box container-nav">{{ restaurant.name }}</div>
+<div class="border-box container-nav">
+  {{ data.dynamicConfigs[restaurant.name] }}
+</div>
 <div *ngIf="restaurant.restaurantPhotos.length === 1" class="container-nav">
   <img src="{{ restaurant.restaurantPhotos[0].url }}" alt="No image" />
 </div>
@@ -19,7 +21,9 @@
           <mat-card class="example-card">
             <mat-card-header>
               <mat-card-title-group>
-                <mat-card-title>{{ item.menuItems.itemName }}</mat-card-title>
+                <mat-card-title>{{
+                  data.dynamicConfigs[item.menuItems.itemName]
+                }}</mat-card-title>
               </mat-card-title-group>
             </mat-card-header>
             <mat-card-content>
@@ -37,7 +41,7 @@
                   color="primary"
                   (click)="viewItemDetails(item.menuItems.id)"
                 >
-                  View MenuItem Details
+                  {{ data.dynamicConfigs['ViewItem'] }}
                 </button>
               </div>
 
@@ -48,7 +52,7 @@
                   color="primary"
                   (click)="addToCart(item.menuItems)"
                 >
-                  Add to cart
+                  {{ data.dynamicConfigs['Cart'] }}
                 </button>
               </div>
             </mat-card-content>
@@ -64,4 +68,5 @@
 <delivery-reviews
   [restaurantId]="restaurant.id"
   [rowData]="restaurant.reviews"
+  [dynamicConfigs]="data.dynamicConfigs"
 ></delivery-reviews>

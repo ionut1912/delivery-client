@@ -1,10 +1,12 @@
-<div class="container-nav">Hello, {{ user.username | titlecase }}!</div>
 <div class="container-nav">
-  Welcome to our application! Here you will find a various list of items to
-  chose from.
+  {{ data.dynamicConfigs['Hi'] }}, {{ user.username | titlecase }}!
 </div>
 <div class="container-nav">
-  Restaurants from {{ user.address.city | titlecase }}
+  {{ data.dynamicConfigs['Welcome'] }}
+</div>
+<div class="container-nav">
+  {{ data.dynamicConfigs['RestaurantsHeader'] }}
+  {{ user.address.city | titlecase }}
 </div>
 <div class="container-nav" *ngFor="let restaurant of restaurants">
   <div>
@@ -12,14 +14,14 @@
       <img src="{{ getMainPhoto(restaurant) }}" alt="No image" />
     </div>
     <div>
-      {{ restaurant.name }}
+      {{ data.dynamicConfigs[restaurant.name] }}
     </div>
     <button
       mat-raised-button
       color="primary"
       (click)="goToRestaurant(restaurant.id)"
     >
-      View menu
+      {{ data.dynamicConfigs['ViewMenu'] }}
     </button>
   </div>
 </div>

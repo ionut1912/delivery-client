@@ -1,3 +1,4 @@
+import { InternationalizationConfig } from './../../../../shared/models/InternationalizationConfig';
 import { Component, Input, OnInit } from '@angular/core';
 import { UserDto } from '../../../../shared/models/User/UserDto';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,9 +20,12 @@ export interface InputType {
 })
 export class ReviewComponent implements OnInit {
   ratingArr: any[] = [];
+
   @Input() rowData!: InputType[];
   @Input() menuItemId!: string;
   @Input() restaurantId!: string;
+  @Input() dynamicConfigs!: Record<string, string>;
+  language!: string;
   private rating = 3;
   private starCount = 5;
 
@@ -40,7 +44,7 @@ export class ReviewComponent implements OnInit {
     ]),
   });
   error = (field: string, rule: string) => {
-    return `Field ${field}   ${rule}`;
+    return `${field}   ${rule}`;
   };
   public checkError = (controlName: string, errorName: string) => {
     return this.reviews.controls[controlName].hasError(errorName);
@@ -50,6 +54,7 @@ export class ReviewComponent implements OnInit {
     for (let index = 0; index < this.starCount; index++) {
       this.ratingArr.push(index);
     }
+    this.language = sessionStorage.getItem('LANGUAGE') ?? 'EN';
   }
   onClick(rating: number) {
     this.rating = rating;

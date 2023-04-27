@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="item">
       <div class="fa fa-user" (click)="goToPage('profile')"></div>
-      <div class="label">Profile</div>
+      <div class="label">{{ data.dynamicConfigs['Profile'] }}</div>
     </div>
 
     <div class="item">
@@ -15,7 +15,7 @@
           >shopping_cart</mat-icon
         >
       </div>
-      <div class="label">Shopping cart</div>
+      <div class="label">{{ data.dynamicConfigs['Cart'] }}</div>
     </div>
     <div class="item">
       <div>
@@ -23,7 +23,7 @@
           >dashboard</mat-icon
         >
       </div>
-      <div class="label">Dashboard</div>
+      <div class="label">{{ data.dynamicConfigs['Dashboard'] }}</div>
     </div>
     <div class="item">
       <div>
@@ -31,7 +31,7 @@
           >receipt</mat-icon
         >
       </div>
-      <div class="label">My orders</div>
+      <div class="label">{{ data.dynamicConfigs['MyOrders'] }}</div>
     </div>
     <div class="item">
       <div>
@@ -39,11 +39,11 @@
           >settings</mat-icon
         >
       </div>
-      <div class="label">Setup your plan</div>
+      <div class="label">{{ data.dynamicConfigs['Plan'] }}</div>
     </div>
     <div class="item">
       <div class="fa fa-power-off" (click)="logout()"></div>
-      <div class="label">Logout</div>
+      <div class="label">{{ data.dynamicConfigs['LogOut'] }}</div>
     </div>
   </div>
 </ng-container>

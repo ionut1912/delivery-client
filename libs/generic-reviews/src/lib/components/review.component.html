@@ -15,40 +15,80 @@
 </div>
 
 <div>
-  <div class="title">Add your opinion about this item</div>
+  <div class="title">{{ dynamicConfigs['ReviewMessage'] }}</div>
   <div class="content">
     <form [formGroup]="reviews" #f="ngForm" novalidate autocomplete="off">
       <div class="input">
         <mat-form-field appearance="outline">
-          <mat-label>Review Title</mat-label>
+          <mat-label>{{ dynamicConfigs['ReviewTitle'] }}</mat-label>
           <input
             matInput
             required
             formControlName="reviewTitle"
             minlength="3"
           />
-          <mat-error *ngIf="checkError('reviewTitle', 'required')">
-            {{ error('reviewTitle', 'is required') }}
+          <mat-error
+            *ngIf="checkError('reviewTitle', 'required') && language === 'EN'"
+          >
+            {{ error('ReviewTitle', 'is required') }}
           </mat-error>
-          <mat-error *ngIf="checkError('reviewTitle', 'minlength')">
-            {{ error('reviewDescription', 'has min length of 3 characters') }}
+          <mat-error
+            *ngIf="checkError('reviewTitle', 'required') && language === 'RO'"
+          >
+            {{ error('Titlul reviewului', 'este necesar') }}
+          </mat-error>
+          <mat-error
+            *ngIf="checkError('reviewTitle', 'minlength') && language === 'EN'"
+          >
+            {{ error('ReviewTitle', 'has min length of 3 characters') }}
+          </mat-error>
+          <mat-error
+            *ngIf="checkError('reviewTitle', 'minlength') && language === 'RO'"
+          >
+            {{
+              error('Titlul reviewului', 'are lungimea minima de  3 caractere')
+            }}
           </mat-error>
         </mat-form-field>
       </div>
       <div class="input">
         <mat-form-field appearance="outline">
-          <mat-label>Review Description</mat-label>
+          <mat-label>{{ dynamicConfigs['ReviewDescription'] }}</mat-label>
           <textarea
             matInput
             required
             formControlName="reviewDescription"
             minlength="3"
           ></textarea>
-          <mat-error *ngIf="checkError('reviewDescription', 'required')">
-            {{ error('reviewDescription', 'is required') }}
+          <mat-error
+            *ngIf="
+              checkError('reviewDescription', 'required') && language === 'EN'
+            "
+          >
+            {{ error('ReviewDescription', 'is required') }}
           </mat-error>
-          <mat-error *ngIf="checkError('reviewDescription', 'minlength')">
-            {{ error('reviewDescription', 'has min length of 3 characters') }}
+          <mat-error
+            *ngIf="
+              checkError('reviewDescription', 'required') && language === 'RO'
+            "
+          >
+            {{ error('Descrierea reviewului', 'este necesara') }}
+          </mat-error>
+          <mat-error
+            *ngIf="
+              checkError('reviewDescription', 'minlength') && language === 'EN'
+            "
+          >
+            {{ error('ReviewDescription', 'has min length of 3 characters') }}
+          </mat-error>
+          <mat-error
+            *ngIf="
+              checkError('reviewDescription', 'minlength') && language === 'RO'
+            "
+          >
+            {{
+              error('ReviewDescription', 'are lungimea minima de  3 caractere')
+            }}
           </mat-error>
         </mat-form-field>
       </div>
@@ -66,8 +106,10 @@
           </mat-icon>
         </button>
         <br />
+      </div>
+      <div class="container-nav">
         <button mat-raised-button color="primary" (click)="addReview()">
-          Add review
+          {{ dynamicConfigs['AddReview'] }}
         </button>
       </div>
     </form>

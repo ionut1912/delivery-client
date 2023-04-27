@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.data = this.route.snapshot.data[0];
     this.language = sessionStorage.getItem('LANGUAGE') ?? 'en';
-    console.log(this.data.dynamicConfigs['personalDetails']);
   }
   onSubmit(): void {
     this.submitted = true;

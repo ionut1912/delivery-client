@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app-state.module';
 import { getAllProductsInCart } from '../cart/store/getAllMenuItemsInCart';
 import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenuItem';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
+import { InternationalizationService } from 'libs/shared/services/InternationalizationService';
 
 @Component({
   selector: 'delivery-app-client-navbar',
@@ -12,9 +14,20 @@ import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenu
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router, private store: Store<AppState>) {}
+  data!: InternationalizationConfig;
+  constructor(
+    private router: Router,
+    private store: Store<AppState>,
+    private internationalizationService: InternationalizationService
+  ) {}
   cart$!: Observable<OrderMenuItem[]>;
   ngOnInit() {
+    const language = sessionStorage.getItem('LANGUAGE');
+    let pageName = 'navbar';
+    pageName = pageName + '.' + language?.toLowerCase();
+    this.internationalizationService.getConfig(pageName).subscribe((config) => {
+      this.data = config;
+    });
     this.cart$ = this.store.select(getAllProductsInCart);
   }
 

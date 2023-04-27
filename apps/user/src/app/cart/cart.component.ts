@@ -46,7 +46,6 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.store.select(getAllProductsInCart).subscribe((item) => {
       this.cartItems = item;
-      console.log(this.cartItems);
       for (const element of this.cartItems) {
         if (element.menuItem.offerMenuItems) {
           for (const offer of element.menuItem.offerMenuItems) {

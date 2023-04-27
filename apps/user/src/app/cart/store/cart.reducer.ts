@@ -9,8 +9,6 @@ const cartInitialState: CartState = {
 export const cartReducer = createReducer<CartState>(
   cartInitialState,
   on(CartActions.addMenuitem, (state, { menuItemInOrder }) => {
-    console.log(menuItemInOrder);
-    console.log(state);
     return {
       ...state,
       menuItems: updateMenuItemWithImageInOrderQuantity(

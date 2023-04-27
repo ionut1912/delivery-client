@@ -115,7 +115,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.accountService.getCurrentUser().subscribe((userData) => {
       this.user = userData;
-      console.log(this.user);
       this.userDetails.patchValue({
         street: this.user.address?.street,
         number: this.user.address?.number,
@@ -139,12 +138,6 @@ export class UserProfileComponent implements OnInit {
   };
 
   updateProfile() {
-    const userToBeEdited: UserForEdit = {
-      username: this.userDetails.value.username,
-      phoneNumber: this.userDetails.value.phone,
-      email: this.userDetails.value.email,
-    };
-
     const addressForUser: UserAddress = {
       street: this.userDetails.value.street,
       city: this.userDetails.value.city,
@@ -159,7 +152,6 @@ export class UserProfileComponent implements OnInit {
       sportActivity: this.userDetails.value.sportActivity,
     };
 
-    this.accountService.modifyCurrentUser(userToBeEdited);
     this.accountService.modifyCurrentUserAddress(addressForUser);
     this.userConfigService.editUserConfig(
       this.user.userConfig.id,
@@ -183,8 +175,11 @@ export class UserProfileComponent implements OnInit {
       const file: File = eventTarget.files[0];
       const formData = new FormData();
       formData.append('file', file);
-
-      this.photoService.modifyMainPhoto(formData);
+      if (this.user.photos.length === 0) {
+        this.photoService.addPhoto(formData);
+      } else {
+        this.photoService.modifyMainPhoto(formData);
+      }
     }
   }
 }
