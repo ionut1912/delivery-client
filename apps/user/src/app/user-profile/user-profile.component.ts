@@ -78,28 +78,28 @@ export class UserProfileComponent implements OnInit {
 
   userImage!: File;
   userDetails: FormGroup = new FormGroup({
-    street: new FormControl(this.user.address.street),
-    number: new FormControl(this.user.address.number),
+    street: new FormControl(null),
+    number: new FormControl(null),
     city: new FormControl(null, [
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    postalCode: new FormControl(this.user.address.postalCode, [
+    postalCode: new FormControl(null, [
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    phone: new FormControl(this.user.phoneNumber, [
+    phone: new FormControl(null, [
       Validators.minLength(3),
       Validators.maxLength(10),
     ]),
-    email: new FormControl(this.user.email, [Validators.email]),
+    email: new FormControl(null, [Validators.email]),
     username: new FormControl(null, [
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    weight: new FormControl(this.user.userConfig.weight, Validators.required),
-    height: new FormControl(this.user.userConfig.height, Validators.required),
-    age: new FormControl(this.user.userConfig.age, Validators.required),
+    weight: new FormControl(null, Validators.required),
+    height: new FormControl(null, Validators.required),
+    age: new FormControl(null, Validators.required),
     sportActivity: new FormControl(null, Validators.required),
   });
   error = (field: string, rule: string) => {
@@ -115,6 +115,19 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.accountService.getCurrentUser().subscribe((userData) => {
       this.user = userData;
+      console.log(this.user);
+      this.userDetails.patchValue({
+        street: this.user.address?.street,
+        number: this.user.address?.number,
+        city: this.user.address?.city,
+        postalCode: this.user.address?.postalCode,
+        phone: this.user.phoneNumber,
+        email: this.user.email,
+        username: this.user.username,
+        weight: this.user.userConfig.weight,
+        height: this.user.userConfig.height,
+        age: this.user.userConfig.age,
+      });
     });
   }
 

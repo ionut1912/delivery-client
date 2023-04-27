@@ -1,3 +1,5 @@
+import { FlagsModule } from './../../../../libs/flags/src/lib/flags.module';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -63,6 +65,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     GenericReviewsModule,
     CarouselModule,
     GenericTableModule,
+    FlagsModule,
     GenericDeleteModalModule,
   ],
   providers: [

@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
 
 @Component({
   selector: 'delivery-app-client-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  data!: InternationalizationConfig;
+  language!: string;
   submitted = false;
   hide = true;
   users: FormGroup = new FormGroup({
@@ -25,14 +29,18 @@ export class LoginComponent {
     email: new FormControl(null, [Validators.required, Validators.email]),
   });
   error = (field: string, rule: string) => {
-    return `Field ${field}   ${rule}`;
+    return `${field}   ${rule}`;
   };
 
   public constructor(
     private router: Router,
-    private loginService: AccountService
+    private loginService: AccountService,
+    private route: ActivatedRoute
   ) {}
-
+  ngOnInit(): void {
+    this.data = this.route.snapshot.data[0];
+    this.language = sessionStorage.getItem('LANGUAGE') ?? 'en';
+  }
   public checkError = (controlName: string, errorName: string) => {
     return this.users.controls[controlName].hasError(errorName);
   };

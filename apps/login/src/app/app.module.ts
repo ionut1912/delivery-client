@@ -1,3 +1,4 @@
+import { FlagsModule } from './../../../../libs/flags/src/lib/flags.module';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   NO_ERRORS_SCHEMA,
@@ -30,6 +31,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FlagsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

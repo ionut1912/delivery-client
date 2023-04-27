@@ -17,9 +17,7 @@ export class AccountService {
       const response = window.location.search.split('?state=')[1];
 
       const decodedResponse = window.atob(response);
-
       const userDetailsObject = JSON.parse(decodedResponse);
-
       sessionStorage.setItem('jwt', userDetailsObject['jwt']);
       sessionStorage.setItem('email', userDetailsObject['email']);
 
@@ -38,7 +36,6 @@ export class AccountService {
             jwt: response?.token,
           };
 
-          console.log(loginResponseToEncode);
           const claims = JSON.parse(
             Buffer.from(response.token.split('.')[1], 'base64').toString()
           );

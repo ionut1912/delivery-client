@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@delivery-app-client/carousel": ["libs/carousel/src/index.ts"],
+      "@delivery-app-client/flags": ["libs/flags/src/index.ts"],
       "@delivery-app-client/generic-delete-modal": [
         "libs/generic-delete-modal/src/index.ts"
       ],

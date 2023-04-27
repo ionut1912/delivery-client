@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Register } from '../../../../../libs/shared/models/Account/Register';
 import { AccountService } from '../../../../../libs/shared/services/AccountService';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
 
 @Component({
   selector: 'delivery-app-client-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   isLinear = true;
-
+  data!: InternationalizationConfig;
+  language!: string;
   submitted = false;
 
   hide = true;
@@ -52,11 +55,12 @@ export class RegisterComponent {
 
   public constructor(
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   error = (field: string, rule: string) => {
-    return `Field ${field}   ${rule}`;
+    return `${field}   ${rule}`;
   };
   public checkUsersError = (controlName: string, errorName: string) => {
     return this.users.controls[controlName].hasError(errorName);
@@ -64,6 +68,11 @@ export class RegisterComponent {
   public checkAddressError = (controlName: string, errorName: string) => {
     return this.address.controls[controlName].hasError(errorName);
   };
+  ngOnInit() {
+    this.data = this.route.snapshot.data[0];
+    this.language = sessionStorage.getItem('LANGUAGE') ?? 'en';
+    console.log(this.data.dynamicConfigs['personalDetails']);
+  }
   onSubmit(): void {
     this.submitted = true;
     this.userDetails = {
@@ -82,6 +91,6 @@ export class RegisterComponent {
     this.goToLogin();
   }
   goToLogin() {
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 }

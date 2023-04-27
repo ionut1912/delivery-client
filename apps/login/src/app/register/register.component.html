@@ -1,40 +1,76 @@
 <mat-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="users">
     <form [formGroup]="users">
-      <ng-template matStepLabel>Fill out your personal details</ng-template>
+      <ng-template matStepLabel>{{
+        data.dynamicConfigs['personalDetails']
+      }}</ng-template>
       <div class="row input">
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Phone</mat-label>
-            <input
-              matInput
-              formControlName="phone"
-              required
-              minlength="3"
-              maxlength="10"
-            />
+            <mat-label>{{ data.dynamicConfigs['Phone'] }}</mat-label>
+            <input matInput formControlName="phone" required minlength="3" />
 
-            <mat-error *ngIf="checkUsersError('phone', 'required')">
-              {{ error('phone', 'is required') }}
+            <mat-error
+              *ngIf="checkUsersError('phone', 'required') && language === 'EN'"
+            >
+              {{ error('Phone', 'is required') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('phone', 'minlength')">
-              {{ error('phone', 'has min length of 3 characters') }}
+            <mat-error
+              *ngIf="checkUsersError('phone', 'required') && language === 'RO'"
+            >
+              {{ error('Numarul de telefon', 'este necesar') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('phone', 'maxlength')">
-              {{ error('phone', 'has max length of 10 characters') }}
+            <mat-error
+              *ngIf="checkUsersError('phone', 'minlength') && language === 'EN'"
+            >
+              {{ error('Phone', 'has min length of 3 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkUsersError('phone', 'minlength') && language === 'RO'"
+            >
+              {{
+                error(
+                  'Numarul de telefon',
+                  'are lungimea minima de  3 caractere'
+                )
+              }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkUsersError('phone', 'maxlength') && language === 'EN'"
+            >
+              {{ error('Phone', 'has max length of 10 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkUsersError('phone', 'maxlength') && language === 'EN'"
+            >
+              {{ error('Phone', 'are lungimea maxima de 10 caractere') }}
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Email'] }}</mat-label>
             <input matInput formControlName="email" required />
-            <mat-error *ngIf="checkUsersError('email', 'required')">
-              {{ error('email', 'is required') }}
+            <mat-error
+              *ngIf="checkUsersError('email', 'required') && language === 'EN'"
+            >
+              {{ error('Email', 'is required') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('email', 'email')">
-              {{ error('email', 'must contains @') }}
+            <mat-error
+              *ngIf="checkUsersError('email', 'required') && language === 'RO'"
+            >
+              {{ error('Email', 'este necesar') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkUsersError('email', 'email') && language === 'EN'"
+            >
+              {{ error('Email', 'must contains @') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkUsersError('email', 'email') && language === 'RO'"
+            >
+              {{ error('Email', 'trebuie sa contina @') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -43,81 +79,168 @@
       <div class="row input">
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input
-              matInput
-              required
-              formControlName="username"
-              minlength="3"
-              maxlength="20"
-            />
-            <mat-error *ngIf="checkUsersError('username', 'required')">
-              {{ error('username', 'required') }}
+            <mat-label>{{ data.dynamicConfigs['Username'] }}</mat-label>
+            <input matInput required formControlName="username" minlength="3" />
+            <mat-error
+              *ngIf="
+                checkUsersError('username', 'required') && language === 'EN'
+              "
+            >
+              {{ error('Username', 'is required') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('username', 'minlength')">
-              {{ error('username', 'has min length of 3 characters') }}
+            <mat-error
+              *ngIf="
+                checkUsersError('username', 'required') && language === 'RO'
+              "
+            >
+              {{ error('Numele de utilizator', 'este necesar') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('username', 'maxlength')">
-              {{ error('username', 'has max length of 20 characters') }}
+            <mat-error
+              *ngIf="
+                checkUsersError('username', 'minlength') && language === 'EN'
+              "
+            >
+              {{ error('Username', 'has min length of 3 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkUsersError('username', 'minlength') && language === 'RO'
+              "
+            >
+              {{
+                error(
+                  'Numele de utilizator',
+                  'are lungimea minima de  3 charactere'
+                )
+              }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkUsersError('username', 'maxlength') && language === 'EN'
+              "
+            >
+              {{ error('Username', 'has max length of 20 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkUsersError('username', 'maxlength') && language === 'RO'
+              "
+            >
+              {{
+                error(
+                  'Numele de utilizator',
+                  'are lungimea maxima de  20 caractere'
+                )
+              }}
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Password'] }}</mat-label>
             <input
               matInput
               formControlName="password"
               required
               type="password"
               minlength="8"
-              maxlength="32"
             />
 
-            <mat-error *ngIf="checkUsersError('password', 'required')">
-              {{ error('password', 'required') }}
+            <mat-error
+              *ngIf="
+                checkUsersError('password', 'required') && language === 'EN'
+              "
+            >
+              {{ error('Password', 'is required') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('password', 'minlength')">
-              {{ error('password', 'has max length of 8 characters') }}
+            <mat-error
+              *ngIf="
+                checkUsersError('password', 'required') && language === 'RO'
+              "
+            >
+              {{ error('Parola', 'este necesara') }}
             </mat-error>
-            <mat-error *ngIf="checkUsersError('password', 'maxlength')">
-              {{ error('password', 'has max length of 32 characters') }}
+            <mat-error
+              *ngIf="
+                checkUsersError('password', 'minlength') && language === 'EN'
+              "
+            >
+              {{ error('Password', 'has max length of 8 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkUsersError('password', 'minlength') && language === 'RO'
+              "
+            >
+              {{ error('Parola', 'are lungimea minima de  8 caractere') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkUsersError('password', 'maxlength') && language === 'EN'
+              "
+            >
+              {{ error('Password', 'has max length of 32 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkUsersError('password', 'maxlength') && language === 'RO'
+              "
+            >
+              {{ error('Parola', 'are lungimea maxima de  32 caractere') }}
             </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>
+          {{ data.dynamicConfigs['Next'] }}
+        </button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="address" label="Fill out your address">
+  <mat-step [stepControl]="address" [label]="data.dynamicConfigs['address']">
     <form [formGroup]="address">
       <div class="row input">
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Street</mat-label>
-            <input
-              matInput
-              formControlName="street"
-              required
-              minlength="3"
-              maxlength="10"
-            />
+            <mat-label>{{ data.dynamicConfigs['Street'] }}</mat-label>
+            <input matInput formControlName="street" required />
 
-            <mat-error *ngIf="checkAddressError('street', 'required')">
-              {{ error('street', 'is required') }}
+            <mat-error
+              *ngIf="
+                checkAddressError('street', 'required') && language === 'EN'
+              "
+            >
+              {{ error('Street', 'is required') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('street', 'required') && language === 'RO'
+              "
+            >
+              {{ error('Strada', 'este necesara') }}
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Number</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Number'] }}</mat-label>
             <input matInput formControlName="number" required />
-            <mat-error *ngIf="checkAddressError('number', 'required')">
+            <mat-error
+              *ngIf="
+                checkAddressError('number', 'required') && language === 'EN'
+              "
+            >
               {{ error('Number', 'is required') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('number', 'required') && language === 'RO'
+              "
+            >
+              {{ error('Numarul', 'este necesar') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -126,52 +249,119 @@
       <div class="row input">
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input
-              matInput
-              required
-              formControlName="city"
-              minlength="3"
-              maxlength="20"
-            />
-            <mat-error *ngIf="checkAddressError('city', 'required')">
-              {{ error('city', 'required') }}
+            <mat-label>{{ data.dynamicConfigs['City'] }}</mat-label>
+            <input matInput required formControlName="city" minlength="3" />
+            <mat-error
+              *ngIf="checkAddressError('city', 'required') && language === 'EN'"
+            >
+              {{ error('City', 'is required') }}
             </mat-error>
-            <mat-error *ngIf="checkAddressError('city', 'minlength')">
-              {{ error('city', 'has min length of 3 characters') }}
+            <mat-error
+              *ngIf="checkAddressError('city', 'required') && language === 'RO'"
+            >
+              {{ error('Orasul', 'este necesar') }}
             </mat-error>
-            <mat-error *ngIf="checkAddressError('city', 'maxlength')">
-              {{ error('city', 'has max length of 20 characters') }}
+            <mat-error
+              *ngIf="
+                checkAddressError('city', 'minlength') && language === 'EN'
+              "
+            >
+              {{ error('City', 'has min length of 3 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('city', 'minlength') && language === 'RO'
+              "
+            >
+              {{ error('Orasul', 'are lungimea minima de 3 caractere') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('city', 'maxlength') && language === 'EN'
+              "
+            >
+              {{ error('City', 'has max length of 20 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('city', 'maxlength') && language === 'RO'
+              "
+            >
+              {{
+                error('Orasul', 'orasul are lungimea maxima de 20 caractere')
+              }}
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Postal Code</mat-label>
+            <mat-label>{{ data.dynamicConfigs['PostalCode'] }}</mat-label>
             <input
               matInput
               formControlName="postalCode"
               required
               minlength="3"
-              maxlength="20"
             />
 
-            <mat-error *ngIf="checkAddressError('postalCode', 'required')">
+            <mat-error
+              *ngIf="
+                checkAddressError('postalCode', 'required') && language === 'EN'
+              "
+            >
               {{ error('Postal Code', 'required') }}
             </mat-error>
-            <mat-error *ngIf="checkAddressError('postalCode', 'minlength')">
+            <mat-error
+              *ngIf="
+                checkAddressError('postalCode', 'required') && language === 'RO'
+              "
+            >
+              {{ error('Codul postal', 'este necesar') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('postalCode', 'minlength') &&
+                language === 'EN'
+              "
+            >
               {{ error('Postal Code', 'has mim length of 3 characters') }}
             </mat-error>
-            <mat-error *ngIf="checkAddressError('postalCode', 'maxlength')">
+            <mat-error
+              *ngIf="
+                checkAddressError('postalCode', 'minlength') &&
+                language === 'RO'
+              "
+            >
+              {{ error('Codul postal', 'are lungimea minima de 3 caractere') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('postalCode', 'maxlength') &&
+                language === 'EN'
+              "
+            >
               {{ error('Postal Code', 'has max length of 20 characters') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkAddressError('postalCode', 'maxlength') &&
+                language === 'RO'
+              "
+            >
+              {{
+                error('Codul postal', ' are lungimea maxima de 20 caractere')
+              }}
             </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="onSubmit()">Finish registration</button>
+        <button mat-button matStepperPrevious>
+          {{ data.dynamicConfigs['Back'] }}
+        </button>
+        <button mat-button (click)="onSubmit()">
+          {{ data.dynamicConfigs['Finish registration'] }}
+        </button>
       </div>
     </form>
   </mat-step>

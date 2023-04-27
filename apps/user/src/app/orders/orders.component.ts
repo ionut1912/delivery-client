@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenericDeleteModalComponent } from '../../../../../libs/generic-delete-modal/src/lib/components/generic-delete-modal.component';
 
 @Component({
-  selector: 'delivery-client-orders',
+  selector: 'delivery-app-client-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })

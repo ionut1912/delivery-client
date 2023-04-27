@@ -1,4 +1,9 @@
 {
+  "/Config/*": {
+    "target": "https://localhost:7173",
+    "secure": false,
+    "changeOrigin": true
+  },
   "/PhotoForMenuItems/*": {
     "target": "https://localhost:7251",
     "secure": false,
