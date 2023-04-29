@@ -34,6 +34,7 @@ import {
 import { CarouselComponent } from './carousel/carousel.component';
 import { RestaurantReviewsComponent } from './restaurant-reviews/restaurant-reviews.component';
 import { ItemsReviewsComponent } from './items-reviews/items-reviews.component';
+import { ReviewEditModalComponent } from './review-edit-modal/review-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ItemsReviewsComponent } from './items-reviews/items-reviews.component';
     UserConfigComponent,
     RestaurantReviewsComponent,
     ItemsReviewsComponent,
+    ReviewEditModalComponent,
   ],
   imports: [
     BrowserModule,

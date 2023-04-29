@@ -6,6 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { ReviewForMenuItemsService } from 'libs/shared/services/ReviewForMenuItemsService';
 import { ActivatedRoute } from '@angular/router';
 import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
+import { MatDialog } from '@angular/material/dialog';
+import { ReviewEditModalComponent } from '../review-edit-modal/review-edit-modal.component';
+import { GenericDeleteModalComponent } from 'libs/generic-delete-modal/src/lib/components/generic-delete-modal.component';
 
 @Component({
   selector: 'delivery-app-client-items-reviews',
@@ -25,7 +28,8 @@ export class ItemsReviewsComponent implements OnInit {
   data!: InternationalizationConfig;
   constructor(
     private reviewService: ReviewForMenuItemsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {
     this.initializeTableData();
   }
@@ -36,7 +40,7 @@ export class ItemsReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.route.snapshot.data[0];
-    console.log(this.data);
+
     this.initializeTableData();
   }
 
@@ -47,6 +51,35 @@ export class ItemsReviewsComponent implements OnInit {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+  }
+  editReview(element: CurrentUserReviewForMenuItems) {
+    console.log(this.data.dynamicConfigs[element.reviewDescription]);
+    const dialogRef = this.dialog.open(ReviewEditModalComponent, {
+      data: {
+        element: {
+          reviewTitle: this.data.dynamicConfigs[element.reviewTitle],
+          reviewDescription:
+            this.data.dynamicConfigs[element.reviewDescription],
+          menuItemId: element.menuItemId,
+          reviewId: element.id,
+          numberOfStars: element.numberOfStars,
+        },
+      },
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.initializeTableData();
+    });
+  }
+  deleteReview(id: string) {
+    const dialogRef = this.dialog.open(GenericDeleteModalComponent, {
+      data: {
+        id: id,
+        item: 'reviewForMenuItem',
+      },
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.initializeTableData();
     });
   }
 }

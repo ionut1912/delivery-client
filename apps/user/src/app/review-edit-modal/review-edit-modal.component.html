@@ -1,0 +1,45 @@
+<div>
+  <div class="title">{{ dataConfig.dynamicConfigs['ModifyHeader'] }}</div>
+  <div class="content">
+    <form [formGroup]="reviews" #f="ngForm" novalidate autocomplete="off">
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ dataConfig.dynamicConfigs['ReviewTitle'] }}</mat-label>
+          <input matInput formControlName="reviewTitle" />
+        </mat-form-field>
+      </div>
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>{{
+            dataConfig.dynamicConfigs['ReviewDescription']
+          }}</mat-label>
+          <textarea
+            matInput
+            formControlName="reviewDescription"
+            minlength="3"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="container-nav">
+        <button
+          mat-icon-button
+          *ngFor="let ratingId of ratingArr; index as i"
+          [id]="'star_' + i"
+          (click)="onClick(i + 1)"
+          [matTooltip]="ratingId + 1"
+          matTooltipPosition="above"
+        >
+          <mat-icon>
+            {{ showIcon(i) }}
+          </mat-icon>
+        </button>
+        <br />
+      </div>
+      <div class="container-nav">
+        <button mat-raised-button color="primary" (click)="editReview()">
+          {{ dataConfig.dynamicConfigs['EditButton'] }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -35,28 +35,32 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ data.dynamicConfigs['NumberOfStars'] }}
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.numberOfStars }} </mat-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.numberOfStars }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ data.dynamicConfigs['Username'] }}
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.username }}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.username }}
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="itemName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ data.dynamicConfigs['ItemName'] }}
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{ data.dynamicConfigs[row.itemName] }}</mat-cell
-      >
+        {{ data.dynamicConfigs[row.itemName] }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Actions">
-      <mat-header-cell *matHeaderCellDef>{{
-        data.dynamicConfigs['Actions']
-      }}</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        {{ data.dynamicConfigs['Actions'] }}
+      </mat-header-cell>
 
       <mat-cell *matCellDef="let element" data-label="Actiuni">
         <button
@@ -64,6 +68,7 @@
           color="primary"
           [matTooltip]="data.dynamicConfigs['ModifyReview']"
           matTooltipPosition="left"
+          (click)="editReview(element)"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -73,6 +78,7 @@
           color="primary"
           [matTooltip]="data.dynamicConfigs['DeleteReview']"
           matTooltipPosition="left"
+          (click)="deleteReview(element.id)"
         >
           <mat-icon>delete_outline</mat-icon>
         </button>

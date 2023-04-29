@@ -1,8 +1,9 @@
 export interface CurrentUserReviewForRestaurant {
   id: string;
-  reviewTitles: string;
-  reviewDescriptions: string;
+  reviewTitle: string;
+  reviewDescription: string;
   numberOfStars: number;
   username: string;
   restaurantName: string;
+  restaurantId: string;
 }

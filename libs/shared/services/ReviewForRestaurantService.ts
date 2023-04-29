@@ -38,4 +38,22 @@ export class ReviewForRestaurantService {
       'ReviewForRestaurants'
     );
   }
+  deleteReviewForMenuItem(reviewId: string, language: string) {
+    this.httpClient
+      .delete<JsonResponse>(`/ReviewForRestaurants/${reviewId}/${language}`)
+      .subscribe(
+        (response) => {
+          const closeMessage = language === 'EN' ? 'Close' : 'Inchide';
+          this.snackBar.open(response.message, closeMessage, {
+            duration: 5000,
+          });
+        },
+        (err) => {
+          const closeMessage = language === 'EN' ? 'Close' : 'Inchide';
+          this.snackBar.open(err.error, closeMessage, {
+            duration: 5000,
+          });
+        }
+      );
+  }
 }
