@@ -1,6 +1,6 @@
 <div class="grid-container">
   <div class="grid-item">
-    <h2>{{ menuItem.itemName }}</h2>
+    <h2>{{ data.dynamicConfigs[menuItem.itemName] }}</h2>
   </div>
 </div>
 <div class="container-nav" *ngIf="menuItem.photos.length === 1">
@@ -12,20 +12,20 @@
   ></delivery-app-client-carousel>
 </div>
 
-<div class="container-nav">Ingredients used:</div>
+<div class="container-nav">{{ data.dynamicConfigs['IngredientHeader'] }}</div>
 
 <div class="container-nav">
   <ul>
     <div *ngFor="let ingredient of ingredients">
-      <li>{{ ingredient }}</li>
+      <li>{{ data.dynamicConfigs[ingredient] }}</li>
     </div>
   </ul>
 </div>
 <div class="container-nav" *ngIf="reviewsForMenuItem.length > 0">
-  Our clients opinions about this menu item
+  {{ data.dynamicConfigs['ReviewHeader'] }}
 </div>
 
-<delivery-reviews
+<delivery-app-client-reviews
   [menuItemId]="id"
-  [rowData]="reviewsForMenuItem"
-></delivery-reviews>
+  [dynamicConfigs]="data.dynamicConfigs"
+></delivery-app-client-reviews>

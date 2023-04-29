@@ -79,6 +79,7 @@ export class RegisterComponent implements OnInit {
       password: this.users.value.password,
       username: this.users.value.username,
       phoneNumber: this.users.value.phone,
+      language: this.language,
       addressForCreation: {
         street: this.address.value.street,
         number: this.address.value.number,
@@ -86,10 +87,7 @@ export class RegisterComponent implements OnInit {
         postalCode: this.address.value.postalCode,
       },
     };
+
     this.accountService.register(this.userDetails);
-    this.goToLogin();
-  }
-  goToLogin() {
-    this.router.navigate(['/login']);
   }
 }

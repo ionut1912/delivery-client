@@ -6,4 +6,5 @@ export interface Register {
   username: string;
   phoneNumber: string;
   addressForCreation: UserAddress;
+  language: string;
 }

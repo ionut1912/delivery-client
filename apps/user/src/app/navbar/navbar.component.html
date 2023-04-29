@@ -42,6 +42,27 @@
       <div class="label">{{ data.dynamicConfigs['Plan'] }}</div>
     </div>
     <div class="item">
+      <div>
+        <mat-icon style="color: white" (click)="goToPage('items-reviews')">
+          rate_review</mat-icon
+        >
+        >
+      </div>
+      <div class="label">{{ data.dynamicConfigs['ReviewsForMenuItem'] }}</div>
+    </div>
+    <div class="item">
+      <div>
+        <mat-icon
+          style="color: white"
+          (click)="goToPage('restaurants-reviews')"
+        >
+          rate_review</mat-icon
+        >
+        >
+      </div>
+      <div class="label">{{ data.dynamicConfigs['ReviewsForRestaurant'] }}</div>
+    </div>
+    <div class="item">
       <div class="fa fa-power-off" (click)="logout()"></div>
       <div class="label">{{ data.dynamicConfigs['LogOut'] }}</div>
     </div>

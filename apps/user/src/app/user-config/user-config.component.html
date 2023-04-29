@@ -1,28 +1,42 @@
 <div *ngIf="user.userConfig" class="container-nav">
-  <h1>Config was already seted</h1>
+  <h1>{{ data.dynamicConfigs['ConfigSeted'] }}</h1>
 </div>
 <div *ngIf="user.userConfig === null">
   <div class="container-nav">
-    <h2>Add your details</h2>
+    <h2>{{ data.dynamicConfigs['ConfigHeader'] }}</h2>
   </div>
   <div class="container-nav">
     <form [formGroup]="userConfigs" novalidate autocomplete="off">
       <div class="row">
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Weight</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Weight'] }}</mat-label>
             <input matInput required formControlName="weight" />
-            <mat-error *ngIf="checkError('weight', 'required')">
-              {{ error('weight', 'is required') }}
+            <mat-error
+              *ngIf="checkError('weight', 'required') && language === 'EN'"
+            >
+              {{ error('Weight', 'is required') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkError('weight', 'required') && language === 'RO'"
+            >
+              {{ error('Greutatea', 'este necesara') }}
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Height</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Height'] }}</mat-label>
             <input matInput required formControlName="height" />
-            <mat-error *ngIf="checkError('height', 'required')">
-              {{ error('height', 'is required') }}
+            <mat-error
+              *ngIf="checkError('height', 'required') && language === 'EN'"
+            >
+              {{ error('Height', 'is required') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkError('height', 'required') && language === 'RO'"
+            >
+              {{ error('Inaltimea', 'este necesara') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -30,23 +44,43 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field appearance="outline">
-            <mat-label>Age</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Age'] }}</mat-label>
             <input matInput required formControlName="age" />
-            <mat-error *ngIf="checkError('age', 'required')">
-              {{ error('age', 'is required') }}
+            <mat-error
+              *ngIf="checkError('age', 'required') && language === 'EN'"
+            >
+              {{ error('Age', 'is required') }}
+            </mat-error>
+            <mat-error
+              *ngIf="checkError('age', 'required') && language === 'RO'"
+            >
+              {{ error('Varsta', 'este necesara') }}
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-6">
+        <div class="col-6" *ngIf="language === 'EN'">
           <mat-form-field appearance="outline">
-            <mat-label>Sex</mat-label>
+            <mat-label>{{ data.dynamicConfigs['Sex'] }}</mat-label>
             <mat-select formControlName="sex">
-              <mat-option *ngFor="let sexValue of sex" [value]="sexValue">
+              <mat-option *ngFor="let sexValue of sexEn" [value]="sexValue">
                 {{ sexValue }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="checkError('sex', 'required')">
-              {{ error('sex', 'is required') }}
+              {{ error('Sex', 'is required') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6" *ngIf="language === 'RO'">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ data.dynamicConfigs['Sex'] }}</mat-label>
+            <mat-select formControlName="sex">
+              <mat-option *ngFor="let sexValue of sexRo" [value]="sexValue">
+                {{ sexValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="checkError('sex', 'required')">
+              {{ error('Sexul', 'este necesar') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -54,7 +88,7 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field appearance="outline">
-            <mat-label>SportActivity</mat-label>
+            <mat-label>{{ data.dynamicConfigs['SportActivity'] }}</mat-label>
             <mat-select formControlName="sportActivity">
               <mat-option
                 *ngFor="let sportActivityValue of sportActivity"
@@ -63,8 +97,19 @@
                 {{ sportActivityValue }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="checkError('sportActivity', 'required')">
+            <mat-error
+              *ngIf="
+                checkError('sportActivity', 'required') && language === 'EN'
+              "
+            >
               {{ error('Sport Activity', 'is required') }}
+            </mat-error>
+            <mat-error
+              *ngIf="
+                checkError('sportActivity', 'required') && language === 'RO'
+              "
+            >
+              {{ error('Activitatea sportiva', 'este necesara') }}
             </mat-error>
           </mat-form-field>
         </div>

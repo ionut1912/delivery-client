@@ -2,16 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDto } from '../models/User/UserDto';
 import { Register } from '../models/Account/Register';
-import { UserForEdit } from '../../../apps/user/src/app/user-profile/user-profile.component';
 import { UserAddress } from '../models/User/UserAddress';
-import { EditCurrentUserResponse } from '../models/Account/EditCurrentUserResponse';
 import { Buffer } from 'buffer';
 import { User } from '../models/User/User';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { JsonResponse } from '../models/JsonResponse';
+import { Router } from '@angular/router';
+import { ModifyUserAddressRequest } from '../models/Account/ModifyUserAddressRequest';
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
   handleResponseFromState() {
     if (window.location.search.includes('state')) {
       const response = window.location.search.split('?state=')[1];
@@ -56,25 +62,56 @@ export class AccountService {
         }
       });
   }
+
   register(userDetails: Register) {
     this.httpClient
-      .post<UserDto>('/Accounts/register', userDetails)
-      .subscribe(() => {
-        console.log('register successfully!');
-      });
+      .post<JsonResponse>('/Accounts/register', userDetails)
+      .subscribe(
+        (response) => {
+          const closeMessage =
+            userDetails.language === 'EN' ? 'Close' : 'Inchide';
+          this.snackBar.open(response.message, closeMessage, {
+            duration: 5000,
+          });
+          this.goToLogin();
+        },
+        (err) => {
+          const closeMessage =
+            userDetails.language === 'EN' ? 'Close' : 'Inchide';
+          this.snackBar.open(err.error, closeMessage, {
+            duration: 5000,
+          });
+        }
+      );
   }
   getCurrentUser() {
     return this.httpClient.get<User>('Accounts/current');
   }
 
-  modifyCurrentUserAddress(userAddress: UserAddress) {
+  modifyCurrentUserAddress(userAddress: ModifyUserAddressRequest) {
     this.httpClient
-      .put('Accounts/current/address', userAddress)
-      .subscribe(() => {
-        console.log('test');
-      });
+      .put<JsonResponse>('Accounts/current/address', userAddress)
+      .subscribe(
+        (response) => {
+          const closeMessage =
+            userAddress.language === 'EN' ? 'Close' : 'Inchide';
+          this.snackBar.open(response.message, closeMessage, {
+            duration: 5000,
+          });
+        },
+        (err) => {
+          const closeMessage =
+            userAddress.language === 'EN' ? 'Close' : 'Inchide';
+          this.snackBar.open(err.error, closeMessage, {
+            duration: 5000,
+          });
+        }
+      );
   }
   getAllUsers() {
     return this.httpClient.get<User[]>('Accounts');
+  }
+  goToLogin() {
+    this.router.navigate(['/login']);
   }
 }

@@ -1,9 +1,9 @@
 <delivery-app-client-navbar></delivery-app-client-navbar>
 <div class="container-nav">
-  <h2>User profile</h2>
+  <h2>{{ data.dynamicConfigs['ProfilePageTitle'] }}</h2>
 </div>
 <div class="container-nav">
-  <h2>Edit your personal details</h2>
+  <h2>{{ data.dynamicConfigs['ProfilePageHeader'] }}</h2>
 </div>
 <div class="container-nav">
   <img class="user-image" src="{{ user.photos[0] }}" alt="No image" />
@@ -14,12 +14,15 @@
 </div>
 <div class="container-nav">
   <mat-stepper>
-    <mat-step [stepControl]="userDetails" label="Modify your address">
+    <mat-step
+      [stepControl]="userDetails"
+      [label]="data.dynamicConfigs['AddressLabel']"
+    >
       <form [formGroup]="userDetails" class="user">
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>Street</mat-label>
+              <mat-label>{{ data.dynamicConfigs['Street'] }}</mat-label>
               <input
                 matInput
                 formControlName="street"
@@ -33,7 +36,7 @@
           </div>
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>Number</mat-label>
+              <mat-label>{{ data.dynamicConfigs['Number'] }}</mat-label>
               <input
                 matInput
                 formControlName="number"
@@ -49,18 +52,12 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>City</mat-label>
+              <mat-label>{{ data.dynamicConfigs['City'] }}</mat-label>
               <input
                 matInput
                 formControlName="city"
                 [readonly]="disabledFields[3].disabled"
               />
-              <mat-error *ngIf="checkError('city', 'minlength')">
-                {{ error('city', 'has min length of 3 characters') }}
-              </mat-error>
-              <mat-error *ngIf="checkError('city', 'maxlength')">
-                {{ error('city', 'has max length of 20 characters') }}
-              </mat-error>
             </mat-form-field>
             <mat-icon color="primary" (click)="makeInputEditable(3)"
               >edit</mat-icon
@@ -68,18 +65,12 @@
           </div>
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>Postal Code</mat-label>
+              <mat-label>{{ data.dynamicConfigs['PostalCode'] }}</mat-label>
               <input
                 matInput
                 formControlName="postalCode"
                 [readonly]="disabledFields[4].disabled"
               />
-              <mat-error *ngIf="checkError('postalCode', 'minlength')">
-                {{ error('Postal code', 'has min length of 3 characters') }}
-              </mat-error>
-              <mat-error *ngIf="checkError('postalCode', 'maxlength')">
-                {{ error('postal code', 'has max length of 20 characters') }}
-              </mat-error>
             </mat-form-field>
 
             <mat-icon color="primary" (click)="makeInputEditable(4)"
@@ -88,15 +79,20 @@
           </div>
         </div>
 
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>
+          {{ data.dynamicConfigs['Next'] }}
+        </button>
       </form>
     </mat-step>
-    <mat-step [stepControl]="userDetails" label="Modify your configs">
-      <form [formGroup]="userDetails">
+    <mat-step
+      [stepControl]="userDetails"
+      [label]="data.dynamicConfigs['ConfigLabel']"
+    >
+      <form [formGroup]="userDetails" class="user">
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>Weight</mat-label>
+              <mat-label>{{ data.dynamicConfigs['Weight'] }}</mat-label>
               <input
                 matInput
                 formControlName="weight"
@@ -110,7 +106,7 @@
           </div>
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>Height</mat-label>
+              <mat-label>{{ data.dynamicConfigs['Height'] }}</mat-label>
               <input
                 matInput
                 formControlName="height"
@@ -126,7 +122,7 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>Age</mat-label>
+              <mat-label>{{ data.dynamicConfigs['Age'] }}</mat-label>
               <input
                 matInput
                 formControlName="age"
@@ -139,7 +135,7 @@
           </div>
           <div class="col-6">
             <mat-form-field appearance="outline">
-              <mat-label>SportActivity</mat-label>
+              <mat-label>{{ data.dynamicConfigs['SportActivity'] }}</mat-label>
               <mat-select formControlName="sportActivity">
                 <mat-option
                   *ngFor="let sportActivityValue of sportActivity"
@@ -152,9 +148,13 @@
           </div>
         </div>
 
-        <button mat-button matStepperPrevious>Previous</button>
+        <button mat-button matStepperPrevious>
+          {{ data.dynamicConfigs['Previous'] }}
+        </button>
 
-        <button mat-button (click)="updateProfile()">Next</button>
+        <button mat-button (click)="updateProfile()">
+          {{ data.dynamicConfigs['UpdateProfile'] }}
+        </button>
       </form>
     </mat-step>
   </mat-stepper>

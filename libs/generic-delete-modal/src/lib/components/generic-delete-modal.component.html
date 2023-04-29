@@ -1,12 +1,19 @@
-<h1 mat-dialog-title>Are you sure you want to delete this {{ itemName }} ?</h1>
+<h1 mat-dialog-title>
+  {{ configData.dynamicConfigs['DeleteText'] }}
+  {{ configData.dynamicConfigs[itemName] }}
+</h1>
 <div class mat-dialog-content>
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-6 col-lg-6">
-        <button (click)="yes()" color="primary" mat-raised-button>Yes</button>
+        <button (click)="yes()" color="primary" mat-raised-button>
+          {{ configData.dynamicConfigs['Yes'] }}
+        </button>
       </div>
       <div class="col-md-6 col-sm-6 col-lg-6">
-        <button (click)="no()" color="primary" mat-raised-button>No</button>
+        <button (click)="no()" color="primary" mat-raised-button>
+          {{ configData.dynamicConfigs['No'] }}
+        </button>
       </div>
     </div>
   </div>

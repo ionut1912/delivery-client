@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from '../../../../../libs/shared/services/OrderService';
 import { MatTableDataSource } from '@angular/material/table';

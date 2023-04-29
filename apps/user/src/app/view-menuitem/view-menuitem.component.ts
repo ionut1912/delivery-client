@@ -4,9 +4,8 @@ import { MenuItemService } from '../../../../../libs/shared/services/MenuItemSer
 import { ReviewForMenuItemsService } from '../../../../../libs/shared/services/ReviewForMenuItemsService';
 import { ReviewForMenuItem } from '../../../../../libs/shared/models/ReviewForMenuItem/ReviewForMenuItem';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../state/app-state.module';
 import { MenuItem } from '../../../../../libs/shared/models/MenuItem/MenuItem';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
 
 export interface ViewMenuItemData {
   id: string;
@@ -24,11 +23,14 @@ export class ViewMenuitemComponent implements OnInit {
   constructor(
     private router: ActivatedRoute,
     private menuItemService: MenuItemService,
-    private store: Store<AppState>,
-    private reviewsForMenuItemService: ReviewForMenuItemsService
+    private reviewsForMenuItemService: ReviewForMenuItemsService,
+    private route: ActivatedRoute
   ) {}
+  data!: InternationalizationConfig;
 
   ngOnInit() {
+    this.data = this.route.snapshot.data[0];
+    console.log(this.data);
     this.router.params.subscribe((params) => {
       this.id = params['id'];
       this.menuItemService.getMenuItemById(this.id).subscribe((response) => {

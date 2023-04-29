@@ -32,6 +32,8 @@ import {
   NO_ERRORS_SCHEMA,
 } from '@angular/core';
 import { CarouselComponent } from './carousel/carousel.component';
+import { RestaurantReviewsComponent } from './restaurant-reviews/restaurant-reviews.component';
+import { ItemsReviewsComponent } from './items-reviews/items-reviews.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     ViewMenuitemComponent,
     CarouselComponent,
     UserConfigComponent,
+    RestaurantReviewsComponent,
+    ItemsReviewsComponent,
   ],
   imports: [
     BrowserModule,

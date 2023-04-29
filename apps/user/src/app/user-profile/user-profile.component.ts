@@ -1,3 +1,5 @@
+import { UserConfigEditRequest } from './../../../../../libs/shared/models/UserConfig/UserConfigEditRequest';
+import { ModifyUserAddressRequest } from './../../../../../libs/shared/models/Account/ModifyUserAddressRequest';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserAddress } from '../../../../../libs/shared/models/User/UserAddress';
@@ -7,6 +9,8 @@ import { UserConfigDto } from '../../../../../libs/shared/models/UserConfig/User
 import { UserConfigService } from '../../../../../libs/shared/services/UserConfigService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../../../../libs/shared/models/User/User';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
+import { ActivatedRoute } from '@angular/router';
 
 export interface FieldsStatus {
   fieldName: string;
@@ -29,6 +33,7 @@ export interface UserToBeEdited {
 export class UserProfileComponent implements OnInit {
   sportActivity: number[] = [1, 2, 3, 4, 5, 6, 7];
   user!: User;
+  data!: InternationalizationConfig;
   disabledFields: FieldsStatus[] = [
     {
       fieldName: 'phone',
@@ -102,27 +107,24 @@ export class UserProfileComponent implements OnInit {
     age: new FormControl(null, Validators.required),
     sportActivity: new FormControl(null, Validators.required),
   });
-  error = (field: string, rule: string) => {
-    return `Field ${field}   ${rule}`;
-  };
 
   constructor(
     private matSnackBar: MatSnackBar,
     private accountService: AccountService,
     private photoService: PhotoService,
-    private userConfigService: UserConfigService
+    private userConfigService: UserConfigService,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
+    this.data = this.route.snapshot.data[0];
+
     this.accountService.getCurrentUser().subscribe((userData) => {
       this.user = userData;
       this.userDetails.patchValue({
-        street: this.user.address?.street,
+        street: this.data.dynamicConfigs[this.user.address?.street],
         number: this.user.address?.number,
-        city: this.user.address?.city,
+        city: this.data.dynamicConfigs[this.user.address?.city],
         postalCode: this.user.address?.postalCode,
-        phone: this.user.phoneNumber,
-        email: this.user.email,
-        username: this.user.username,
         weight: this.user.userConfig.weight,
         height: this.user.userConfig.height,
         age: this.user.userConfig.age,
@@ -133,23 +135,26 @@ export class UserProfileComponent implements OnInit {
   makeInputEditable(index: number) {
     this.disabledFields[index].disabled = !this.disabledFields[index].disabled;
   }
-  public checkError = (controlName: string, errorName: string) => {
-    return this.userDetails.controls[controlName].hasError(errorName);
-  };
 
   updateProfile() {
-    const addressForUser: UserAddress = {
-      street: this.userDetails.value.street,
-      city: this.userDetails.value.city,
-      number: this.userDetails.value.number,
-      postalCode: this.userDetails.value.postalCode,
+    const addressForUser: ModifyUserAddressRequest = {
+      language: sessionStorage.getItem('LANGUAGE') ?? 'EN',
+      useraddressForCreation: {
+        street: this.userDetails.value.street,
+        city: this.userDetails.value.city,
+        number: this.userDetails.value.number,
+        postalCode: this.userDetails.value.postalCode,
+      },
     };
-    const userConfigToBeModified: UserConfigDto = {
-      weight: this.userDetails.value.weight,
-      height: this.userDetails.value.height,
-      age: this.userDetails.value.age,
-      sex: this.user.userConfig.sex,
-      sportActivity: this.userDetails.value.sportActivity,
+    const userConfigToBeModified: UserConfigEditRequest = {
+      language: sessionStorage.getItem('LANGUAGE') ?? 'EN',
+      userConfigDto: {
+        weight: this.userDetails.value.weight,
+        height: this.userDetails.value.height,
+        age: this.userDetails.value.age,
+        sex: this.user.userConfig.sex,
+        sportActivity: this.userDetails.value.sportActivity,
+      },
     };
 
     this.accountService.modifyCurrentUserAddress(addressForUser);
@@ -157,9 +162,6 @@ export class UserProfileComponent implements OnInit {
       this.user.userConfig.id,
       userConfigToBeModified
     );
-    this.matSnackBar.open('Profile modified successfully', 'Close', {
-      duration: 5000,
-    });
   }
 
   openFile() {

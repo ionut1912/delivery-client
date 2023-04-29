@@ -1,5 +1,5 @@
-<div *ngIf="cartItems.length === 0" class="container-fluid">
-  <h2>There are no items in your cart</h2>
+<div *ngIf="cartItems.length === 0" class="no-data">
+  <h2>{{ data.dynamicConfigs['NoItems'] }}</h2>
 </div>
 <div class="container-fluid border-box" *ngIf="cartItems.length > 0">
   <div *ngFor="let item of cartItems" class="row">
@@ -11,12 +11,12 @@
       />
     </div>
     <div class="col-3">
-      {{ item.menuItem.itemName }}
+      {{ data.dynamicConfigs[item.menuItem.itemName] }}
     </div>
     <div class="col-3">
       <form [formGroup]="ItemForm" novalidate autocomplete="off">
         <mat-form-field appearance="outline">
-          <mat-label>Quantity</mat-label>
+          <mat-label>{{ data.dynamicConfigs['Quantity'] }}</mat-label>
           <input
             matInput
             type="number"
@@ -29,7 +29,7 @@
     </div>
     <div class="col-3">
       <mat-icon
-        matTooltip="Delete from cart"
+        [matTooltip]="data.dynamicConfigs['DeleteText']"
         class="delete-icon"
         (click)="deleteFromCart(item.menuItem)"
         >delete_outline</mat-icon
@@ -37,11 +37,11 @@
     </div>
   </div>
   <div class="price-info">
-    Final price of your order is {{ calculateFinalPrice() }} lei
+    {{ data.dynamicConfigs['PriceMessage'] }} {{ calculateFinalPrice() }} lei
   </div>
   <div class="order-button">
     <button mat-raised-button color="primary" (click)="makeOrder()">
-      Make order
+      {{ data.dynamicConfigs['OrderText'] }}
     </button>
   </div>
 </div>

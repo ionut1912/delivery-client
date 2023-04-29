@@ -25,7 +25,7 @@ export class PageConfigurationResolver
     } else {
       pageName = pageName + '.' + language.toLowerCase();
     }
-
+    console.log(pageName);
     return this.internationalizationService.getConfig(pageName);
   }
 }

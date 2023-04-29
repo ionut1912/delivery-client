@@ -7,6 +7,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { ViewMenuitemComponent } from './view-menuitem/view-menuitem.component';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RestaurantReviewsComponent } from './restaurant-reviews/restaurant-reviews.component';
+import { ItemsReviewsComponent } from './items-reviews/items-reviews.component';
 
 export const appRoutes: Route[] = [
   {
@@ -37,6 +39,16 @@ export const appRoutes: Route[] = [
   {
     path: 'config',
     component: UserConfigComponent,
+    resolve: [PageConfigurationResolver],
+  },
+  {
+    path: 'restaurants-reviews',
+    component: RestaurantReviewsComponent,
+    resolve: [PageConfigurationResolver],
+  },
+  {
+    path: 'items-reviews',
+    component: ItemsReviewsComponent,
     resolve: [PageConfigurationResolver],
   },
   {

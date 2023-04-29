@@ -1,3 +1,6 @@
+import { AddOrderRequest } from './../../../../../libs/shared/models/Order/AddOrderRequest';
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app-state.module';
@@ -10,20 +13,21 @@ import { OrderMenuItem } from '../../../../../libs/shared/models/State/OrderMenu
 import { OrderService } from '../../../../../libs/shared/services/OrderService';
 import { OrderForCreation } from '../../../../../libs/shared/models/Order/OrderForCreation';
 import { CartActions } from './store/cart.actions';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericDeleteModalComponent } from '../../../../../libs/generic-delete-modal/src/lib/components/generic-delete-modal.component';
+import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';
 
 export interface OfferDetails extends Offer {
   menuItemId: string;
 }
 @Component({
-  selector: 'delivery-client-cart',
+  selector: 'delivery-app-client-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
   cartItems!: OrderMenuItem[];
+  data!: InternationalizationConfig;
   offerForMenuItem!: {
     dateActiveTo: string;
     discount: number;
@@ -40,10 +44,12 @@ export class CartComponent implements OnInit {
     private store: Store<AppState>,
     private orderService: OrderService,
     private offerMenuItemService: OfferForMenuItemsService,
-    private matSnackBar: MatSnackBar,
+    private rote: ActivatedRoute,
     private dialog: MatDialog
   ) {}
   ngOnInit() {
+    this.data = this.rote.snapshot.data[0];
+    console.log(this.data);
     this.store.select(getAllProductsInCart).subscribe((item) => {
       this.cartItems = item;
       for (const element of this.cartItems) {
@@ -95,9 +101,12 @@ export class CartComponent implements OnInit {
     const updatedMenuItem = menuItems.map((item) => {
       return { ...item, quantity: this.ItemForm.value.quantity };
     });
-    const addOrder: OrderForCreation = {
-      restaurantNames: restaurantNames,
-      menuItems: updatedMenuItem,
+    const addOrder: AddOrderRequest = {
+      language: sessionStorage.getItem('LANGUAGE') ?? 'EN',
+      orderForCreation: {
+        restaurantNames: restaurantNames,
+        menuItems: updatedMenuItem,
+      },
     };
     this.orderService.addOrder(addOrder);
     this.store.dispatch(CartActions.removeAllMenuitems());

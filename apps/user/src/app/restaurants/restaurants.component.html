@@ -63,10 +63,9 @@
   </div>
 </div>
 <div class="container-nav" *ngIf="restaurant.menuItemsRestaurants.length === 0">
-  This restaurant does not have menu items
+  {{ data.dynamicConfigs['NoItems'] }}
 </div>
-<delivery-reviews
+<delivery-app-client-reviews
   [restaurantId]="restaurant.id"
-  [rowData]="restaurant.reviews"
   [dynamicConfigs]="data.dynamicConfigs"
-></delivery-reviews>
+></delivery-app-client-reviews>

@@ -1,27 +1,19 @@
-import { InternationalizationConfig } from './../../../../shared/models/InternationalizationConfig';
+import { ReviewForRestaurantAddRequest } from './../../../../shared/models/ReviewForRestaurant/ReviewForRestaurantAddRequest';
+import { ReviewForMenuItemAddRequest } from './../../../../shared/models/ReviewForMenuItem/ReviewForMenuItemAddRequest';
+
 import { Component, Input, OnInit } from '@angular/core';
-import { UserDto } from '../../../../shared/models/User/UserDto';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReviewForMenuItemsService } from '../../../../shared/services/ReviewForMenuItemsService';
 import { ReviewForRestaurantService } from '../../../../shared/services/ReviewForRestaurantService';
-export interface InputType {
-  id: string;
-  reviewTitle: string;
-  reviewDescription: string;
-  numberOfStars: number;
-  user: UserDto;
-  menuItemsId?: string;
-  restaurantsId?: string;
-}
+
 @Component({
-  selector: 'delivery-reviews',
+  selector: 'delivery-app-client-reviews',
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.scss'],
 })
 export class ReviewComponent implements OnInit {
   ratingArr: any[] = [];
 
-  @Input() rowData!: InputType[];
   @Input() menuItemId!: string;
   @Input() restaurantId!: string;
   @Input() dynamicConfigs!: Record<string, string>;
@@ -61,19 +53,25 @@ export class ReviewComponent implements OnInit {
   }
   addReview() {
     if (this.menuItemId != null) {
-      const reviewData = {
-        reviewTitle: this.reviews.value.reviewTitle,
-        reviewDescription: this.reviews.value.reviewDescription,
-        numberOfStars: this.rating,
-        menuItemId: this.menuItemId,
+      const reviewData: ReviewForMenuItemAddRequest = {
+        language: this.language,
+        reviewForMenuItemDto: {
+          reviewTitle: this.reviews.value.reviewTitle,
+          reviewDescription: this.reviews.value.reviewDescription,
+          numberOfStars: this.rating,
+          menuItemId: this.menuItemId,
+        },
       };
       this.reviewForMenuItemService.addReview(reviewData);
     } else {
-      const reviewData = {
-        reviewTitle: this.reviews.value.reviewTitle,
-        reviewDescription: this.reviews.value.reviewDescription,
-        numberOfStars: this.rating,
-        restaurantId: this.restaurantId,
+      const reviewData: ReviewForRestaurantAddRequest = {
+        language: this.language,
+        reviewForRestaurantDto: {
+          reviewTitle: this.reviews.value.reviewTitle,
+          reviewDescription: this.reviews.value.reviewDescription,
+          numberOfStars: this.rating,
+          restaurantId: this.restaurantId,
+        },
       };
       this.reviewForRestaurantService.addReview(reviewData);
     }
