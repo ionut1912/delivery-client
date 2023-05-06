@@ -122,8 +122,14 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="button">
         <input type="submit" [value]="data.dynamicConfigs['LogIn']" />
+      </div>
+      <div>
+        <a class="forgot" (click)="forgotPassword()">{{
+          data.dynamicConfigs['ForgotPassword']
+        }}</a>
       </div>
       <p>
         {{ data.dynamicConfigs['NoAccount'] }}

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="title">{{ data.dynamicConfigs['Header'] }}</div>
+  <div class="content">
+    <form
+      [formGroup]="users"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+      autocomplete="off"
+    >
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput required formControlName="email" />
+          <mat-error
+            *ngIf="checkError('email', 'required') && language === 'EN'"
+          >
+            {{ error('Email', 'is required') }}
+          </mat-error>
+          <mat-error
+            *ngIf="checkError('email', 'required') && language === 'RO'"
+          >
+            {{ error('Email', 'este necesar') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('email', 'email') && language === 'EN'">
+            {{ error('Email', 'must contains @') }}
+          </mat-error>
+          <mat-error *ngIf="checkError('email', 'email') && language === 'RO'">
+            {{ error('Email', 'trebuie sa contina @') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="button">
+        <input type="submit" [value]="data.dynamicConfigs['SendCode']" />
+      </div>
+    </form>
+  </div>
+</div>

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.data = this.route.snapshot.data[0];
-    this.language = sessionStorage.getItem('LANGUAGE') ?? 'en';
+    this.language = sessionStorage.getItem('LANGUAGE') ?? 'EN';
   }
   public checkError = (controlName: string, errorName: string) => {
     return this.users.controls[controlName].hasError(errorName);
@@ -57,5 +57,8 @@ export class LoginComponent implements OnInit {
   }
   goToRegister() {
     this.router.navigate(['/register']);
+  }
+  forgotPassword() {
+    this.router.navigate(['/send-code']);
   }
 }

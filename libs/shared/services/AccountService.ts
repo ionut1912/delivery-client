@@ -1,3 +1,5 @@
+import { ResetPasswordRequest } from './../models/Account/ResetPasswordRequest';
+import { ForgotPasswordResetCodeRequset } from './../models/Account/ForgotPasswordResetCodeRequest';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDto } from '../models/User/UserDto';
@@ -62,7 +64,38 @@ export class AccountService {
         }
       });
   }
-
+  sendCodeToEmail(request: ForgotPasswordResetCodeRequset) {
+    this.httpClient.post<JsonResponse>('/Accounts/code', request).subscribe(
+      (response) => {
+        this.snackBar.open(response.message, 'Close', {
+          duration: 5000,
+        });
+        this.goToInsertCode(request.email);
+      },
+      (err) => {
+        this.snackBar.open(err.error, 'Close', {
+          duration: 5000,
+        });
+      }
+    );
+  }
+  resetPassword(request: ResetPasswordRequest) {
+    this.httpClient
+      .post<JsonResponse>('/Accounts/resetPassword', request)
+      .subscribe(
+        (response) => {
+          this.snackBar.open(response.message, 'Close', {
+            duration: 5000,
+          });
+          this.goToLogin();
+        },
+        (err) => {
+          this.snackBar.open(err.error, 'Close', {
+            duration: 5000,
+          });
+        }
+      );
+  }
   register(userDetails: Register) {
     this.httpClient
       .post<JsonResponse>('/Accounts/register', userDetails)
@@ -113,5 +146,8 @@ export class AccountService {
   }
   goToLogin() {
     this.router.navigate(['/login']);
+  }
+  goToInsertCode(email: string) {
+    this.router.navigate(['/insert-code'], { queryParams: { email: email } });
   }
 }

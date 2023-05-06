@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="title">{{ data.dynamicConfigs['Header'] }}</div>
+  <div class="content">
+    <form
+      [formGroup]="users"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+      autocomplete="off"
+    >
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>Code</mat-label>
+          <input matInput required formControlName="code" />
+          <mat-error
+            *ngIf="checkError('code', 'required') && language === 'EN'"
+          >
+            {{ error('Code', 'is required') }}
+          </mat-error>
+          <mat-error
+            *ngIf="checkError('code', 'required') && language === 'RO'"
+          >
+            {{ error('Codul', 'este necesar') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="button">
+        <input type="submit" [value]="data.dynamicConfigs['Continue']" />
+      </div>
+    </form>
+  </div>
+</div>

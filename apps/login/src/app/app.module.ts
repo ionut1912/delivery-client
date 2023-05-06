@@ -16,6 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../../../libs/shared/material.module';
 import { RegisterComponent } from './register/register.component';
+import { SendCodeComponent } from './send-code/send-code.component';
+import { InsertCodeComponent } from './insert-code/insert-code.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { RegisterComponent } from './register/register.component';
     NxWelcomeComponent,
     LoginComponent,
     RegisterComponent,
+    SendCodeComponent,
+    InsertCodeComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
