@@ -54,7 +54,6 @@ export class ItemsReviewsComponent implements OnInit {
     });
   }
   editReview(element: CurrentUserReviewForMenuItems) {
-    console.log(this.data.dynamicConfigs[element.reviewDescription]);
     const dialogRef = this.dialog.open(ReviewEditModalComponent, {
       data: {
         element: {

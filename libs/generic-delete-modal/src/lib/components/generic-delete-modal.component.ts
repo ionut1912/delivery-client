@@ -47,7 +47,6 @@ export class GenericDeleteModalComponent implements OnInit {
     let pageName = 'deleteModal';
     this.language = sessionStorage.getItem('LANGUAGE') ?? 'EN';
     pageName = pageName + '.' + this.language.toLowerCase();
-    console.log(pageName);
     this.internationatizationService.getConfig(pageName).subscribe((item) => {
       this.configData = item;
     });

@@ -55,7 +55,6 @@ export class RestaurantReviewsComponent implements OnInit {
     });
   }
   editReview(element: CurrentUserReviewForRestaurant) {
-    console.log(this.data.dynamicConfigs[element.reviewDescription]);
     const dialogRef = this.dialog.open(ReviewEditModalComponent, {
       data: {
         element: {

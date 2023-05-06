@@ -12,7 +12,6 @@ import { ReviewForRestaurantAddRequest } from '../models/ReviewForRestaurant/Rev
 export class ReviewForRestaurantService {
   constructor(private snackBar: MatSnackBar, private httpClient: HttpClient) {}
   addReview(review: ReviewForRestaurantAddRequest) {
-    console.log(review);
     this.httpClient
       .post<JsonResponse>('/ReviewForRestaurants', review)
       .subscribe(

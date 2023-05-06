@@ -1,3 +1,4 @@
+import { UserCodeContract } from './../models/Account/UserCodeContract';
 import { ResetPasswordRequest } from './../models/Account/ResetPasswordRequest';
 import { ForgotPasswordResetCodeRequset } from './../models/Account/ForgotPasswordResetCodeRequest';
 import { Injectable } from '@angular/core';
@@ -140,6 +141,9 @@ export class AccountService {
           });
         }
       );
+  }
+  getResetPasswordCode(email: string) {
+    return this.httpClient.get<UserCodeContract>(`Accounts/code/${email}`);
   }
   getAllUsers() {
     return this.httpClient.get<User[]>('Accounts');

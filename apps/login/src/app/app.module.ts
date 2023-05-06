@@ -1,3 +1,4 @@
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { FlagsModule } from './../../../../libs/flags/src/lib/flags.module';
 import {
   CUSTOM_ELEMENTS_SCHEMA,

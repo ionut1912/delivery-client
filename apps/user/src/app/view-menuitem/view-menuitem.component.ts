@@ -30,7 +30,6 @@ export class ViewMenuitemComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.route.snapshot.data[0];
-    console.log(this.data);
     this.router.params.subscribe((params) => {
       this.id = params['id'];
       this.menuItemService.getMenuItemById(this.id).subscribe((response) => {

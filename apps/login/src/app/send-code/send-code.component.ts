@@ -1,6 +1,7 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'libs/shared/services/AccountService';
 import { ForgotPasswordResetCodeRequset } from 'libs/shared/models/Account/ForgotPasswordResetCodeRequest';
 import { InternationalizationConfig } from 'libs/shared/models/InternationalizationConfig';

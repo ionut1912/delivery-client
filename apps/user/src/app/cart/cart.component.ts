@@ -49,7 +49,6 @@ export class CartComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.data = this.rote.snapshot.data[0];
-    console.log(this.data);
     this.store.select(getAllProductsInCart).subscribe((item) => {
       this.cartItems = item;
       for (const element of this.cartItems) {

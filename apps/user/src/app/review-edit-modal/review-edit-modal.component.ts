@@ -53,7 +53,6 @@ export class ReviewEditModalComponent implements OnInit {
     pageName = pageName + '.' + this.language.toLowerCase();
     this.internationalizationService.getConfig(pageName).subscribe((result) => {
       this.dataConfig = result;
-      console.log(this.dataConfig);
     });
   }
   onClick(rating: number) {
