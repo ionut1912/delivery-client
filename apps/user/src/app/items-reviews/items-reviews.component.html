@@ -18,7 +18,7 @@
         {{ data.dynamicConfigs['ReviewTitle'] }}
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{ data.dynamicConfigs[row.reviewTitle] }}</mat-cell
+        {{ row.reviewTitle }}</mat-cell
       >
     </ng-container>
 
@@ -27,7 +27,7 @@
         {{ data.dynamicConfigs['ReviewDescription'] }}
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{ data.dynamicConfigs[row.reviewDescription] }}
+        {{ row.reviewDescription}}
       </mat-cell>
     </ng-container>
 
