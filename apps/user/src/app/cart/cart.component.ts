@@ -48,7 +48,7 @@ export class CartComponent implements OnInit {
     private dialog: MatDialog
   ) {}
   ngOnInit() {
-    this.data = this.rote.snapshot.data[0];
+    this.data = this.rote.snapshot.data[0]; 
     this.store.select(getAllProductsInCart).subscribe((item) => {
       this.cartItems = item;
       for (const element of this.cartItems) {
@@ -102,7 +102,7 @@ export class CartComponent implements OnInit {
     });
     const addOrder: AddOrderRequest = {
       language: sessionStorage.getItem('LANGUAGE') ?? 'EN',
-      orderForCreation: {
+      order: {
         restaurantNames: restaurantNames,
         menuItems: updatedMenuItem,
       },

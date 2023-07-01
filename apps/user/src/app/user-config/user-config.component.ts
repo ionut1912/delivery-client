@@ -53,7 +53,7 @@ export class UserConfigComponent implements OnInit {
     }
     const userConfig: UserConfigAddRequest = {
       language: this.language,
-      userConfigDto: {
+      userConfig: {
         weight: this.userConfigs.value.weight,
         height: this.userConfigs.value.height,
         age: this.userConfigs.value.age,

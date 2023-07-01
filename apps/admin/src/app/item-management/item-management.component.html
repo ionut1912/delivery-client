@@ -4,7 +4,7 @@
   <h1>There are no Menu Items</h1>
 </div>
 <div class="nodata" *ngIf="dataSource.data.length === 0">
-  <button mat-raised-button color="primary"></button>
+  <button mat-raised-button color="primary" (click)="addMenuItem()">Add menu items</button>
 </div>
 <div
   class="example-container mat-elevation-z8 table-offer"
